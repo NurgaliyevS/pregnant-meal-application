@@ -53,7 +53,7 @@ const Header = () => {
             title="Uptime Friend - home page"
           >
             <Image
-              src={"/logo.webp"}
+              src={"/company_related/logo.webp"}
               alt="Uptime Friend logo"
               className="w-5 h-5"
               priority={true}
@@ -147,7 +147,7 @@ const Header = () => {
               href="/"
             >
               <Image
-                src={"/logo.webp"}
+                src={"/company_related/logo.webp"}
                 alt="Uptime Friend logo"
                 className="w-5 h-5"
                 priority={true}

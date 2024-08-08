@@ -17,7 +17,7 @@ function Sabyr({ posts }) {
         <meta name="keywords" content={"UptimeFriend.com"} />
         <link
           rel="canonical"
-          href={`https://uptimefriend.com/blog/author/sabyr`}
+          href={`https://pregnantmeal.com/blog/author/sabyr`}
         />
         <meta
           property="og:title"
@@ -31,7 +31,7 @@ function Sabyr({ posts }) {
         />
         <meta
           property="og:url"
-          content={`https://uptimefriend.com/blog/author/sabyr`}
+          content={`https://pregnantmeal.com/blog/author/sabyr`}
         />
         <meta property="og:type" content="website" />
       </Head>

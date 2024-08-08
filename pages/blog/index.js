@@ -33,7 +33,7 @@ export default function BlogIndex({ posts }) {
           name="keywords"
           content="website monitoring, uptime, server monitoring, tech blog"
         />
-        <link rel="canonical" href="https://uptimefriend.com/blog" />
+        <link rel="canonical" href="https://pregnantmeal.com/blog" />
       </Head>
       <BlogHeader />
       <main className="min-h-screen max-w-6xl mx-auto p-8">

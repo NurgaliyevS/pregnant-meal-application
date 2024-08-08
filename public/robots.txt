@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://uptimefriend.com
+Host: https://pregnantmeal.com
 
 # Sitemaps
-Sitemap: https://uptimefriend.com/sitemap.xml
+Sitemap: https://pregnantmeal.com/sitemap.xml

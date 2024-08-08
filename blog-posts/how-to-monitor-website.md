@@ -31,7 +31,7 @@ Pros:
 
 You need a monitoring system that will check your website 24/7. If any downtime happens, it should notify you. But how do I do it? You have different options:
 
-- [UptimeFriend.com](https://uptimefriend.com/)
+- [UptimeFriend.com](https://pregnantmeal.com/)
 - [UptimeRobot.com](https://uptimerobot.com/)
 - [Instatus](https://instatus.com/)
 
@@ -57,6 +57,6 @@ Instatus's interface:
 
 We checked our websites manually and automatically. Manually is good when you have one website and a limited budget. Otherwise, the automatic system helps you monitor 24/7, and in any case of downtime, we will get notifications. 
 
-[UptimeFriend.com](https://uptimefriend.com/) is perfect if you want a simple notification system.
+[UptimeFriend.com](https://pregnantmeal.com/) is perfect if you want a simple notification system.
 UptimeRobot.com is good when you work with a heavy and complex system.
 Instatus is good when you work with thousands of monitors.
