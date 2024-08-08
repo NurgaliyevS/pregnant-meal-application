@@ -12,7 +12,7 @@ function BlogHeader() {
           <Link
             className="flex items-center gap-2 shrink-0 "
             href="/"
-            title="UptimeFriend.com home page"
+            title="PregnantMeal.com home page"
           >
             <Image
               src={"/company_related/logo.webp"}
@@ -22,7 +22,7 @@ function BlogHeader() {
               width={24}
               height={24}
             />
-            <span className="font-extrabold text-lg">UptimeFriend</span>
+            <span className="font-extrabold text-lg">PregnantMeal</span>
           </Link>
         </div>
         {/* Burger button to open menu on mobile */}
@@ -54,7 +54,7 @@ function BlogHeader() {
           <Link
             className="link link-hover text-base-content/80 hover:text-base-content active:text-base-content focus:text-base-content duration-100"
             href="/blog"
-            title="UptimeFriend.com blog page"
+            title="PregnantMeal.com blog page"
           >
             <span className="font-extrabold text-lg">All Posts</span>
           </Link>
@@ -94,7 +94,7 @@ function BlogHeader() {
                 width={24}
                 height={24}
               />
-              <span className="font-extrabold text-lg">UptimeFriend</span>
+              <span className="font-extrabold text-lg">PregnantMeal</span>
             </Link>
             <button
               type="button"
@@ -126,7 +126,7 @@ function BlogHeader() {
                 <Link
                   className="link link-hover"
                   href="/blog"
-                  title="UptimeFriend.com blog page"
+                  title="PregnantMeal.com blog page"
                 >
                   All Posts
                 </Link>

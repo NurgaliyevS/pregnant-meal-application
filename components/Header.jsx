@@ -60,7 +60,7 @@ const Header = () => {
               width={24}
               height={24}
             />
-            <span className="font-extrabold text-lg">UptimeFriend</span>
+            <span className="font-extrabold text-lg">PregnantMeal</span>
           </Link>
         </div>
         {/* Burger button to open menu on mobile */}
@@ -154,7 +154,7 @@ const Header = () => {
                 width={24}
                 height={24}
               />
-              <span className="font-extrabold text-lg">UptimeFriend</span>
+              <span className="font-extrabold text-lg">PregnantMeal</span>
             </Link>
             <button
               type="button"

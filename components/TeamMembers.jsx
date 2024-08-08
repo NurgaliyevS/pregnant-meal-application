@@ -8,7 +8,7 @@ function TeamMembers(props) {
           <div className="card bg-white w-full flex items-center justify-center shadow-xl p-10">
             <Image
               src={"/people.webp"}
-              alt="Add teammates to your monitors - UptimeFriend.com"
+              alt="Add teammates to your monitors - PregnantMeal.com"
               width={300}
               height={300}
               priority={true}

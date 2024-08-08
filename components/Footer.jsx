@@ -28,7 +28,7 @@ function Footer({ bgColor }) {
                 width={24}
                 height={24}
               />
-              <span className="font-extrabold text-lg">UptimeFriend</span>
+              <span className="font-extrabold text-lg">PregnantMeal</span>
             </Link>
 
             <p className="mt-3 text-sm leading-relaxed">

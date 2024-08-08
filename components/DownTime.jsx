@@ -11,7 +11,7 @@ function DownTime() {
                 {" "}
                 <Image
                   src={"/email.svg"}
-                  alt="Get notified via Email - UptimeFriend.com"
+                  alt="Get notified via Email - PregnantMeal.com"
                   width={48}
                   height={48}
                   priority={true}
@@ -25,7 +25,7 @@ function DownTime() {
                 {" "}
                 <Image
                   src={"/phone.svg"}
-                  alt="Get notified via SMS - UptimeFriend.com"
+                  alt="Get notified via SMS - PregnantMeal.com"
                   width={48}
                   height={48}
                   priority={true}

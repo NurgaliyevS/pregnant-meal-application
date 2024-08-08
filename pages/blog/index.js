@@ -24,10 +24,10 @@ export default function BlogIndex({ posts }) {
   return (
     <div className="mx-auto">
       <Head>
-        <title>UptimeFriend Blog</title>
+        <title>PregnantMeal Blog</title>
         <meta
           name="description"
-          content="Latest posts from UptimeFriend on website monitoring and uptime"
+          content="Latest posts from PregnantMeal on website monitoring and uptime"
         />
         <meta
           name="keywords"
@@ -39,7 +39,7 @@ export default function BlogIndex({ posts }) {
       <main className="min-h-screen max-w-6xl mx-auto p-8">
         <section className="text-center max-w-xl mx-auto mt-12 mb-24 md:mb-32">
           <h1 className="font-extrabold text-3xl lg:text-5xl tracking-tight mb-6">
-            UptimeFriend Blog
+            PregnantMeal Blog
           </h1>
           <p className="text-lg opacity-80 leading-relaxed pb-5">
             Learn how to check if website is down, how to check server uptime,

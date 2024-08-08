@@ -12,26 +12,26 @@ const faqList = [
       <p>
         Website monitoring involves tracking your site's performance and uptime.
         It helps you identify and resolve issues faster, reduces downtime, and
-        provides a better user experience. Our service, UptimeFriend, offers
+        provides a better user experience. Our service, PregnantMeal, offers
         comprehensive web monitoring tools to keep your site running smoothly.
       </p>
     ),
   },
   {
-    question: "How does UptimeFriend notify me of site downtime?",
+    question: "How does PregnantMeal notify me of site downtime?",
     answer: (
       <p>
-        UptimeFriend instantly notifies you via email and SMS whenever your site
+        PregnantMeal instantly notifies you via email and SMS whenever your site
         experiences downtime. This will allow you to address issues quickly and
         minimize the impact on your business.
       </p>
     ),
   },
   {
-    question: "What types of monitoring does UptimeFriend offer?",
+    question: "What types of monitoring does PregnantMeal offer?",
     answer: (
       <p>
-        UptimeFriend offers HTTP web monitoring and ping monitoring. These tools
+        PregnantMeal offers HTTP web monitoring and ping monitoring. These tools
         help you monitor the availability of your website and the status of
         network devices, ensuring that your website stays online and works.
       </p>
@@ -47,7 +47,7 @@ const faqList = [
     ),
   },
   {
-    question: "How often does UptimeFriend check my website’s uptime?",
+    question: "How often does PregnantMeal check my website’s uptime?",
     answer: (
       <p>
         The monitoring interval depends on your subscription settings. The Free
@@ -78,10 +78,10 @@ const faqList = [
     ),
   },
   {
-    question: "How does UptimeFriend help in server uptime web hosting?",
+    question: "How does PregnantMeal help in server uptime web hosting?",
     answer: (
       <p>
-        UptimeFriend constantly monitors your server and web hosting uptime,
+        PregnantMeal constantly monitors your server and web hosting uptime,
         promptly issuing alerts if it detects any issues. This approach helps
         maintain high uptime and reliability for your website.
       </p>

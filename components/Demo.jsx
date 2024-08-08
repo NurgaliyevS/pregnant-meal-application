@@ -5,7 +5,7 @@ function Demo() {
           <div className="relative max-w-4xl mx-auto">
             <div className="max-lg:hidden absolute top-1/4 -left-4 -translate-x-full text-sm flex flex-col gap-1 items-center">
               <p className="text-base-content-secondary">
-                UptimeFriend in 3 minutes
+                PregnantMeal in 3 minutes
               </p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ function Demo() {
                 <iframe
                   className="absolute inset-0 w-full h-full"
                   src="https://www.youtube.com/embed/MYrYUQcLA7A?si=D38a_cFygdQGxoIa"
-                  title="UptimeFriend Demo"
+                  title="PregnantMeal Demo"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen

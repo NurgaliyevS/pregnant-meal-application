@@ -109,7 +109,7 @@ export default function BlogPost({ post }) {
   return (
     <div className="mx-auto">
       <Head>
-        <title>{post.title} | UptimeFriend Blog</title>
+        <title>{post.title} | PregnantMeal Blog</title>
         <meta name="description" content={post.excerpt} />
         <meta name="keywords" content={post.tags.join(", ")} />
         <link
@@ -118,7 +118,7 @@ export default function BlogPost({ post }) {
         />
         <meta
           property="og:title"
-          content={`${post.title} | UptimeFriend Blog`}
+          content={`${post.title} | PregnantMeal Blog`}
         />
         <meta property="og:description" content={post.excerpt} />
         <meta

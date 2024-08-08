@@ -31,19 +31,19 @@ Pros:
 
 You need a monitoring system that will check your website 24/7. If any downtime happens, it should notify you. But how do I do it? You have different options:
 
-- [UptimeFriend.com](https://pregnantmeal.com/)
+- [PregnantMeal.com](https://pregnantmeal.com/)
 - [UptimeRobot.com](https://uptimerobot.com/)
 - [Instatus](https://instatus.com/)
 
 ## What are the differences between them ?
 
-**UptimeFriend.com** has everything you need to work with. UptimeRobot.com is good to work with if you have complex and heavy systems. Instatus is good when you have 1000 monitors.
+**PregnantMeal.com** has everything you need to work with. UptimeRobot.com is good to work with if you have complex and heavy systems. Instatus is good when you have 1000 monitors.
 
 ## Let's find out.
 
-UptimeFriend.com's interface:
+PregnantMeal.com's interface:
 
-![UptimeFriend.com Interface](/blog/uptime_friend_interface.png)
+![PregnantMeal.com Interface](/blog/uptime_friend_interface.png)
 
 UptimeRobot.com's interface:
 
@@ -57,6 +57,6 @@ Instatus's interface:
 
 We checked our websites manually and automatically. Manually is good when you have one website and a limited budget. Otherwise, the automatic system helps you monitor 24/7, and in any case of downtime, we will get notifications. 
 
-[UptimeFriend.com](https://pregnantmeal.com/) is perfect if you want a simple notification system.
+[PregnantMeal.com](https://pregnantmeal.com/) is perfect if you want a simple notification system.
 UptimeRobot.com is good when you work with a heavy and complex system.
 Instatus is good when you work with thousands of monitors.

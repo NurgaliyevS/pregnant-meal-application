@@ -22,7 +22,7 @@ function Ads() {
           <div className="card bg-[#fafafa] w-80 lg:w-1/2 shadow-xl text-[#151515] mx-auto lg:mx-14">
             <Image
               src={"/http.svg"}
-              alt="HTTP Website Monitoring - UptimeFriend.com"
+              alt="HTTP Website Monitoring - PregnantMeal.com"
               width={150}
               height={150}
               className="w-30 h-30 pl-8 pt-8"
@@ -47,7 +47,7 @@ function Ads() {
           <div className="card bg-[#fafafa] w-80 lg:w-1/2 shadow-xl text-[#151515] mx-auto lg:mx-14">
             <Image
               src={"/networkSwitch.svg"}
-              alt="Ping Monitoring - UptimeFriend.com"
+              alt="Ping Monitoring - PregnantMeal.com"
               width={150}
               height={150}
               className="w-30 h-30 pl-8 pt-8"

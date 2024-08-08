@@ -25,24 +25,24 @@ export default function Document() {
         <meta name="theme-color" content="#fafafa" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        {/* example as UptimeFriend without .com */}
+        {/* example as PregnantMeal without .com */}
         <meta name="apple-mobile-web-app-title" content={customConfig.seo.applicationName} />
-        {/* example as UptimeFriend without .com */}
+        {/* example as PregnantMeal without .com */}
         <meta name="application-name" content={customConfig.seo.applicationName} />
         <meta
           property="og:title"
-          // example as UptimeFriend - Monitor your website, and server
+          // example as PregnantMeal - Monitor your website, and server
           content={customConfig.seo.og.title}
         />
         <meta
           property="og:description"
-          // example as UptimeFriend - Monitor your website, and server
+          // example as PregnantMeal - Monitor your website, and server
           content={customConfig.seo.description}
         />
         {/* example as https://pregnantmeal.com/ */}
         <meta property="og:url" content={customConfig.domainWithHttps} />
         <meta property="og:type" content="website" />
-        {/* example as UptimeFriend */}
+        {/* example as PregnantMeal */}
         <meta property="og:site_name" content={customConfig.seo.applicationName} />
         <meta property="og:locale" content="en_US" />
         <meta
@@ -67,7 +67,7 @@ export default function Document() {
         <meta name="twitter:creator" content="@tech_nurgaliyev" />
         <meta
           name="twitter:title"
-          // UptimeFriend - Monitor your website, and server
+          // PregnantMeal - Monitor your website, and server
           content={customConfig.seo.og.title}
         />
         <meta

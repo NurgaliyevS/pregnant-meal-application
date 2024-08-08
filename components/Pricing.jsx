@@ -38,7 +38,7 @@ function Pricing(props) {
               <Image
                 // src={"/team.svg"}
                 src={"/person.svg"}
-                alt="HTTP Website Monitoring - UptimeFriend.com"
+                alt="HTTP Website Monitoring - PregnantMeal.com"
                 width={80}
                 height={80}
                 className=" w-20 h-20"
@@ -193,7 +193,7 @@ function Pricing(props) {
               <Image
                 // src={"/team.svg"}
                 src={"/person.svg"}
-                alt="HTTP Website Monitoring - UptimeFriend.com"
+                alt="HTTP Website Monitoring - PregnantMeal.com"
                 width={80}
                 height={80}
                 className=" w-20 h-20"
@@ -359,7 +359,7 @@ function Pricing(props) {
               </h3>
               <Image
                 src={"/team.svg"}
-                alt="HTTP Website Monitoring - UptimeFriend.com"
+                alt="HTTP Website Monitoring - PregnantMeal.com"
                 width={80}
                 height={80}
                 className=" w-20 h-20"
@@ -525,7 +525,7 @@ function Pricing(props) {
               </h3>
               <Image
                 src={"/team.svg"}
-                alt="HTTP Website Monitoring - UptimeFriend.com"
+                alt="HTTP Website Monitoring - PregnantMeal.com"
                 width={80}
                 height={80}
                 className=" w-20 h-20"
