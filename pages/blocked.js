@@ -19,7 +19,7 @@ const Blocked = () => {
           <button
             onClick={() =>
               signIn(undefined, {
-                callbackUrl: "/admin",
+                callbackUrl: "/",
               })
             }
             className="link"

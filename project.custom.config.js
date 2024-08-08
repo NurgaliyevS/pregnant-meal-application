@@ -5,13 +5,13 @@ export const customConfig = {
     theme: "acid",
     main: themes[`[data-theme=acid]`],
   },
-  // example as uptimefriend.com without https://
-  domainName: "uptimefriend.com",
+  // example as pregnantmeal.com without https://
+  domainName: "pregnantmeal.com",
   mailgun: {
     subdomain: "mg",
-    fromNoReply: `UptimeFriend <noreply@mg.uptimefriend.com>`,
-    fromAdmin: `UptimeFriend <nurgasab@mg.uptimefriend.com>`,
-    supportEmail: "nurgasab@uptimefriend.com",
+    fromNoReply: `PregnantMeal <noreply@mg.pregnantmeal.com>`,
+    fromAdmin: `PregnantMeal <admin@mg.pregnantmeal.com>`,
+    supportEmail: "support@pregnantmeal.com",
     forwardRepliesTo: "nurgasab@gmail.com",
   },
   domainWithHttps: "",
@@ -19,7 +19,7 @@ export const customConfig = {
     keywords: "",
     description: "",
     themeColor: "",
-    applicationName: "",
+    applicationName: "pregnantmeal",
     og: {
       title: "",
       url: "",
