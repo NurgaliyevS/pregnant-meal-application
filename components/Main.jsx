@@ -32,15 +32,15 @@ function Main() {
             , and monthly{" "}
             <strong className="relative text-primary">meal</strong> plan.
           </p>
-          <p className="lg:hidden block text-lg opacity-90 leading-relaxed text-nowrap">
+          <p className="lg:hidden block text-lg opacity-90 leading-relaxed overflow-x-auto whitespace-nowrap">
             Personal <strong className="relative text-primary">meal </strong>
             plan for <strong className="relative text-primary">
               pregnant
             </strong>{" "}
-            women. <br />
-            Get daily, <strong className="relative text-primary">weekly</strong>
-            , and monthly{" "}
-            <strong className="relative text-primary">meal</strong> plan.
+            women. <br /> Get daily,{" "}
+            <strong className="relative text-primary">weekly</strong>, and
+            monthly <strong className="relative text-primary">meal</strong>{" "}
+            plan.
           </p>
           <Link
             href="#"
