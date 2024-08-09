@@ -10,12 +10,29 @@ function Main() {
       <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-full gap-16">
         <div className="flex flex-col gap-10 lg:gap-14 items-center lg:items-start text-center lg:text-left w-full lg:w-2/3">
           <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex justify-center items-center">
-            <span className="whitespace-wrap lg:whitespace-nowrap relative">
+            <span className="hidden lg:block whitespace-wrap lg:whitespace-nowrap relative">
               Eat <strong className="relative text-primary">Right </strong> for{" "}
               <strong className="relative text-primary">Your</strong> Baby
             </span>
+            <span className="lg:hidden whitespace-wrap lg:whitespace-nowrap relative">
+              Eat <strong className="relative text-primary">Right </strong> for
+              <br /> <strong className="relative text-primary">
+                Your
+              </strong>{" "}
+              Baby
+            </span>
           </h1>
-          <p className="text-xl opacity-80 leading-relaxed">
+          <p className="hidden lg:block text-xl opacity-90 leading-relaxed">
+            Personal <strong className="relative text-primary">meal </strong>
+            plan for <strong className="relative text-primary">
+              pregnant
+            </strong>{" "}
+            women. <br />
+            Get daily, <strong className="relative text-primary">weekly</strong>
+            , and monthly{" "}
+            <strong className="relative text-primary">meal</strong> plan.
+          </p>
+          <p className="lg:hidden text-lg opacity-90 leading-relaxed text-nowrap">
             Personal <strong className="relative text-primary">meal </strong>
             plan for <strong className="relative text-primary">
               pregnant
