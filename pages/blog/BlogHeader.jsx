@@ -63,7 +63,7 @@ function BlogHeader() {
         <div className="hidden lg:flex lg:justify-end lg:flex-1">
           <Link
             href="#"
-            className="btn btn-secondary md:btn-sm no-underline"
+            className="btn btn-primary md:btn-sm no-underline"
             onClick={(e) => {
               e.preventDefault();
               handleSignIn(e);
@@ -136,7 +136,7 @@ function BlogHeader() {
             <div className="flex flex-col">
               <Link
                 href="#"
-                className="btn btn-secondary md:btn-sm btn-full no-underline"
+                className="btn btn-primary md:btn-sm btn-full no-underline"
                 onClick={(e) => {
                   e.preventDefault();
                   handleSignIn(e);

@@ -103,7 +103,7 @@ const FaqItem = ({ item }) => {
         }}
         aria-expanded={isOpen}
       >
-        <span className={`flex-1 ${isOpen ? "text-secondary" : ""}`}>
+        <span className={`flex-1 ${isOpen ? "text-primary" : ""}`}>
           {item?.question}
         </span>
         <svg
@@ -151,7 +151,7 @@ function FAQ() {
   const plausible = usePlausible();
   return (
     <section
-      className="bg-slate-800 text-gray-300 py-44 overflow-hidden"
+      className="bg-neutral text-gray-300 py-44 overflow-hidden"
       id="faq"
     >
       <div className="px-8 container max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
@@ -169,7 +169,7 @@ function FAQ() {
       </div>
 
       <div className="flex items-center justify-center mt-20">
-        <Link href="#" className="btn btn-secondary btn-wide no-underline" 
+        <Link href="#" className="btn btn-primary btn-wide no-underline" 
         onClick={(e) => {
           handleSignIn(e);
           plausible("GET_STARTED_FAQ");

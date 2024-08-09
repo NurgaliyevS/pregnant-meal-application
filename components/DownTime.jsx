@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function DownTime() {
   return (
-    <section className="bg-slate-800 text-gray-300">
+    <section className="bg-neutral text-gray-300">
       <div className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 lg:py-20 gap-10">
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-full gap-16">
           <div className="relative w-80 lg:w-1/2">
@@ -40,9 +40,9 @@ function DownTime() {
           <div className="flex flex-col gap-10 items-center lg:items-start text-center lg:text-left w-full lg:w-1/2">
             <h2 className="font-bold text-2xl lg:text-5xl tracking-tight">
               <span className="whitespace-wrap relative">
-                Always <strong className="relative text-secondary">know</strong>{" "}
+                Always <strong className="relative text-primary">know</strong>{" "}
                 about{" "}
-                <strong className="relative text-secondary">downtime</strong>.
+                <strong className="relative text-primary">downtime</strong>.
               </span>
             </h2>
             <p className="text-xl opacity-80 leading-relaxed">

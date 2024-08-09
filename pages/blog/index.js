@@ -71,7 +71,7 @@ export default function BlogIndex({ posts }) {
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
                     <span
-                      className="badge badge-sm md:badge-md hover:badge-secondary"
+                      className="badge badge-sm md:badge-md hover:badge-primary"
                       key={tag}
                     >
                       {tag}
@@ -81,7 +81,7 @@ export default function BlogIndex({ posts }) {
                 <h2 className="mb-1 text-xl md:text-2xl font-bold">
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="link link-hover hover:link-secondary"
+                    className="link link-hover hover:link-primary"
                     title={post.title}
                   >
                     {post.title}

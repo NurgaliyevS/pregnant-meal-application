@@ -6,7 +6,7 @@ function Footer({ bgColor }) {
   const plausible = usePlausible();
   return (
     <div
-      className={`${bgColor ? bgColor : "bg-slate-800"} ${
+      className={`${bgColor ? bgColor : "bg-neutral"} ${
         bgColor ? "text-base-content" : "text-gray-300"
       } overflow-hidden border-t ${
         bgColor ? "border-base-content/5" : "border-base-content/50"

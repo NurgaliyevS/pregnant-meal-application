@@ -161,7 +161,7 @@ export default function BlogPost({ post }) {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="badge badge-sm md:badge-md hover:badge-secondary"
+                  className="badge badge-sm md:badge-md hover:badge-primary"
                 >
                   {tag}
                 </span>

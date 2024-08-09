@@ -6,14 +6,14 @@ import { usePlausible } from "next-plausible";
 function Ads() {
   const plausible = usePlausible();
   return (
-    <section className="bg-slate-800 text-gray-300 pt-44 flex flex-col overflow-hidden">
+    <section className="bg-neutral text-gray-300 pt-44 flex flex-col overflow-hidden">
       <div className="container max-w-7xl mx-auto">
         <div className="flex justify-center px-10 text-center mb-20">
           <h2 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4">
             Everything you{" "}
-            <strong className="relative text-secondary">need</strong> to know,{" "}
+            <strong className="relative text-primary">need</strong> to know,{" "}
             <br />
-            <strong className="relative text-secondary">monitored </strong>
+            <strong className="relative text-primary">monitored </strong>
             in one place.
           </h2>
         </div>
@@ -73,7 +73,7 @@ function Ads() {
           {" "}
           <Link
             href="#"
-            className="btn btn-secondary btn-wide no-underline"
+            className="btn btn-primary btn-wide no-underline"
             onClick={(e) => {
               handleSignIn(e);
               plausible("GET_STARTED_ADS");

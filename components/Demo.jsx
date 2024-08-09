@@ -4,7 +4,7 @@ function Demo() {
         <div className="relative pt-6 md:pt-12 pb-24 md:pb-48 md:px-8">
           <div className="relative max-w-4xl mx-auto">
             <div className="max-lg:hidden absolute top-1/4 -left-4 -translate-x-full text-sm flex flex-col gap-1 items-center">
-              <p className="text-base-content-secondary">
+              <p className="text-base-content-primary">
                 PregnantMeal in 3 minutes
               </p>
               <svg
