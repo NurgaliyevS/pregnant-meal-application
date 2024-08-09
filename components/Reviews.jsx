@@ -3,7 +3,7 @@ import Image from "next/image";
 function Reviews() {
   return (
     <section
-      className="bg-slate-800 text-gray-300 py-44 px-6 flex flex-col overflow-hidden"
+      className="bg-neutral text-gray-300 py-44 px-6 flex flex-col overflow-hidden"
       id="reviews"
     >
       <div className="container max-w-7xl mx-auto flex flex-col lg:flex-row gap-5 justify-between">
@@ -30,9 +30,9 @@ function Reviews() {
             <div className="divider"></div>
             <span className="leading-relaxed">
               We've all been there with tricky{" "}
-              <strong className="text-secondary">monitoring tools</strong> that
+              <strong className="text-primary">monitoring tools</strong> that
               make our heads spin. Love the{" "}
-              <strong className="text-secondary">simplicity</strong> of this
+              <strong className="text-primary">simplicity</strong> of this
               tool!
             </span>
           </div>
@@ -65,7 +65,7 @@ function Reviews() {
             <div className="divider"></div>
             <span className="leading-relaxed">
               1-minute monitoring interval for the{" "}
-              <strong className="text-secondary">Team and Enterprise </strong>{" "}
+              <strong className="text-primary">Team and Enterprise </strong>{" "}
               plans is impressive.
             </span>
           </div>
@@ -88,7 +88,7 @@ function Reviews() {
             </div>
             <div className="divider"></div>
             <span className="leading-relaxed">
-              Finally some app that can <strong className="text-secondary">fix </strong> my problem.
+              Finally some app that can <strong className="text-primary">fix </strong> my problem.
             </span>
           </div>
         </div>

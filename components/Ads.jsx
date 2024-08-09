@@ -6,14 +6,14 @@ import { usePlausible } from "next-plausible";
 function Ads() {
   const plausible = usePlausible();
   return (
-    <section className="bg-slate-800 text-gray-300 pt-44 flex flex-col overflow-hidden">
+    <section className="bg-neutral text-gray-300 pt-44 flex flex-col overflow-hidden">
       <div className="container max-w-7xl mx-auto">
         <div className="flex justify-center px-10 text-center mb-20">
           <h2 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4">
             Everything you{" "}
-            <strong className="relative text-secondary">need</strong> to know,{" "}
+            <strong className="relative text-primary">need</strong> to know,{" "}
             <br />
-            <strong className="relative text-secondary">monitored </strong>
+            <strong className="relative text-primary">monitored </strong>
             in one place.
           </h2>
         </div>
@@ -22,7 +22,7 @@ function Ads() {
           <div className="card bg-[#fafafa] w-80 lg:w-1/2 shadow-xl text-[#151515] mx-auto lg:mx-14">
             <Image
               src={"/http.svg"}
-              alt="HTTP Website Monitoring - UptimeFriend.com"
+              alt="HTTP Website Monitoring - PregnantMeal.com"
               width={150}
               height={150}
               className="w-30 h-30 pl-8 pt-8"
@@ -47,7 +47,7 @@ function Ads() {
           <div className="card bg-[#fafafa] w-80 lg:w-1/2 shadow-xl text-[#151515] mx-auto lg:mx-14">
             <Image
               src={"/networkSwitch.svg"}
-              alt="Ping Monitoring - UptimeFriend.com"
+              alt="Ping Monitoring - PregnantMeal.com"
               width={150}
               height={150}
               className="w-30 h-30 pl-8 pt-8"
@@ -73,7 +73,7 @@ function Ads() {
           {" "}
           <Link
             href="#"
-            className="btn btn-secondary btn-wide no-underline"
+            className="btn btn-primary btn-wide no-underline"
             onClick={(e) => {
               handleSignIn(e);
               plausible("GET_STARTED_ADS");

@@ -53,14 +53,14 @@ const Header = () => {
             title="Uptime Friend - home page"
           >
             <Image
-              src={"/logo.webp"}
+              src={"/company_related/logo.webp"}
               alt="Uptime Friend logo"
               className="w-5 h-5"
               priority={true}
               width={24}
               height={24}
             />
-            <span className="font-extrabold text-lg">UptimeFriend</span>
+            <span className="font-extrabold text-lg">PregnantMeal</span>
           </Link>
         </div>
         {/* Burger button to open menu on mobile */}
@@ -147,14 +147,14 @@ const Header = () => {
               href="/"
             >
               <Image
-                src={"/logo.webp"}
+                src={"/company_related/logo.webp"}
                 alt="Uptime Friend logo"
                 className="w-5 h-5"
                 priority={true}
                 width={24}
                 height={24}
               />
-              <span className="font-extrabold text-lg">UptimeFriend</span>
+              <span className="font-extrabold text-lg">PregnantMeal</span>
             </Link>
             <button
               type="button"

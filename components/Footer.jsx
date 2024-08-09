@@ -6,7 +6,7 @@ function Footer({ bgColor }) {
   const plausible = usePlausible();
   return (
     <div
-      className={`${bgColor ? bgColor : "bg-slate-800"} ${
+      className={`${bgColor ? bgColor : "bg-neutral"} ${
         bgColor ? "text-base-content" : "text-gray-300"
       } overflow-hidden border-t ${
         bgColor ? "border-base-content/5" : "border-base-content/50"
@@ -21,14 +21,14 @@ function Footer({ bgColor }) {
               title="Uptime Friend - home page"
             >
               <Image
-                src={"/logo.webp"}
+                src={"/company_related/logo.webp"}
                 alt="Uptime Friend logo"
                 className="w-5 h-5"
                 priority={true}
                 width={24}
                 height={24}
               />
-              <span className="font-extrabold text-lg">UptimeFriend</span>
+              <span className="font-extrabold text-lg">PregnantMeal</span>
             </Link>
 
             <p className="mt-3 text-sm leading-relaxed">

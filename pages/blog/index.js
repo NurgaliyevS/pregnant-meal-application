@@ -24,22 +24,22 @@ export default function BlogIndex({ posts }) {
   return (
     <div className="mx-auto">
       <Head>
-        <title>UptimeFriend Blog</title>
+        <title>PregnantMeal Blog</title>
         <meta
           name="description"
-          content="Latest posts from UptimeFriend on website monitoring and uptime"
+          content="Latest posts from PregnantMeal on website monitoring and uptime"
         />
         <meta
           name="keywords"
           content="website monitoring, uptime, server monitoring, tech blog"
         />
-        <link rel="canonical" href="https://uptimefriend.com/blog" />
+        <link rel="canonical" href="https://pregnantmeal.com/blog" />
       </Head>
       <BlogHeader />
       <main className="min-h-screen max-w-6xl mx-auto p-8">
         <section className="text-center max-w-xl mx-auto mt-12 mb-24 md:mb-32">
           <h1 className="font-extrabold text-3xl lg:text-5xl tracking-tight mb-6">
-            UptimeFriend Blog
+            PregnantMeal Blog
           </h1>
           <p className="text-lg opacity-80 leading-relaxed pb-5">
             Learn how to check if website is down, how to check server uptime,
@@ -71,7 +71,7 @@ export default function BlogIndex({ posts }) {
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
                     <span
-                      className="badge badge-sm md:badge-md hover:badge-secondary"
+                      className="badge badge-sm md:badge-md hover:badge-primary"
                       key={tag}
                     >
                       {tag}
@@ -81,7 +81,7 @@ export default function BlogIndex({ posts }) {
                 <h2 className="mb-1 text-xl md:text-2xl font-bold">
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="link link-hover hover:link-secondary"
+                    className="link link-hover hover:link-primary"
                     title={post.title}
                   >
                     {post.title}

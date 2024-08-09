@@ -7,11 +7,11 @@ import { usePlausible } from "next-plausible";
 function Pricing(props) {
   const plausible = usePlausible();
   return (
-    <section className="bg-slate-800 text-gray-300 py-44 flex flex-col overflow-hidden">
+    <section className="bg-neutral text-gray-300 py-44 flex flex-col overflow-hidden">
       <div className="container max-w-7xl mx-auto">
         <div className="flex justify-center px-10 text-center mb-20 flex-col gap-10 lg:gap-14">
           <div>
-            <div className="badge animate-bounce whitespace-nowrap badge-secondary">
+            <div className="badge animate-bounce whitespace-nowrap badge-primary">
               ✨ LAUNCH discount — 50% OFF 3 months ✨
             </div>
           </div>
@@ -19,11 +19,11 @@ function Pricing(props) {
             className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4"
             id="pricing"
           >
-            <strong className="relative text-secondary">Pricing</strong>
+            <strong className="relative text-primary">Pricing</strong>
           </h2>
           {/* <p className="text-xl opacity-80 leading-relaxed">
-            Save <strong className="relative text-secondary">30%</strong> with
-            annual billing<strong className="relative text-secondary">.</strong>
+            Save <strong className="relative text-primary">30%</strong> with
+            annual billing<strong className="relative text-primary">.</strong>
           </p> */}
         </div>
 
@@ -38,7 +38,7 @@ function Pricing(props) {
               <Image
                 // src={"/team.svg"}
                 src={"/person.svg"}
-                alt="HTTP Website Monitoring - UptimeFriend.com"
+                alt="HTTP Website Monitoring - PregnantMeal.com"
                 width={80}
                 height={80}
                 className=" w-20 h-20"
@@ -113,7 +113,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     5 SMS{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       per month
                     </strong>
                   </span>
@@ -134,7 +134,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     5 emails{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       per month
                     </strong>
                   </span>
@@ -155,7 +155,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     1 phone number{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       for alerts
                     </strong>
                   </span>
@@ -176,7 +176,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     1 email address{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       for alerts
                     </strong>
                   </span>
@@ -193,7 +193,7 @@ function Pricing(props) {
               <Image
                 // src={"/team.svg"}
                 src={"/person.svg"}
-                alt="HTTP Website Monitoring - UptimeFriend.com"
+                alt="HTTP Website Monitoring - PregnantMeal.com"
                 width={80}
                 height={80}
                 className=" w-20 h-20"
@@ -220,7 +220,7 @@ function Pricing(props) {
               <p className="text-neutral-500">Ideal for small projects.</p>
 
               <button
-                className="btn btn-secondary rounded-full my-2"
+                className="btn btn-primary rounded-full my-2"
                 onClick={(e) => {
                   e.preventDefault();
                   plausible("SUBSCRIBE_NOW_PERSONAL");
@@ -280,7 +280,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     50 SMS{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       per month
                     </strong>
                   </span>
@@ -301,7 +301,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     100 Emails{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       per month
                     </strong>
                   </span>
@@ -322,7 +322,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     3 phone number{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       for alerts
                     </strong>
                   </span>
@@ -343,7 +343,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     3 email address{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       for alerts
                     </strong>
                   </span>
@@ -359,7 +359,7 @@ function Pricing(props) {
               </h3>
               <Image
                 src={"/team.svg"}
-                alt="HTTP Website Monitoring - UptimeFriend.com"
+                alt="HTTP Website Monitoring - PregnantMeal.com"
                 width={80}
                 height={80}
                 className=" w-20 h-20"
@@ -386,7 +386,7 @@ function Pricing(props) {
               <p className="text-neutral-500">Great for small teams.</p>
 
               <button
-                className="btn btn-secondary rounded-full my-2"
+                className="btn btn-primary rounded-full my-2"
                 onClick={(e) => {
                   e.preventDefault();
                   plausible("SUBSCRIBE_NOW_TEAM");
@@ -446,7 +446,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     100 SMS{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       per month
                     </strong>
                   </span>
@@ -467,7 +467,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     200 Emails{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       per month
                     </strong>
                   </span>
@@ -488,7 +488,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     5 phone number{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       for alerts
                     </strong>
                   </span>
@@ -509,7 +509,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     5 email address{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       for alerts
                     </strong>
                   </span>
@@ -525,7 +525,7 @@ function Pricing(props) {
               </h3>
               <Image
                 src={"/team.svg"}
-                alt="HTTP Website Monitoring - UptimeFriend.com"
+                alt="HTTP Website Monitoring - PregnantMeal.com"
                 width={80}
                 height={80}
                 className=" w-20 h-20"
@@ -552,7 +552,7 @@ function Pricing(props) {
               <p className="text-neutral-500">Best for large organizations.</p>
 
               <button
-                className="btn btn-secondary rounded-full my-2"
+                className="btn btn-primary rounded-full my-2"
                 onClick={(e) => {
                   e.preventDefault();
                   plausible("SUBSCRIBE_NOW_ENTERPRISE");
@@ -614,7 +614,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     200 SMS{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       per month
                     </strong>
                   </span>
@@ -635,7 +635,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     500 Emails{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       per month
                     </strong>
                   </span>
@@ -656,7 +656,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     10 phone number{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       for alerts
                     </strong>
                   </span>
@@ -677,7 +677,7 @@ function Pricing(props) {
                   </svg>
                   <span>
                     10 email address{" "}
-                    <strong className="relative text-secondary">
+                    <strong className="relative text-primary">
                       for alerts
                     </strong>
                   </span>

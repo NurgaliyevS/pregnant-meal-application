@@ -10,7 +10,7 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   return (
-    // example as uptimefriend.com without https://
+    // example as PregnantMeal.com without https://
     <PlausibleProvider domain={customConfig.domainName}>
     <SessionProvider session={session}>
       <Component {...pageProps} />

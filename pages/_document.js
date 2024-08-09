@@ -25,29 +25,29 @@ export default function Document() {
         <meta name="theme-color" content="#fafafa" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        {/* example as UptimeFriend without .com */}
+        {/* example as PregnantMeal without .com */}
         <meta name="apple-mobile-web-app-title" content={customConfig.seo.applicationName} />
-        {/* example as UptimeFriend without .com */}
+        {/* example as PregnantMeal without .com */}
         <meta name="application-name" content={customConfig.seo.applicationName} />
         <meta
           property="og:title"
-          // example as UptimeFriend - Monitor your website, and server
+          // example as PregnantMeal - Monitor your website, and server
           content={customConfig.seo.og.title}
         />
         <meta
           property="og:description"
-          // example as UptimeFriend - Monitor your website, and server
+          // example as PregnantMeal - Monitor your website, and server
           content={customConfig.seo.description}
         />
-        {/* example as https://uptimefriend.com/ */}
+        {/* example as https://pregnantmeal.com/ */}
         <meta property="og:url" content={customConfig.domainWithHttps} />
         <meta property="og:type" content="website" />
-        {/* example as UptimeFriend */}
+        {/* example as PregnantMeal */}
         <meta property="og:site_name" content={customConfig.seo.applicationName} />
         <meta property="og:locale" content="en_US" />
         <meta
           property="og:image"
-          // add to public og image and it will be as https://uptimefriend.com/og-image.png
+          // add to public og image and it will be as https://pregnantmeal.com/og-image.png
           content={customConfig.seo.og.image}
         />
         <meta
@@ -67,7 +67,7 @@ export default function Document() {
         <meta name="twitter:creator" content="@tech_nurgaliyev" />
         <meta
           name="twitter:title"
-          // UptimeFriend - Monitor your website, and server
+          // PregnantMeal - Monitor your website, and server
           content={customConfig.seo.og.title}
         />
         <meta
@@ -75,12 +75,12 @@ export default function Document() {
           // example as Start monitoring in 30 seconds. Get notified by email, and SMS. Monitor your website, and server.
           content={customConfig.seo.description}
         />
-        {/* example as https://uptimefriend.com/twitter.png */}
+        {/* example as https://pregnantmeal.com/twitter.png */}
         <meta
           name="twitter:image"
           content={customConfig.seo.og.twitterImage}
         />
-        {/* example as https://uptimefriend.com/ */}
+        {/* example as https://pregnantmeal.com/ */}
         <link rel="canonical" href={customConfig.domainWithHttps} />
         {/* <link
           rel="icon"

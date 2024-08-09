@@ -8,7 +8,7 @@ function TeamMembers(props) {
           <div className="card bg-white w-full flex items-center justify-center shadow-xl p-10">
             <Image
               src={"/people.webp"}
-              alt="Add teammates to your monitors - UptimeFriend.com"
+              alt="Add teammates to your monitors - PregnantMeal.com"
               width={300}
               height={300}
               priority={true}
@@ -18,10 +18,10 @@ function TeamMembers(props) {
         <div className="flex flex-col gap-10 items-center lg:items-start text-center lg:text-left w-full lg:w-1/2">
           <h2 className="font-bold text-2xl lg:text-5xl tracking-tight">
             <span className="whitespace-wrap relative">
-              Add <strong className="relative text-secondary">teammates</strong>{" "}
+              Add <strong className="relative text-primary">teammates</strong>{" "}
               to keep them{" "}
-              <strong className="relative text-secondary">updated </strong> with
-              alerts<strong className="realative text-secondary">.</strong>
+              <strong className="relative text-primary">updated </strong> with
+              alerts<strong className="realative text-primary">.</strong>
             </span>
           </h2>
           <p className="text-xl opacity-80 leading-relaxed">

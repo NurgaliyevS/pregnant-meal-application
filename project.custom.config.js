@@ -2,8 +2,8 @@ import themes from "daisyui/src/theming/themes.js";
 
 export const customConfig = {
   colors: {
-    theme: "acid",
-    main: themes[`[data-theme=acid]`],
+    theme: "winter",
+    main: themes[`[data-theme=winter",]`],
   },
   // example as pregnantmeal.com without https://
   domainName: "pregnantmeal.com",

@@ -109,21 +109,21 @@ export default function BlogPost({ post }) {
   return (
     <div className="mx-auto">
       <Head>
-        <title>{post.title} | UptimeFriend Blog</title>
+        <title>{post.title} | PregnantMeal Blog</title>
         <meta name="description" content={post.excerpt} />
         <meta name="keywords" content={post.tags.join(", ")} />
         <link
           rel="canonical"
-          href={`https://uptimefriend.com/blog/${post.slug}`}
+          href={`https://pregnantmeal.com/blog/${post.slug}`}
         />
         <meta
           property="og:title"
-          content={`${post.title} | UptimeFriend Blog`}
+          content={`${post.title} | PregnantMeal Blog`}
         />
         <meta property="og:description" content={post.excerpt} />
         <meta
           property="og:url"
-          content={`https://uptimefriend.com/blog/${post.slug}`}
+          content={`https://pregnantmeal.com/blog/${post.slug}`}
         />
         <meta property="og:type" content="article" />
         <meta property="article:published_time" content={post.date} />
@@ -161,7 +161,7 @@ export default function BlogPost({ post }) {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="badge badge-sm md:badge-md hover:badge-secondary"
+                  className="badge badge-sm md:badge-md hover:badge-primary"
                 >
                   {tag}
                 </span>

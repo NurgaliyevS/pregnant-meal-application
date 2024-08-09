@@ -259,7 +259,7 @@ function AdminMonitor({ isEdit, monitor }) {
         </div>
         <h2 className="leading-relaxed text-lg font-medium pb-5 my-4">
           Your current plan -{" "}
-          <strong className="relative text-secondary">
+          <strong className="relative text-primary">
             {userPlan.toUpperCase()}
           </strong>
         </h2>
@@ -414,7 +414,7 @@ function AdminMonitor({ isEdit, monitor }) {
             <div className="tooltip" data-tip="Paid Feature to add more">
               <button
                 type="submit"
-                className="btn btn-secondary btn-wide"
+                className="btn btn-primary btn-wide"
                 disabled={availableMonitors >= currentLimits?.monitors || isLoading}
                 onClick={() => {
                   plausible("ADD_MONITOR");

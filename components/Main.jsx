@@ -11,24 +11,30 @@ function Main() {
         <div className="flex flex-col gap-10 lg:gap-14 items-center lg:items-start text-center lg:text-left w-full lg:w-2/3">
           <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex justify-center items-center">
             <span className="whitespace-wrap lg:whitespace-nowrap relative">
-              <strong className="relative text-secondary">Uptime </strong>
-              Monitoring Service
+              Eat <strong className="relative text-primary">Right </strong> for{" "}
+              <strong className="relative text-primary">Your</strong> Baby
             </span>
           </h1>
           <p className="text-xl opacity-80 leading-relaxed">
-            We monitor your site's uptime & notify you instantly via{" "}
-            <strong className="relative text-secondary">EMAIL, SMS</strong>.
+            Personal <strong className="relative text-primary">meal </strong>
+            plan for <strong className="relative text-primary">
+              pregnant
+            </strong>{" "}
+            women. <br />
+            Get daily, <strong className="relative text-primary">weekly</strong>
+            , and monthly{" "}
+            <strong className="relative text-primary">meal</strong> plan.
           </p>
           <Link
             href="#"
-            className="btn btn-secondary btn-wide no-underline"
+            className="btn btn-primary btn-wide no-underline"
             onClick={(e) => {
               e.preventDefault();
               plausible("GET_STARTED_MAIN");
               handleSignIn(e);
             }}
           >
-            Get Started
+            Make My Meals
           </Link>
         </div>
 
@@ -45,9 +51,7 @@ function Main() {
       </div>
 
       <div className="w-full text-center">
-        <p className="text-lg text-neutral-500">
-          Stay Online, Stay Profitable.
-        </p>
+        <p className="text-lg text-neutral-500">Yummy Meals, Strong Baby</p>
       </div>
     </section>
   );
