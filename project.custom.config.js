@@ -14,6 +14,7 @@ export const customConfig = {
     supportEmail: "support@pregnantmeal.com",
     forwardRepliesTo: "nurgasab@gmail.com",
   },
+  documentTitle: "Yummy Meals, Strong Baby - PregnantMeal",
   domainWithHttps: "https://pregnantmeal.com",
   seo: {
     keywords:

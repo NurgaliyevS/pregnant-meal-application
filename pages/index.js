@@ -9,6 +9,7 @@ import Main from "@/components/Main";
 import Pricing from "@/components/Pricing";
 import Reviews from "@/components/Reviews";
 import TeamMembers from "@/components/TeamMembers";
+import { customConfig } from "@/project.custom.config";
 import { Lato } from "next/font/google";
 import Head from "next/head";
 
@@ -21,7 +22,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Monitor your website, and server | PregnantMeal.com</title>
+        <title>{customConfig.documentTitle}</title>
       </Head>
       <header className={lato.className}>
         <Header />
