@@ -88,37 +88,37 @@ export default function Document() {
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/favicon-32x32.png"
+          href="/company_related/favicon-32x32.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="96x96"
-          href="/favicon-96x96.png"
+          href="/company_related/favicon-96x96.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="180x180"
-          href="/favicon-180x180.png"
+          href="/company_related/favicon-180x180.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="192x192"
-          href="/favicon-192x192.png"
+          href="/company_related/favicon-192x192.png"
         />
 
         <link
           rel="apple-touch-icon"
           sizes="57x57"
-          href="/apple-icon-57x57.png"
+          href="/company_related/apple-icon-57x57.png"
         />
 
         <link
           rel="apple-touch-icon"
           sizes="60x60"
-          href="/apple-icon-60x60.png"
+          href="/company_related/apple-icon-60x60.png"
         />
       </Head>
       <body>
