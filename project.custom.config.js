@@ -3,7 +3,7 @@ import themes from "daisyui/src/theming/themes.js";
 export const customConfig = {
   colors: {
     theme: "winter",
-    main: themes[`[data-theme=winter",]`],
+    main: themes[`[data-theme=winter"]`],
   },
   // example as pregnantmeal.com without https://
   domainName: "pregnantmeal.com",
@@ -14,20 +14,23 @@ export const customConfig = {
     supportEmail: "support@pregnantmeal.com",
     forwardRepliesTo: "nurgasab@gmail.com",
   },
-  domainWithHttps: "",
+  domainWithHttps: "https://pregnantmeal.com",
   seo: {
-    keywords: "",
-    description: "",
-    themeColor: "",
+    keywords:
+      "first trimester recipes, 7 day meal plan for pregnant woman, pregnancy dinner recipes first trimester, dinner ideas for first trimester, meal plans for pregnant moms",
+    description:
+      "Yummy Meals, Strong Baby! Get personalized daily, weekly, and monthly meal plans for a healthy pregnancy. Eat smart and grow a happy baby with our easy-to-use food guide.",
+    themeColor: "#ffffff",
     applicationName: "pregnantmeal",
     og: {
-      title: "",
-      url: "",
-      image: "",
-      imageAlt: "",
-      articleAuthor: "",
-      twitterSite: "",
-      twitterImage: "",
+      title: "PregnantMeal - Yummy Meals, Strong Baby!",
+      url: "https://pregnantmeal.com",
+      image: "https://pregnantmeal.com/company_related/og-image.webp",
+      imageAlt:
+        "PregnantMeal - Yummy Meals, Strong Baby! Get personalized daily, weekly, and monthly meal plans for a healthy pregnancy. Eat smart and grow a happy baby with our easy-to-use food guide.",
+      content: "https://x.com/tech_nurgaliyev",
+      twitterSite: "@tech_nurgaliyev",
+      twitterImage: "https://pregnantmeal.com/company_related/og-image.webp",
     },
   },
 };
