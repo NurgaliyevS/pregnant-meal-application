@@ -120,7 +120,7 @@ const Header = () => {
         ) : (
           <div className="hidden lg:flex lg:justify-end lg:flex-1">
             <Link
-              href="/admin"
+              href="/meal"
               className="btn btn-sm"
               title="Admin page"
               rel="nofollow"
@@ -209,7 +209,7 @@ const Header = () => {
             ) : (
               <div className="flex flex-col">
                 <Link
-                  href="/admin"
+                  href="/meal"
                   className="btn btn-sm w-full btn-neutral"
                   title="Admin page"
                   rel="nofollow"
