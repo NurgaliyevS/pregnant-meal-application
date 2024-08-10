@@ -8,7 +8,7 @@ import { handleSignIn } from "./handleSignIn";
 import { useSession } from "next-auth/react";
 import { usePlausible } from "next-plausible";
 
-const links = [
+const defaultLinks = [
   {
     href: "/#pricing",
     label: "Pricing",
@@ -23,16 +23,18 @@ const links = [
   },
   {
     href: "/#reviews",
-    label: "Reviews"
-  }
+    label: "Reviews",
+  },
 ];
 
-const Header = () => {
+const Header = ({ linksOutside }) => {
   const plausible = usePlausible();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
 
   const { data: session } = useSession();
+
+  const links = linksOutside || defaultLinks;
 
   // setIsOpen(false) when the route changes (i.e: when the user clicks on a link on mobile)
   useEffect(() => {
@@ -119,17 +121,19 @@ const Header = () => {
           </div>
         ) : (
           <div className="hidden lg:flex lg:justify-end lg:flex-1">
-            <Link
-              href="/meal"
-              className="btn btn-sm"
-              title="Admin page"
-              rel="nofollow"
-              onClick={() => {
-                plausible("ADMIN_PAGE");
-              }}
-            >
-              {session?.user?.email}
-            </Link>
+            {linksOutside ? null : (
+              <Link
+                href="/meal"
+                className="btn btn-sm"
+                title="Admin page"
+                rel="nofollow"
+                onClick={() => {
+                  plausible("ADMIN_PAGE");
+                }}
+              >
+                {session?.user?.email}
+              </Link>
+            )}
           </div>
         )}
       </nav>
