@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Lato } from "next/font/google";
 import Header from "@/components/Header";
 import MealList from "@/components/MealList";
+import Footer from "@/components/Footer";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -28,6 +29,9 @@ function Meal(props) {
       <main className={`flex flex-col min-h-screen mx-auto ${lato.className}`}>
         <MealList />
       </main>
+      <footer className={lato.className}>
+        <Footer />
+      </footer>
     </>
   );
 }
