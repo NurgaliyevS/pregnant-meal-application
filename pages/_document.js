@@ -26,9 +26,15 @@ export default function Document() {
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         {/* example as PregnantMeal without .com */}
-        <meta name="apple-mobile-web-app-title" content={customConfig.seo.applicationName} />
+        <meta
+          name="apple-mobile-web-app-title"
+          content={customConfig.seo.applicationName}
+        />
         {/* example as PregnantMeal without .com */}
-        <meta name="application-name" content={customConfig.seo.applicationName} />
+        <meta
+          name="application-name"
+          content={customConfig.seo.applicationName}
+        />
         <meta
           property="og:title"
           // example as PregnantMeal - Monitor your website, and server
@@ -43,17 +49,17 @@ export default function Document() {
         <meta property="og:url" content={customConfig.domainWithHttps} />
         <meta property="og:type" content="website" />
         {/* example as PregnantMeal */}
-        <meta property="og:site_name" content={customConfig.seo.applicationName} />
+        <meta
+          property="og:site_name"
+          content={customConfig.seo.applicationName}
+        />
         <meta property="og:locale" content="en_US" />
         <meta
           property="og:image"
           // add to public og image and it will be as https://pregnantmeal.com/og-image.png
           content={customConfig.seo.og.image}
         />
-        <meta
-          property="og:image:alt"
-          content={customConfig.seo.og.imageAlt}
-        />
+        <meta property="og:image:alt" content={customConfig.seo.og.imageAlt} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -63,7 +69,7 @@ export default function Document() {
           content={customConfig.seo.og.articleAuthor}
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@tech_nurgaliyev" />
+        <meta name="twitter:site" content={customConfig.seo.og.twitterSite} />
         <meta name="twitter:creator" content="@tech_nurgaliyev" />
         <meta
           name="twitter:title"
@@ -76,13 +82,9 @@ export default function Document() {
           content={customConfig.seo.description}
         />
         {/* example as https://pregnantmeal.com/twitter.png */}
-        <meta
-          name="twitter:image"
-          content={customConfig.seo.og.twitterImage}
-        />
-        {/* example as https://pregnantmeal.com/ */}
+        <meta name="twitter:image" content={customConfig.seo.og.twitterImage} />
         <link rel="canonical" href={customConfig.domainWithHttps} />
-        {/* <link
+        <link
           rel="icon"
           type="image/png"
           sizes="32x32"
@@ -117,7 +119,7 @@ export default function Document() {
           rel="apple-touch-icon"
           sizes="60x60"
           href="/apple-icon-60x60.png"
-        /> */}
+        />
       </Head>
       <body>
         <Main />
