@@ -23,6 +23,7 @@ export default function Home() {
     <>
       <Head>
         <title>{customConfig.documentTitle}</title>
+        <link rel="canonical" href={customConfig.domainWithHttps} />
       </Head>
       <header className={lato.className}>
         <Header />

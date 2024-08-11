@@ -33,7 +33,7 @@ export default function BlogIndex({ posts }) {
           name="keywords"
           content="website monitoring, uptime, server monitoring, tech blog"
         />
-        <link rel="canonical" href="https://pregnantmeal.com/blog" />
+        <link rel="canonical" href={`https://pregnantmeal.com/blog`} />
       </Head>
       <BlogHeader />
       <main className="min-h-screen max-w-6xl mx-auto p-8">
@@ -80,14 +80,18 @@ export default function BlogIndex({ posts }) {
                 </div>
                 <h2 className="mb-1 text-xl md:text-2xl font-bold">
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`${
+                      isDevelopment()
+                        ? `/blog/${post.slug}`
+                        : `https://pregnantmeal.com/blog/${post.slug}`
+                    }`}
                     className="link link-hover hover:link-primary"
                     title={post.title}
                   >
                     {post.title}
                   </Link>
                 </h2>
-                
+
                 <div className="text-base-content/80 space-y-4">
                   <p>{post.excerpt}</p>
                   <div className="flex items-center gap-4 text-sm">

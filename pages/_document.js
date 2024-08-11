@@ -83,7 +83,6 @@ export default function Document() {
         />
         {/* example as https://pregnantmeal.com/twitter.png */}
         <meta name="twitter:image" content={customConfig.seo.og.twitterImage} />
-        <link rel="canonical" href={customConfig.domainWithHttps} />
         <link
           rel="icon"
           type="image/png"

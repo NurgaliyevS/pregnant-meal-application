@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePlausible } from "next-plausible";
+import { isDevelopment } from "@/utils/isDevelopment";
 
 function Footer({ bgColor }) {
   const plausible = usePlausible();
@@ -125,7 +126,7 @@ function Footer({ bgColor }) {
                 </Link>
                 <Link
                   className="link link-hover"
-                  href="/blog"
+                  href={isDevelopment() ? "/blog" : "https://pregnantmeal.com/blog"}
                   title="Uptime Friend - blog"
                 >
                   Blog
