@@ -30,11 +30,11 @@ export default function BlogIndex({ posts }) {
         <title>PregnantMeal Blog</title>
         <meta
           name="description"
-          content="Latest posts from PregnantMeal on website monitoring and uptime"
+          content={customConfig.seo.description}
         />
         <meta
           name="keywords"
-          content="website monitoring, uptime, server monitoring, tech blog"
+          content={customConfig.seo.keywords}
         />
         <link rel="canonical" href={`https://pregnantmeal.com/blog`} />
       </Head>
@@ -42,10 +42,10 @@ export default function BlogIndex({ posts }) {
       <main className="min-h-screen max-w-6xl mx-auto p-8">
         <section className="text-center max-w-xl mx-auto mt-12 mb-24 md:mb-32">
           <h1 className="font-extrabold text-3xl lg:text-5xl tracking-tight mb-6">
-            PregnantMeal Blog
+            {customConfig.blog.title}
           </h1>
           <p className="text-lg opacity-80 leading-relaxed pb-5">
-            {customConfig.seo.keywords}
+            {customConfig.blog.description}
           </p>
           <input
             type="text"
