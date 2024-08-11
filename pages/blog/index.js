@@ -8,6 +8,8 @@ import { format } from "date-fns";
 import BlogHeader from "./BlogHeader";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import { isDevelopment } from "@/utils/isDevelopment";
+
 
 export default function BlogIndex({ posts }) {
   const [searchTerm, setSearchTerm] = useState("");
