@@ -9,6 +9,7 @@ import BlogHeader from "./BlogHeader";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import { isDevelopment } from "@/utils/isDevelopment";
+import { customConfig } from "@/project.custom.config";
 
 
 export default function BlogIndex({ posts }) {
@@ -44,8 +45,7 @@ export default function BlogIndex({ posts }) {
             PregnantMeal Blog
           </h1>
           <p className="text-lg opacity-80 leading-relaxed pb-5">
-            Learn how to check if website is down, how to check server uptime,
-            save money on monitoring, and handle uptime monitoring.
+            {customConfig.seo.keywords}
           </p>
           <input
             type="text"
