@@ -17,6 +17,11 @@ const links = [
   },
 ];
 
+const button = {
+  href: "/meal/newMeal",
+  label: "Add Meal",
+};
+
 function Meal(props) {
   return (
     <>
@@ -24,7 +29,7 @@ function Meal(props) {
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <header className={lato.className}>
-        <Header linksOutside={links} />
+        <Header linksOutside={links} buttonCore={button} />
       </header>
       <main className={`flex flex-col min-h-screen mx-auto ${lato.className}`}>
         <MealList />

@@ -27,7 +27,7 @@ const defaultLinks = [
   },
 ];
 
-const Header = ({ linksOutside }) => {
+const Header = ({ linksOutside, buttonCore }) => {
   const plausible = usePlausible();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -66,29 +66,42 @@ const Header = ({ linksOutside }) => {
           </Link>
         </div>
         {/* Burger button to open menu on mobile */}
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
-            onClick={() => setIsOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 text-base-content"
+        {buttonCore ? (
+          <div className="flex lg:hidden">
+            <Link
+              href={buttonCore.href}
+              className="btn btn-md"
+              title="Create new meal"
+              rel="nofollow"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </button>
-        </div>
+              {buttonCore.label}
+            </Link>
+          </div>
+        ) : (
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
+              onClick={() => setIsOpen(true)}
+            >
+              <span className="sr-only">Open main menu</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 text-base-content"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </button>
+          </div>
+        )}
 
         {/* Your links on large screens */}
         <div className="hidden lg:flex lg:justify-center lg:gap-12 lg:items-center">
@@ -121,7 +134,16 @@ const Header = ({ linksOutside }) => {
           </div>
         ) : (
           <div className="hidden lg:flex lg:justify-end lg:flex-1">
-            {linksOutside ? null : (
+            {buttonCore ? (
+              <Link
+                href={buttonCore.href}
+                className="btn btn-md"
+                title="Create new meal"
+                rel="nofollow"
+              >
+                {buttonCore.label}
+              </Link>
+            ) : (
               <Link
                 href="/meal"
                 className="btn btn-sm"
