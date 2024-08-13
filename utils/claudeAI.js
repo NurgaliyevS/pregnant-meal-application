@@ -10,7 +10,7 @@ export async function generateMealPlan(userPreference) {
   } pregnant woman. Criteria:
   ${
     userPreference?.allergiesFoodAversionsDietaryRestrictions
-      ? `Restrictions: ${userPreference.allergiesFoodAversionsDietaryRestrictions}`
+      ? `Dietary restrictions, allergies, or food aversions: ${userPreference.allergiesFoodAversionsDietaryRestrictions}`
       : ""
   }
   Meals/day: ${userPreference.mealCountPerDay}
@@ -44,7 +44,6 @@ export async function generateMealPlan(userPreference) {
 
     const fullResponse = response.content[0].text;
     return fullResponse;
-
   } catch (error) {
     console.error("Error generating meal plan:", error);
     throw error;
