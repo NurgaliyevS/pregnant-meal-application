@@ -3,6 +3,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Lato } from "next/font/google";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -23,26 +26,59 @@ const button = {
 
 function NewMeal() {
   const { data: session } = useSession();
+  const [currentStep, setCurrentStep] = useState(0);
+  const [formData, setFormData] = useState({
+    cuisineType: "European",
+    pregnancyStage: "First Trimester",
+    mealCountPerDay: 3,
+    allergiesFoodAversionsDietaryRestrictions: "",
+    cookingLevel: "Easy",
+  });
+  const [mealPlan, setMealPlan] = useState(null);
 
   const steps = [
-    {
-      name: "You",
-      active: true,
-    },
-    {
-      name: "Generating",
-      active: false,
-    },
-    {
-      name: "Done",
-      active: false,
-    },
+    { name: "You", active: currentStep >= 0 },
+    { name: "Generating", active: currentStep >= 1 },
+    { name: "Done", active: currentStep >= 2 },
   ];
 
-  const submitForm = (e) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const submitForm = async (e) => {
     e.preventDefault();
-    console.log("Form submitted");
-  }
+    setCurrentStep(1);
+
+    console.log("Submitting form:", formData);
+
+    try {
+      // Save user preferences
+      const preferenceResponse = await axios.post("/api/core/meal-preferences", {
+        user_email: session.user.email,
+        ...formData,
+      });
+
+      console.log("User preference saved:", preferenceResponse.data);
+
+      // Generate meal plan
+      const mealPlanResponse = await axios.post("/api/core/generate-meal-plan", {
+        id: preferenceResponse?.data?.preference._id,
+      });
+
+      console.log("Meal plan generated:", mealPlanResponse.data);
+
+      // setMealPlan(mealPlanResponse.data.mealPlan);
+      setCurrentStep(2);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setCurrentStep(0);
+      setMealPlan(null);
+      toast.error("Error generating meal plan");
+      // Handle error (e.g., show error message to user)
+    }
+  };
 
   return (
     <>
@@ -66,83 +102,119 @@ function NewMeal() {
               ))}
             </ul>
             <div className="card-body">
-              <h2 className="card-title font-extrabold text-4xl lg:text-6xl tracking-tight mb-4">
-                <span className="relative">
-                  To make personal{" "}
-                  <strong className="text-primary">meals</strong>
-                </span>
-              </h2>
-              <p className="mb-8">
-                Fill out the form below to create a new meal.
-              </p>
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text">Cuisine type</span>
+              {currentStep === 0 && (
+                <>
+                  <h2 className="card-title font-extrabold text-4xl lg:text-6xl tracking-tight mb-4">
+                    <span className="relative">
+                      To make personal{" "}
+                      <strong className="text-primary">meals</strong>
+                    </span>
+                  </h2>
+                  <p className="mb-8">
+                    Fill out the form below to create a new meal.
+                  </p>
+                  <form onSubmit={submitForm}>
+                    <label className="form-control w-full max-w-xs">
+                      <div className="label">
+                        <span className="label-text">Cuisine type</span>
+                      </div>
+                      <input
+                        type="text"
+                        name="cuisineType"
+                        placeholder="European"
+                        className="input input-bordered w-full max-w-xs"
+                        value={formData.cuisineType}
+                        onChange={handleInputChange}
+                      />
+                    </label>
+                    <label className="form-control w-full max-w-xs">
+                      <div className="label">
+                        <span className="label-text">Pregnancy stage</span>
+                      </div>
+                      <select
+                        name="pregnancyStage"
+                        className="select select-bordered"
+                        value={formData.pregnancyStage}
+                        onChange={handleInputChange}
+                      >
+                        <option>First Trimester</option>
+                        <option>Second Trimester</option>
+                        <option>Third Trimester</option>
+                        <option>Not Pregnant</option>
+                      </select>
+                    </label>
+                    <label className="form-control w-full max-w-xs">
+                      <div className="label">
+                        <span className="label-text">Meal per day</span>
+                      </div>
+                      <input
+                        type="range"
+                        name="mealCountPerDay"
+                        className="w-full max-w-xs"
+                        value={formData.mealCountPerDay}
+                        onChange={handleInputChange}
+                        min={1}
+                        max={6}
+                        step={1}
+                      />
+                      <div className="flex w-full justify-between px-2 text-xs">
+                        <span>1</span>
+                        <span>2</span>
+                        <span>3</span>
+                        <span>4</span>
+                        <span>5</span>
+                        <span>6</span>
+                      </div>
+                    </label>
+                    <label className="form-control">
+                      <div className="label">
+                        <span className="label-text">
+                          Any dietary restrictions, allergies, or food aversions
+                        </span>
+                      </div>
+                      <textarea
+                        name="allergiesFoodAversionsDietaryRestrictions"
+                        className="textarea textarea-bordered h-24"
+                        placeholder="None"
+                        value={formData.allergiesFoodAversionsDietaryRestrictions}
+                        onChange={handleInputChange}
+                      ></textarea>
+                    </label>
+                    <label className="form-control w-full max-w-xs">
+                      <div className="label">
+                        <span className="label-text">Cooking level</span>
+                      </div>
+                      <select
+                        name="cookingLevel"
+                        className="select select-bordered"
+                        value={formData.cookingLevel}
+                        onChange={handleInputChange}
+                      >
+                        <option>Easy</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                      </select>
+                    </label>
+                    <div className="card-actions justify-end mt-6 lg:mt-0">
+                      <button className="btn btn-primary" type="submit">
+                        Generate Meal
+                      </button>
+                    </div>
+                  </form>
+                </>
+              )}
+              {currentStep === 1 && (
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold mb-4">Generating your meal plan...</h2>
+                  <div className="spinner"></div>
                 </div>
-                <input
-                  type="text"
-                  placeholder="European"
-                  className="input input-bordered w-full max-w-xs"
-                  defaultValue="European"
-                />
-              </label>
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text">Pregancy stage</span>
+              )}
+              {/* {currentStep === 2 && (
+                <div>
+                  <h2 className="text-2xl font-bold mb-4">Your Meal Plan</h2>
+                  <pre>{JSON.stringify(mealPlan, null, 2)}</pre>
                 </div>
-                <select className="select select-bordered">
-                  <option selected>First Trimester</option>
-                  <option>Second Trimester</option>
-                  <option>Third Trimester</option>
-                  <option>Not Pregnant</option>
-                </select>
-              </label>
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text">Meal per day</span>
-                </div>
-                <input
-                  type="range"
-                  placeholder="3"
-                  className="w-full max-w-xs"
-                  defaultValue="3"
-                  min={1}
-                  max={6}
-                  step={1}
-                />
-                <div className="flex w-full justify-between px-2 text-xs">
-                  <span>1</span>
-                  <span>2</span>
-                  <span>3</span>
-                  <span>4</span>
-                  <span>5</span>
-                  <span>6</span>
-                </div>
-              </label>
-              <label className="form-control">
-                <div className="label">
-                  <span className="label-text">
-                    Any dietary restrictions, allergies, or food aversions
-                  </span>
-                </div>
-                <textarea
-                  className="textarea textarea-bordered h-24"
-                  placeholder="None"
-                ></textarea>
-              </label>
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text">Cooking level</span>
-                </div>
-                <select className="select select-bordered" defaultValue="Easy">
-                  <option selected>Easy</option>
-                  <option>Intermediate</option>
-                  <option>Advanced</option>
-                </select>
-              </label>
-              <div className="card-actions justify-end mt-6 lg:mt-0">
-                <button className="btn btn-primary" type="submit">Generate Meal</button>
-              </div>
+              )} */}
             </div>
           </div>
         </section>

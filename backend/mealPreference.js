@@ -12,9 +12,7 @@ const UserMealPreferenceSchema = new mongoose.Schema({
     ],
     required: true,
   },
-  dietaryRestrictions: String,
-  allergies: [String],
-  foodAversions: [String],
+  allergiesFoodAversionsDietaryRestrictions: { type: String },
   mealCountPerDay: {
     type: Number,
     min: 1,
@@ -28,11 +26,13 @@ const UserMealPreferenceSchema = new mongoose.Schema({
   },
   cuisineType: {
     type: String,
-    default: "European"
+    default: "European",
   },
-  mealGenerationCount: Number
+  mealGenerationCount: Number,
 });
 
-const UserMealPreference = mongoose.models.UserMealPreference || mongoose.model('UserMealPreference', UserMealPreferenceSchema);
+const UserMealPreference =
+  mongoose.models.UserMealPreference ||
+  mongoose.model("UserMealPreference", UserMealPreferenceSchema);
 
 export default UserMealPreference;

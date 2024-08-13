@@ -19,6 +19,7 @@ export default async function handler(req, res) {
         console.error("Error creating meal preference:", error);
         res.status(500).json({ message: "Error creating meal preference" });
       }
+      break;
     case "GET":
       try {
         // get all preferences which exists in the database
@@ -59,6 +60,7 @@ export default async function handler(req, res) {
         console.error("Error fetching meal preferences:", error);
         res.status(500).json({ message: "Error fetching meal preferences" });
       }
+      break;
     case "PUT":
       try {
         const { id } = req.query;
@@ -77,6 +79,7 @@ export default async function handler(req, res) {
         console.error("Error updating meal preference:", error);
         res.status(500).json({ message: "Error updating meal preference" });
       }
+      break;
     case "DELETE":
       try {
         const { user_email, id } = req.query;
@@ -109,5 +112,6 @@ export default async function handler(req, res) {
         console.error("Error deleting meal preference:", error);
         res.status(500).json({ message: "Error deleting meal preference" });
       }
+      break;
   }
 }

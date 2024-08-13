@@ -1,19 +1,25 @@
-import Anthropic from '@anthropic-ai/sdk';
+import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 export async function generateMealPlan(userPreference) {
-  const prompt = `Generate a weekly meal plan for a ${userPreference.pregnancyStage} woman with the following criteria:
-  ${userPreference?.dietaryRestrictions ? `Dietary restrictions: ${userPreference.dietaryRestrictions}` : ''}
-  ${userPreference?.allergies ? ` Allergies: ${userPreference.allergies.join(', ')}` : ""}
-  ${userPreference?.foodAversions ? ` Food aversions: ${userPreference.foodAversions.join(', ')}` : ""}
+  const systemPrompt = `Generate a weekly meal plan for a ${
+    userPreference.pregnancyStage
+  } woman with the following criteria:
+  ${
+    userPreference?.allergiesFoodAversionsDietaryRestrictions
+      ? `Allergies, food aversions, and dietary restrictions: ${userPreference.allergiesFoodAversionsDietaryRestrictions}`
+      : ""
+  }
   Meals per day: ${userPreference.mealCountPerDay}
   Cooking level: ${userPreference.cookingLevel}
-  Cuisine type: ${userPreference.cuisineType}
+  Cuisine type: ${userPreference?.cuisineType || "European"}
 
-  Provide a meal plan for 7 days, with ${userPreference.mealCountPerDay} meals per day. For each day, list the meals as follows:
+  Provide a meal plan for 7 days, with ${
+    userPreference.mealCountPerDay
+  } meals per day. For each day, list the meals as follows:
   [Day of the week]
   - Meal 1: [Name] - [Brief description] - [Main ingredients]
   - Meal 2: [Name] - [Brief description] - [Main ingredients]
@@ -22,19 +28,27 @@ export async function generateMealPlan(userPreference) {
 
   Do not include any introductory text or conclusion. Start directly with the first day of the week.`;
 
-  const stream = await anthropic.completions.create({
-    model: 'claude-3-haiku-20240307',
-    max_tokens_to_sample: 100,
+  const stream = await anthropic.messages.create({
+    model: "claude-3-haiku-20240307",
+    max_tokens: 100, // Increased token limit to accommodate a full meal plan
     temperature: 0.7,
-    prompt: prompt,
+    system: systemPrompt,
+    messages: [
+      {
+        role: "user",
+        content: "Please provide the meal plan as requested.",
+      },
+    ],
     stream: true,
   });
 
-  let fullResponse = '';
+  let fullResponse = "";
 
   for await (const completion of stream) {
-    console.log(completion.completion, 'completion');
-    fullResponse += completion.completion;
+    if (completion.type === 'content_block_delta') {
+      console.log(completion.delta.text, "completion");
+      fullResponse += completion.delta.text;
+    }
   }
 
   return fullResponse;
