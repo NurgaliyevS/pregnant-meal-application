@@ -29,6 +29,7 @@ const UserMealPreferenceSchema = new mongoose.Schema({
     default: "European",
   },
   mealGenerationCount: Number,
+  generatedMealPlans: String,
 });
 
 const UserMealPreference =

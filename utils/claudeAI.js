@@ -30,7 +30,7 @@ export async function generateMealPlan(userPreference) {
 
   const stream = await anthropic.messages.create({
     model: "claude-3-haiku-20240307",
-    max_tokens: 100, // Increased token limit to accommodate a full meal plan
+    max_tokens: 1000, // Increased token limit to accommodate a full meal plan
     temperature: 0.7,
     system: systemPrompt,
     messages: [
@@ -39,16 +39,13 @@ export async function generateMealPlan(userPreference) {
         content: "Please provide the meal plan as requested.",
       },
     ],
-    stream: true,
+    stream: false,
   });
 
   let fullResponse = "";
 
-  for await (const completion of stream) {
-    if (completion.type === 'content_block_delta') {
-      console.log(completion.delta.text, "completion");
-      fullResponse += completion.delta.text;
-    }
+  for await (const message of stream?.content[0]?.text) {
+    fullResponse += message;
   }
 
   return fullResponse;

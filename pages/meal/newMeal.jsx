@@ -35,6 +35,7 @@ function NewMeal() {
     cookingLevel: "Easy",
   });
   const [mealPlan, setMealPlan] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const steps = [
     { name: "You", active: currentStep >= 0 },
@@ -53,23 +54,30 @@ function NewMeal() {
 
     console.log("Submitting form:", formData);
 
+    setIsLoading(true);
     try {
       // Save user preferences
-      const preferenceResponse = await axios.post("/api/core/meal-preferences", {
-        user_email: session.user.email,
-        ...formData,
-      });
+      const preferenceResponse = await axios.post(
+        "/api/core/meal-preferences",
+        {
+          user_email: session.user.email,
+          ...formData,
+        }
+      );
 
       console.log("User preference saved:", preferenceResponse.data);
 
       // Generate meal plan
-      const mealPlanResponse = await axios.post("/api/core/generate-meal-plan", {
-        id: preferenceResponse?.data?.preference._id,
-      });
+      const mealPlanResponse = await axios.post(
+        "/api/core/generate-meal-plan",
+        {
+          id: preferenceResponse?.data?.preference._id,
+        }
+      );
 
       console.log("Meal plan generated:", mealPlanResponse.data);
 
-      // setMealPlan(mealPlanResponse.data.mealPlan);
+      setMealPlan(mealPlanResponse.data?.mealPlan);
       setCurrentStep(2);
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -77,6 +85,8 @@ function NewMeal() {
       setMealPlan(null);
       toast.error("Error generating meal plan");
       // Handle error (e.g., show error message to user)
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -90,8 +100,8 @@ function NewMeal() {
       </header>
       <main className={`flex flex-col min-h-screen mx-auto ${lato.className}`}>
         <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 lg:py-20 gap-10">
-          <div className="card bg-base-500 w-full lg:w-2/3 shadow-xl">
-            <ul className="steps">
+          <div className="card bg-slate-200 w-full lg:w-2/3 shadow-xl">
+            <ul className="steps mt-5">
               {steps.map((step, index) => (
                 <li
                   key={index}
@@ -176,7 +186,9 @@ function NewMeal() {
                         name="allergiesFoodAversionsDietaryRestrictions"
                         className="textarea textarea-bordered h-24"
                         placeholder="None"
-                        value={formData.allergiesFoodAversionsDietaryRestrictions}
+                        value={
+                          formData.allergiesFoodAversionsDietaryRestrictions
+                        }
                         onChange={handleInputChange}
                       ></textarea>
                     </label>
@@ -205,16 +217,20 @@ function NewMeal() {
               )}
               {currentStep === 1 && (
                 <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-4">Generating your meal plan...</h2>
                   <div className="spinner"></div>
+                  <h2 className="text-2xl font-bold mb-4">
+                    Loading meal plan...
+                  </h2>
                 </div>
               )}
-              {/* {currentStep === 2 && (
-                <div>
-                  <h2 className="text-2xl font-bold mb-4">Your Meal Plan</h2>
-                  <pre>{JSON.stringify(mealPlan, null, 2)}</pre>
+              {currentStep === 2 && (
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold mb-4">Your meal plan</h2>
+                  <pre className="text-left whitespace-pre-wrap mt-5">
+                    {mealPlan}
+                  </pre>
                 </div>
-              )} */}
+              )}
             </div>
           </div>
         </section>
