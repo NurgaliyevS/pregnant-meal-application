@@ -100,7 +100,7 @@ function NewMeal() {
       </header>
       <main className={`flex flex-col min-h-screen mx-auto ${lato.className}`}>
         <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 lg:py-20 gap-10">
-          <div className="card bg-slate-200 w-full lg:w-2/3 shadow-xl">
+          <div className="card bg-base-500 w-full lg:w-2/3 shadow-2xl">
             <ul className="steps mt-5">
               {steps.map((step, index) => (
                 <li
