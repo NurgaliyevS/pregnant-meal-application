@@ -35,7 +35,6 @@ function NewMeal() {
     cookingLevel: "Easy",
   });
   const [mealPlan, setMealPlan] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const steps = [
     { name: "You", active: currentStep >= 0 },
@@ -54,7 +53,6 @@ function NewMeal() {
 
     console.log("Submitting form:", formData);
 
-    setIsLoading(true);
     try {
       // Save user preferences
       const preferenceResponse = await axios.post(
@@ -86,7 +84,6 @@ function NewMeal() {
       toast.error("Error generating meal plan");
       // Handle error (e.g., show error message to user)
     } finally {
-      setIsLoading(false);
     }
   };
 
