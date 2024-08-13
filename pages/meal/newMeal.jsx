@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Lato } from "next/font/google";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -35,12 +35,26 @@ function NewMeal() {
     cookingLevel: "Easy",
   });
   const [mealPlan, setMealPlan] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const steps = [
     { name: "You", active: currentStep >= 0 },
     { name: "Generating", active: currentStep >= 1 },
     { name: "Done", active: currentStep >= 2 },
   ];
+
+  // IIFE function only once as the page loads
+  useEffect(() => {
+    if (session?.user?.email) {
+      if (
+        session.user.email === "nurgaliev000@gmail.com" ||
+        session.user.email === "nurgasab@gmail.com" ||
+        session.user.email === "kabduldinova.aiym111@gmail.com"
+      ) {
+        setIsDisabled(false);
+      }
+    }
+  }, [session]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -205,7 +219,7 @@ function NewMeal() {
                       </select>
                     </label>
                     <div className="card-actions justify-end mt-6 lg:mt-0">
-                      <button className="btn btn-primary" type="submit">
+                      <button className="btn btn-primary" type="submit" disabled={isDisabled}>
                         Generate Meal
                       </button>
                     </div>
