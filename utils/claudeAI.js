@@ -5,48 +5,48 @@ const anthropic = new Anthropic({
 });
 
 export async function generateMealPlan(userPreference) {
-  const systemPrompt = `Generate a weekly meal plan for a ${
+  const systemPrompt = `Generate a concise weekly meal plan for a ${
     userPreference.pregnancyStage
-  } woman with the following criteria:
+  } pregnant woman. Criteria:
   ${
     userPreference?.allergiesFoodAversionsDietaryRestrictions
-      ? `Allergies, food aversions, and dietary restrictions: ${userPreference.allergiesFoodAversionsDietaryRestrictions}`
+      ? `Restrictions: ${userPreference.allergiesFoodAversionsDietaryRestrictions}`
       : ""
   }
-  Meals per day: ${userPreference.mealCountPerDay}
-  Cooking level: ${userPreference.cookingLevel}
-  Cuisine type: ${userPreference?.cuisineType || "European"}
+  Meals/day: ${userPreference.mealCountPerDay}
+  Cooking: ${userPreference.cookingLevel}
+  Cuisine: ${userPreference?.cuisineType || "European"}
 
-  Provide a meal plan for 7 days, with ${
-    userPreference.mealCountPerDay
-  } meals per day. For each day, list the meals as follows:
-  [Day of the week]
-  - Meal 1: [Name] - [Brief description] - [Main ingredients]
-  - Meal 2: [Name] - [Brief description] - [Main ingredients]
-  - Meal 3: [Name] - [Brief description] - [Main ingredients]
-  (Adjust the number of meals based on the mealCountPerDay)
+  Format:
+  [Day]
+  - Meal 1: [Name] - [Brief description] - [Key ingredients]
+  - Meal 2: [Name] - [Brief description] - [Key ingredients]
+  - Meal 3: [Name] - [Brief description] - [Key ingredients]
+  (Adjust meals as needed)
 
-  Do not include any introductory text or conclusion. Start directly with the first day of the week.`;
+  Do not include any introductory text or conclusion. Start directly with the first day of the week.
+  Provide a complete 7-day plan. Be concise but ensure all days are included.`;
 
-  const stream = await anthropic.messages.create({
-    model: "claude-3-haiku-20240307",
-    max_tokens: 1000, // Increased token limit to accommodate a full meal plan
-    temperature: 0.7,
-    system: systemPrompt,
-    messages: [
-      {
-        role: "user",
-        content: "Please provide the meal plan as requested.",
-      },
-    ],
-    stream: false,
-  });
+  try {
+    const response = await anthropic.messages.create({
+      model: "claude-3-haiku-20240307",
+      max_tokens: 1000,
+      temperature: 0.7,
+      system: systemPrompt,
+      messages: [
+        {
+          role: "user",
+          content: "Generate the complete 7-day meal plan as instructed.",
+        },
+      ],
+      stream: false,
+    });
 
-  let fullResponse = "";
+    const fullResponse = response.content[0].text;
+    return fullResponse;
 
-  for await (const message of stream?.content[0]?.text) {
-    fullResponse += message;
+  } catch (error) {
+    console.error("Error generating meal plan:", error);
+    throw error;
   }
-
-  return fullResponse;
 }
