@@ -72,7 +72,7 @@ function MealList() {
                       : getPreview(meal?.generatedMealPlans)}
                   </pre>
 
-                  <button onClick={() => toggleMealPlan(meal._id)} className="mt-4">
+                  <button onClick={() => toggleMealPlan(meal._id)} className="btn btn-primary mt-auto">
                     {expandedMeals[meal._id] ? "Show Less" : "Show More"}
                   </button>
                 </div>
