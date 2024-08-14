@@ -35,11 +35,15 @@ export default async function handler(req, res) {
               .json({ message: "Meal preference not found" });
           }
 
-          return res.status(200).json(preference);
+          return res.status(200).json({
+            message: "Meal preference found",
+            preference,
+          });
         }
 
         if (user_email) {
-          const preference = await UserMealPreference.findOne({ user_email });
+          // find all preferences for a user by email
+          const preference = await UserMealPreference.find({ user_email });
 
           if (!preference) {
             return res
