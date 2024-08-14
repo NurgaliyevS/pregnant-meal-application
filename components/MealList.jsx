@@ -33,15 +33,15 @@ function MealList() {
   };
 
   const toggleMealPlan = (mealId) => {
-    setExpandedMeals(prev => ({
+    setExpandedMeals((prev) => ({
       ...prev,
-      [mealId]: !prev[mealId]
+      [mealId]: !prev[mealId],
     }));
   };
 
   const getPreview = (text) => {
-    const lines = text.split('\n');
-    return lines.slice(0, 3).join('\n') + (lines.length > 3 ? '\n...' : '');
+    const lines = text.split("\n");
+    return lines.slice(0, 3).join("\n") + (lines.length > 3 ? "\n..." : "");
   };
 
   return (
@@ -69,24 +69,29 @@ function MealList() {
 
                   {expandedMeals[meal._id] && (
                     <>
-                    <div className="sticky top-2 right-2 pt-2 pb-2 bg-base-500 z-10 text-right">
-                      <button
-                        onClick={() => toggleMealPlan(meal._id)}
-                        className="btn btn-sm btn-neutral"
-                      >
-                        Show Less
-                      </button>
-                    </div>
+                      <div className="sticky top-2 right-2 pt-2 pb-2 z-10 w-full">
+                        <div className="relative">
+                          <button
+                            onClick={() => toggleMealPlan(meal._id)}
+                            className="btn btn-sm btn-neutral absolute top-0 right-0"
+                          >
+                            Show Less
+                          </button>
+                        </div>
+                      </div>
                     </>
                   )}
 
                   <pre className="whitespace-pre-wrap text-sm">
-                    {expandedMeals[meal._id] 
+                    {expandedMeals[meal._id]
                       ? meal?.generatedMealPlans
                       : getPreview(meal?.generatedMealPlans)}
                   </pre>
 
-                  <button onClick={() => toggleMealPlan(meal._id)} className="btn btn-primary mt-auto">
+                  <button
+                    onClick={() => toggleMealPlan(meal._id)}
+                    className="btn btn-primary mt-auto"
+                  >
                     {expandedMeals[meal._id] ? "Show Less" : "Show More"}
                   </button>
                 </div>
