@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -24,6 +24,7 @@ function MealList() {
           console.log("No meal preferences found for user");
           return;
         }
+        toast.success("Meal preferences loaded");
         setMealPlan(response.data);
       } catch (error) {
         console.error("Error fetching meals:", error);
@@ -55,7 +56,7 @@ function MealList() {
           {mealPlan.length > 0 &&
             mealPlan.map((meal) => (
               <div
-                className="card bg-base-500 w-full lg:w-96 shadow-2xl"
+                className="card bg-base-500 w-full lg:w-96 shadow-2xl relative"
                 key={meal._id}
               >
                 <div className="card-body">
@@ -65,6 +66,19 @@ function MealList() {
                       <strong className="text-primary">Meal Plan</strong>
                     </span>
                   </h2>
+
+                  {expandedMeals[meal._id] && (
+                    <>
+                    <div className="sticky top-2 right-2 pt-2 pb-2 bg-base-500 z-10 text-right">
+                      <button
+                        onClick={() => toggleMealPlan(meal._id)}
+                        className="btn btn-sm btn-neutral"
+                      >
+                        Show Less
+                      </button>
+                    </div>
+                    </>
+                  )}
 
                   <pre className="whitespace-pre-wrap text-sm">
                     {expandedMeals[meal._id] 
