@@ -19,9 +19,13 @@ function MealList() {
         const response = await axios.get(
           "/api/core/meal-preferences?user_email=" + session.user.email
         );
+        if (response.data.length === 0) {
+          console.log("No meal preferences found for user");
+          return;
+        }
         setMealPlan(response.data);
       } catch (error) {
-        toast.error("Failed to get meals");
+        console.error("Error fetching meals:", error);
       }
     }
   };
