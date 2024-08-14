@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 function MealList() {
   const { data: session } = useSession();
   const [mealPlan, setMealPlan] = useState([]);
+  const [expandedMeals, setExpandedMeals] = useState({});
 
   useEffect(() => {
     getAllMeals();
@@ -28,6 +29,18 @@ function MealList() {
         console.error("Error fetching meals:", error);
       }
     }
+  };
+
+  const toggleMealPlan = (mealId) => {
+    setExpandedMeals(prev => ({
+      ...prev,
+      [mealId]: !prev[mealId]
+    }));
+  };
+
+  const getPreview = (text) => {
+    const lines = text.split('\n');
+    return lines.slice(0, 3).join('\n') + (lines.length > 3 ? '\n...' : '');
   };
 
   return (
@@ -53,11 +66,15 @@ function MealList() {
                     </span>
                   </h2>
 
-                  <p>
-                    <pre className="text-left whitespace-pre-wrap mt-5">
-                      {meal?.generatedMealPlans}
-                    </pre>
-                  </p>
+                  <pre className="whitespace-pre-wrap text-sm">
+                    {expandedMeals[meal._id] 
+                      ? meal?.generatedMealPlans
+                      : getPreview(meal?.generatedMealPlans)}
+                  </pre>
+
+                  <button onClick={() => toggleMealPlan(meal._id)} className="mt-4">
+                    {expandedMeals[meal._id] ? "Show Less" : "Show More"}
+                  </button>
                 </div>
               </div>
             ))}
