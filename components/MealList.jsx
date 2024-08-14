@@ -32,12 +32,36 @@ function MealList() {
 
   return (
     <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 lg:py-20 gap-10">
+      <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex justify-center items-center mb-0 lg:mb-7">
+        <span className="relative">
+          Your <strong className="text-primary">meals</strong>
+        </span>
+      </h1>
       <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-full gap-16">
-        <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex justify-center items-center">
-          <span className="relative">
-            Your <strong className="text-primary">meals</strong>
-          </span>
-        </h1>
+        <div className="flex flex-wrap gap-5">
+          {mealPlan.length > 0 &&
+            mealPlan.map((meal) => (
+              <div
+                className="card bg-base-500 w-full lg:w-96 shadow-2xl"
+                key={meal._id}
+              >
+                <div className="card-body">
+                  <h2 className="card-title text-center font-extrabold text-2xl lg:text-4xl tracking-tight mb-4">
+                    <span className="relative mx-auto">
+                      Personal{" "}
+                      <strong className="text-primary">Meal Plan</strong>
+                    </span>
+                  </h2>
+
+                  <p>
+                    <pre className="text-left whitespace-pre-wrap mt-5">
+                      {meal?.generatedMealPlans}
+                    </pre>
+                  </p>
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
     </section>
   );
