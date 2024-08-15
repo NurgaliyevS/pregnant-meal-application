@@ -4,6 +4,7 @@ import { handleSignIn } from "./handleSignIn";
 import { usePlausible } from "next-plausible";
 
 function Ads() {
+  // 
   const plausible = usePlausible();
   return (
     <section className="bg-neutral text-gray-300 pt-44 flex flex-col overflow-hidden">
