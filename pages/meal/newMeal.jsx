@@ -220,7 +220,7 @@ function NewMeal() {
                     </label>
                     <div className="card-actions justify-end mt-6 lg:mt-0">
                       <button className="btn btn-primary" type="submit" disabled={isDisabled}>
-                        Generate Meal
+                        Get Meal
                       </button>
                     </div>
                   </form>

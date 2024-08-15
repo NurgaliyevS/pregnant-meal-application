@@ -1,9 +1,8 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
 
 function MealList() {
   const { data: session } = useSession();
@@ -24,7 +23,6 @@ function MealList() {
           console.log("No meal preferences found for user");
           return;
         }
-        toast.success("Meal preferences loaded");
         setMealPlan(response.data);
       } catch (error) {
         console.error("Error fetching meals:", error);
