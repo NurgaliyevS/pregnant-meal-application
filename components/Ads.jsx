@@ -4,22 +4,64 @@ import { handleSignIn } from "./handleSignIn";
 import { usePlausible } from "next-plausible";
 
 function Ads() {
-  // 
+  //
   const plausible = usePlausible();
   return (
-    <section className="bg-neutral text-gray-300 pt-44 flex flex-col overflow-hidden">
+    <section className="bg-neutral text-gray-300 pt-20 lg:pt-44 flex flex-col overflow-hidden">
       <div className="container max-w-7xl mx-auto">
         <div className="flex justify-center px-10 text-center mb-20">
           <h2 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4">
-            Everything you{" "}
-            <strong className="relative text-primary">need</strong> to know,{" "}
-            <br />
-            <strong className="relative text-primary">monitored </strong>
-            in one place.
+            Tasty <strong className="relative text-primary">food</strong> for
+            <strong className="relative text-primary"> you</strong> and your
+            <strong className="relative text-primary"> growing</strong> baby
           </h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col">
+          <div className="mx-auto">
+            <div className="chat chat-start">
+              <div className="chat-image avatar">
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS chat bubble component"
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  />
+                </div>
+              </div>
+              <div className="chat-header">
+                Mary
+                <time className="pl-1 text-xs opacity-50">12:45</time>
+              </div>
+              <div className="chat-bubble bg-white my-2 text-[#394e6a]">
+                Have your heard about{" "}
+                <strong className="text-primary">PregnantMeal?</strong>
+              </div>
+              <div className="chat-footer opacity-50">Delivered</div>
+            </div>
+            <div className="chat chat-end">
+              <div className="chat-image avatar">
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS chat bubble component"
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  />
+                </div>
+              </div>
+              <div className="chat-header">
+                Emily
+                <time className="pl-1 text-xs opacity-50">12:46</time>
+              </div>
+              <div className="chat-bubble bg-white my-2 text-[#394e6a]">
+                Yes, I have. I have been using it for a{" "}
+                <strong className="text-primary">while </strong> now and it's
+                been <strong className="text-primary">great</strong>.
+              </div>
+              <div className="chat-footer opacity-50">Seen at 12:46</div>
+            </div>
+          </div>
+        </div>
+
+        {/* <div className="flex flex-col lg:flex-row gap-8">
           <div className="card bg-[#fafafa] w-80 lg:w-1/2 shadow-xl text-[#151515] mx-auto lg:mx-14">
             <Image
               src={"/http.svg"}
@@ -68,7 +110,7 @@ function Ads() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="flex items-center justify-center mt-20">
           {" "}
@@ -80,7 +122,7 @@ function Ads() {
               plausible("GET_STARTED_ADS");
             }}
           >
-            Get Started
+            Make my meals
           </Link>
         </div>
       </div>
