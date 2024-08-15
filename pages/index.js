@@ -10,10 +10,10 @@ import Pricing from "@/components/Pricing";
 import Reviews from "@/components/Reviews";
 import TeamMembers from "@/components/TeamMembers";
 import { customConfig } from "@/project.custom.config";
-import { Lato } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import Head from "next/head";
 
-const lato = Lato({
+const lato = Noto_Sans({
   subsets: ["latin"],
   weight: ["400"],
 });
