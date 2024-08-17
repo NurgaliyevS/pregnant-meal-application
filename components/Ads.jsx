@@ -21,11 +21,8 @@ function Ads() {
           <div className="mx-auto">
             <div className="chat chat-start">
               <div className="chat-image avatar">
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS chat bubble component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                  />
+                <div className="w-12 rounded-full">
+                  <Image src={"/mary.webp"} alt="Mary" width={40} height={40} className="w-12 h-12" />
                 </div>
               </div>
               <div className="chat-header">
@@ -40,11 +37,8 @@ function Ads() {
             </div>
             <div className="chat chat-end">
               <div className="chat-image avatar">
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS chat bubble component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                  />
+                <div className="w-12 rounded-full">
+                  <Image src={"/emily.webp"} alt="Mary" width={40} height={40} className="w-12 h-12" />
                 </div>
               </div>
               <div className="chat-header">
@@ -52,7 +46,7 @@ function Ads() {
                 <time className="pl-1 text-xs opacity-50">12:46</time>
               </div>
               <div className="chat-bubble bg-white my-2 text-[#394e6a]">
-                Yes, I have. I have been using it for a{" "}
+                I have been using it for a{" "}
                 <strong className="text-primary">while </strong> now and it's
                 been <strong className="text-primary">great</strong>.
               </div>
