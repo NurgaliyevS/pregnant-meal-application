@@ -21,7 +21,6 @@ const connectMongoDB = async () => {
 
   try {
     const db = await mongoose.connect(uri, {
-      useNewUrlParser: true,
       useUnifiedTopology: true,
       ...(isDevelopment() && {
         authSource: "admin",

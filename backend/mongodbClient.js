@@ -10,7 +10,6 @@ if (!uri) {
 }
 
 const options = {
-  useNewUrlParser: true,
   useUnifiedTopology: true,
 };
 
