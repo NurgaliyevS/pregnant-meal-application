@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function Hero() {
   return (
-    <article className="flex flex-col gap-24 md:gap-32 w-full bg-neutral text-gray-300 py-20 lg:py-44 px-2">
+    <article className="flex flex-col gap-24 md:gap-32 w-full bg-neutral text-gray-300 py-20 lg:py-44 px-2" id="reviews">
       <section>
         <div className="flex flex-col justify-between items-center lg:flex-row gap-20 container max-w-4xl mx-auto">
           <Image
