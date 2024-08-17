@@ -17,8 +17,9 @@ function Hero() {
             <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
               Sarah, Expecting Mom
             </h3>
-            <p className="py-6 opacity-60 text-center">
-              I love how easy it is to plan my meals now!
+            <p className="py-6 opacity-60 text-center lg:text-left">
+              I love how easy it is to plan my meals now! The daily suggestions
+              take all the guesswork out of eating healthy for my baby.
             </p>
           </div>
         </div>
@@ -29,8 +30,10 @@ function Hero() {
             <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
               Emma, New Mom
             </h3>
-            <p className="py-6 opacity-60 text-center">
-              The recipes are so yummy, even my husband loves them!
+            <p className="py-6 opacity-60 text-center lg:text-left">
+              As a new mom, I barely had time to think about cooking. But
+              <strong className="text-primary"> PregnantMeal</strong> changed
+              that! The recipes are so yummy, even my husband loves them!
             </p>
           </div>
           <Image
@@ -55,8 +58,10 @@ function Hero() {
             <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
               Emma, New Mom
             </h3>
-            <p className="py-6 opacity-60 text-center">
-              The recipes are so yummy, even my husband loves them!
+            <p className="py-6 opacity-60 text-center lg:text-left">
+              As a new mom, I barely had time to think about cooking. But
+              <strong className="text-primary"> PregnantMeal</strong> changed
+              that! The recipes are so yummy, even my husband loves them!
             </p>
           </div>
         </div>
@@ -74,8 +79,10 @@ function Hero() {
             <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
               Lisa, Second-time Mom
             </h3>
-            <p className="py-6 opacity-60 text-center">
-              This app helped me eat better for my baby.
+            <p className="py-6 opacity-60 text-center lg:text-left">
+              With my first pregnancy, I struggled to eat right. This app helped
+              me eat better for my babies, and I feel so much more energetic. I
+              love how it adapts to each trimester's needs.
             </p>
           </div>
         </div>
