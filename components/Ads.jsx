@@ -22,7 +22,13 @@ function Ads() {
             <div className="chat chat-start">
               <div className="chat-image avatar">
                 <div className="w-12 rounded-full">
-                  <Image src={"/mary.webp"} alt="Mary" width={40} height={40} className="w-12 h-12" />
+                  <Image
+                    src={"/mary.webp"}
+                    alt="Mary"
+                    width={40}
+                    height={40}
+                    className="w-12 h-12"
+                  />
                 </div>
               </div>
               <div className="chat-header">
@@ -30,15 +36,21 @@ function Ads() {
                 <time className="pl-1 text-xs opacity-50">12:45</time>
               </div>
               <div className="chat-bubble bg-white my-2 text-[#394e6a]">
-                Have your heard about{" "}
-                <strong className="text-primary">PregnantMeal?</strong>
+                Emily! You're glowing! What's your secret? 😍
               </div>
               <div className="chat-footer opacity-50">Delivered</div>
             </div>
+
             <div className="chat chat-end">
               <div className="chat-image avatar">
                 <div className="w-12 rounded-full">
-                  <Image src={"/emily.webp"} alt="Mary" width={40} height={40} className="w-12 h-12" />
+                  <Image
+                    src={"/emily.webp"}
+                    alt="Mary"
+                    width={40}
+                    height={40}
+                    className="w-12 h-12"
+                  />
                 </div>
               </div>
               <div className="chat-header">
@@ -46,9 +58,53 @@ function Ads() {
                 <time className="pl-1 text-xs opacity-50">12:46</time>
               </div>
               <div className="chat-bubble bg-white my-2 text-[#394e6a]">
-                I have been using it for a{" "}
-                <strong className="text-primary">while </strong> now and it's
-                been <strong className="text-primary">great</strong>.
+                Thanks, hun! It's this app called PregnantMeal. Helps me eat
+                right without the stress. You pregnant too?
+              </div>
+              <div className="chat-footer opacity-50">Seen at 12:46</div>
+            </div>
+
+            <div className="chat chat-start">
+              <div className="chat-image avatar">
+                <div className="w-12 rounded-full">
+                  <Image
+                    src={"/mary.webp"}
+                    alt="Mary"
+                    width={40}
+                    height={40}
+                    className="w-12 h-12"
+                  />
+                </div>
+              </div>
+              <div className="chat-header">
+                Mary
+                <time className="pl-1 text-xs opacity-50">12:45</time>
+              </div>
+              <div className="chat-bubble bg-white my-2 text-[#394e6a]">
+                Just found out last week! 🎉 Still figuring things out. Is the
+                app easy to use?
+              </div>
+              <div className="chat-footer opacity-50">Delivered</div>
+            </div>
+
+            <div className="chat chat-end">
+              <div className="chat-image avatar">
+                <div className="w-12 rounded-full">
+                  <Image
+                    src={"/emily.webp"}
+                    alt="Mary"
+                    width={40}
+                    height={40}
+                    className="w-12 h-12"
+                  />
+                </div>
+              </div>
+              <div className="chat-header">
+                Emily
+                <time className="pl-1 text-xs opacity-50">12:46</time>
+              </div>
+              <div className="chat-bubble bg-white my-2 text-[#394e6a]">
+                Congrats! 🥳 Super easy! Wanna grab lunch and I'll show you? 🥪
               </div>
               <div className="chat-footer opacity-50">Seen at 12:46</div>
             </div>
