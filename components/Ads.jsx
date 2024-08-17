@@ -33,7 +33,7 @@ function Ads() {
               </div>
               <div className="chat-header">
                 Mary
-                <time className="pl-1 text-xs opacity-50">12:45</time>
+                <time className="pl-1 text-xs opacity-50">12:40</time>
               </div>
               <div className="chat-bubble bg-white my-2 text-[#394e6a]">
                 Emily! You're glowing! What's your secret? 😍
@@ -61,7 +61,7 @@ function Ads() {
                 Thanks, hun! It's this app called PregnantMeal. Helps me eat
                 right without the stress. You pregnant too?
               </div>
-              <div className="chat-footer opacity-50">Seen at 12:46</div>
+              <div className="chat-footer opacity-50">Seen at 12:48</div>
             </div>
 
             <div className="chat chat-start">
@@ -78,7 +78,7 @@ function Ads() {
               </div>
               <div className="chat-header">
                 Mary
-                <time className="pl-1 text-xs opacity-50">12:45</time>
+                <time className="pl-1 text-xs opacity-50">12:52</time>
               </div>
               <div className="chat-bubble bg-white my-2 text-[#394e6a]">
                 Just found out last week! 🎉 Still figuring things out. Is the
@@ -101,12 +101,12 @@ function Ads() {
               </div>
               <div className="chat-header">
                 Emily
-                <time className="pl-1 text-xs opacity-50">12:46</time>
+                <time className="pl-1 text-xs opacity-50">12:54</time>
               </div>
               <div className="chat-bubble bg-white my-2 text-[#394e6a]">
                 Congrats! 🥳 Super easy! Wanna grab lunch and I'll show you? 🥪
               </div>
-              <div className="chat-footer opacity-50">Seen at 12:50</div>
+              <div className="chat-footer opacity-50">Seen at 12:55</div>
             </div>
           </div>
         </div>
