@@ -11,10 +11,10 @@ function MealList() {
 
   useEffect(() => {
     getAllMeals();
-  }, []);
+  }, [session]);
 
   const getAllMeals = async () => {
-    if (session?.user?.email) {
+    if (session) {
       try {
         const response = await axios.get(
           "/api/core/meal-preferences?user_email=" + session.user.email
@@ -26,6 +26,10 @@ function MealList() {
         setMealPlan(response.data);
       } catch (error) {
         console.error("Error fetching meals:", error);
+        const timer = setTimeout(() => {
+          getAllMeals();
+        }, 2000);
+        return () => clearTimeout(timer);
       }
     }
   };
