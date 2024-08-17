@@ -45,8 +45,8 @@ function Hero() {
       <section className="lg:hidden block">
         <div className="flex flex-col justify-between items-center lg:flex-row gap-20 container max-w-4xl mx-auto">
           <Image
-            src="/sarah.webp"
-            alt="Sarah"
+            src="/emma.webp"
+            alt="Emma"
             width={200}
             height={280}
             className="max-w-sm rounded-lg shadow-2xl"
