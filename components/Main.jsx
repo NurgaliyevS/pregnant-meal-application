@@ -32,7 +32,7 @@ function Main() {
             , and monthly{" "}
             <strong className="relative text-primary">meal</strong> plan.
           </p>
-          <p className="lg:hidden block text-lg opacity-90 leading-relaxed overflow-x-auto whitespace-nowrap">
+          <p className="lg:hidden block text-base opacity-90 leading-relaxed overflow-x-auto whitespace-nowrap">
             Personal <strong className="relative text-primary">meal </strong>
             plan for <strong className="relative text-primary">
               pregnant

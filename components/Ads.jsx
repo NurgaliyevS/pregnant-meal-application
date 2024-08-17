@@ -18,7 +18,7 @@ function Ads() {
         </div>
 
         <div className="flex flex-col">
-          <div className="mx-auto">
+          <div className="mx-auto p-2">
             <div className="chat chat-start">
               <div className="chat-image avatar">
                 <div className="w-12 rounded-full">
