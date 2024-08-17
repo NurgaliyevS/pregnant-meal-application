@@ -13,17 +13,23 @@ function Hero() {
             height={280}
             className="max-w-sm rounded-lg shadow-2xl"
           />
-          <div>
-            <h1 className="text-5xl font-bold">Sarah, Expecting Mom</h1>
-            <p className="py-6">I love how easy it is to plan my meals now!</p>
+          <div className="flex items-center justify-center flex-col lg:items-start lg:justify-end">
+            <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
+              Sarah, Expecting Mom
+            </h3>
+            <p className="py-6 opacity-60 text-center">
+              I love how easy it is to plan my meals now!
+            </p>
           </div>
         </div>
       </section>
-      <section>
+      <section className="hidden lg:block">
         <div className="flex flex-col justify-between items-center lg:flex-row gap-20 container max-w-4xl mx-auto">
-          <div>
-            <h1 className="text-5xl font-bold">Emma, New Mom</h1>
-            <p className="py-6">
+          <div className="flex items-center justify-center flex-col lg:items-start lg:justify-end">
+            <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
+              Emma, New Mom
+            </h3>
+            <p className="py-6 opacity-60 text-center">
               The recipes are so yummy, even my husband loves them!
             </p>
           </div>
@@ -36,6 +42,25 @@ function Hero() {
           />
         </div>
       </section>
+      <section className="lg:hidden block">
+        <div className="flex flex-col justify-between items-center lg:flex-row gap-20 container max-w-4xl mx-auto">
+          <Image
+            src="/sarah.webp"
+            alt="Sarah"
+            width={200}
+            height={280}
+            className="max-w-sm rounded-lg shadow-2xl"
+          />
+          <div className="flex items-center justify-center flex-col lg:items-start lg:justify-end">
+            <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
+              Emma, New Mom
+            </h3>
+            <p className="py-6 opacity-60 text-center">
+              The recipes are so yummy, even my husband loves them!
+            </p>
+          </div>
+        </div>
+      </section>
       <section>
         <div className="flex flex-col justify-between items-center lg:flex-row gap-20 container max-w-4xl mx-auto">
           <Image
@@ -45,9 +70,13 @@ function Hero() {
             height={280}
             className="max-w-sm rounded-lg shadow-2xl"
           />
-          <div>
-            <h1 className="text-5xl font-bold">Lisa, Second-time Mom</h1>
-            <p className="py-6">This app helped me eat better for my baby.</p>
+          <div className="flex items-center justify-center flex-col lg:items-start lg:justify-end">
+            <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
+              Lisa, Second-time Mom
+            </h3>
+            <p className="py-6 opacity-60 text-center">
+              This app helped me eat better for my baby.
+            </p>
           </div>
         </div>
       </section>
