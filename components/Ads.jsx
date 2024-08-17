@@ -106,7 +106,7 @@ function Ads() {
               <div className="chat-bubble bg-white my-2 text-[#394e6a]">
                 Congrats! 🥳 Super easy! Wanna grab lunch and I'll show you? 🥪
               </div>
-              <div className="chat-footer opacity-50">Seen at 12:46</div>
+              <div className="chat-footer opacity-50">Seen at 12:50</div>
             </div>
           </div>
         </div>
