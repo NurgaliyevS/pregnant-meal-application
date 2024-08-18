@@ -24,11 +24,10 @@ function Pricing(props) {
         </div>
 
         <div className="flex flex-col lg:flex-row justify-between gap-5">
-
           <div className="card bg-[#fafafa] w-80 shadow-xl text-[#151515] mx-auto lg:mx-0">
             <div className="flex flex-row justify-between items-center pl-8 pr-8 pt-8">
               <h3 className="font-bold text-2xl lg:text-3xl tracking-tight">
-                <strong className="relative">Personal</strong>
+                <strong className="relative">Yummy Starter</strong>
               </h3>
               <Image
                 // src={"/team.svg"}
@@ -57,7 +56,7 @@ function Pricing(props) {
                 </div>
               </div>
 
-              <p className="text-neutral-500">Ideal for small projects.</p>
+              <p className="text-neutral-500">Great for new moms-to-be.</p>
 
               <button
                 className="btn btn-primary rounded-full my-2"
@@ -66,11 +65,12 @@ function Pricing(props) {
                   plausible("SUBSCRIBE_NOW_PERSONAL");
                   buyProduct();
                 }}
+                disabled
               >
-                Subscribe now
+                Get my meals
               </button>
 
-              <h4 className="font-bold text-xl tracking-tight">5 monitors</h4>
+              <h4 className="font-bold text-xl tracking-tight">20 recipes</h4>
 
               <ul className="space-y-2.5 leading-relaxed text-base flex-1">
                 <li className="flex items-center gap-2">
@@ -86,23 +86,7 @@ function Pricing(props) {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span>2-minute monitoring interval</span>
-                </li>
-
-                <li className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>HTTP & ping monitoring</span>
+                  <span>Safe food list</span>
                 </li>
 
                 <li className="flex items-center gap-2">
@@ -119,10 +103,8 @@ function Pricing(props) {
                     ></path>
                   </svg>
                   <span>
-                    50 SMS{" "}
-                    <strong className="relative text-primary">
-                      per month
-                    </strong>
+                    First <strong className="text-primary">trimester</strong>{" "}
+                    focus
                   </span>
                 </li>
 
@@ -131,62 +113,11 @@ function Pricing(props) {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
+                    class="w-4 h-4 text-base-content/30 shrink-0"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
+                    <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
                   </svg>
-                  <span>
-                    100 Emails{" "}
-                    <strong className="relative text-primary">
-                      per month
-                    </strong>
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>
-                    3 phone number{" "}
-                    <strong className="relative text-primary">
-                      for alerts
-                    </strong>
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>
-                    3 email address{" "}
-                    <strong className="relative text-primary">
-                      for alerts
-                    </strong>
-                  </span>
+                  <span>No email support </span>
                 </li>
               </ul>
             </div>
@@ -195,7 +126,7 @@ function Pricing(props) {
           <div className="card bg-[#fafafa] w-80 shadow-xl text-[#151515] mx-auto lg:mx-0">
             <div className="flex flex-row justify-between items-center pl-8 pr-8 pt-8">
               <h3 className="font-bold text-2xl lg:text-3xl tracking-tight">
-                <strong className="relative">Team</strong>
+                <strong className="relative">Super Food Pack</strong>
               </h3>
               <Image
                 src={"/team.svg"}
@@ -223,7 +154,9 @@ function Pricing(props) {
                 </div>
               </div>
 
-              <p className="text-neutral-500">Great for small teams.</p>
+              <p className="text-neutral-500">
+                Perfect for health-conscious moms.
+              </p>
 
               <button
                 className="btn btn-primary rounded-full my-2"
@@ -232,11 +165,12 @@ function Pricing(props) {
                   plausible("SUBSCRIBE_NOW_TEAM");
                   buyProduct("449166");
                 }}
+                disabled
               >
-                Subscribe now
+                Get my meals
               </button>
 
-              <h4 className="font-bold text-xl tracking-tight">10 monitors</h4>
+              <h4 className="font-bold text-xl tracking-tight">50 recipes</h4>
 
               <ul className="space-y-2.5 leading-relaxed text-base flex-1">
                 <li className="flex items-center gap-2">
@@ -252,23 +186,7 @@ function Pricing(props) {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span>1-minute monitoring interval</span>
-                </li>
-
-                <li className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>HTTP & ping monitoring</span>
+                  <span>Safe food list</span>
                 </li>
 
                 <li className="flex items-center gap-2">
@@ -285,10 +203,8 @@ function Pricing(props) {
                     ></path>
                   </svg>
                   <span>
-                    100 SMS{" "}
-                    <strong className="relative text-primary">
-                      per month
-                    </strong>
+                    Second <strong className="text-primary">trimester</strong>{" "}
+                    focus
                   </span>
                 </li>
 
@@ -297,62 +213,11 @@ function Pricing(props) {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
+                    class="w-4 h-4 text-base-content/30 shrink-0"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
+                    <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
                   </svg>
-                  <span>
-                    200 Emails{" "}
-                    <strong className="relative text-primary">
-                      per month
-                    </strong>
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>
-                    5 phone number{" "}
-                    <strong className="relative text-primary">
-                      for alerts
-                    </strong>
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>
-                    5 email address{" "}
-                    <strong className="relative text-primary">
-                      for alerts
-                    </strong>
-                  </span>
+                  <span>No email support </span>
                 </li>
               </ul>
             </div>
@@ -361,7 +226,7 @@ function Pricing(props) {
           <div className="card bg-[#fafafa] w-80 shadow-xl text-[#151515] mx-auto lg:mx-0">
             <div className="flex flex-row justify-between items-center pl-8 pr-8 pt-8">
               <h3 className="font-bold text-2xl lg:text-3xl tracking-tight">
-                <strong className="relative">Enterprise</strong>
+                <strong className="relative">Magic Mom Menu</strong>
               </h3>
               <Image
                 src={"/team.svg"}
@@ -389,7 +254,7 @@ function Pricing(props) {
                 </div>
               </div>
 
-              <p className="text-neutral-500">Best for large organizations.</p>
+              <p className="text-neutral-500">Best for moms who want it all.</p>
 
               <button
                 className="btn btn-primary rounded-full my-2"
@@ -398,11 +263,12 @@ function Pricing(props) {
                   plausible("SUBSCRIBE_NOW_ENTERPRISE");
                   buyProduct("449167");
                 }}
+                disabled
               >
-                Subscribe now
+                Get my meals
               </button>
 
-              <h4 className="font-bold text-xl tracking-tight">20 monitors</h4>
+              <h4 className="font-bold text-xl tracking-tight">150 recipes</h4>
 
               <ul className="space-y-2.5 leading-relaxed text-base flex-1">
                 <li className="flex items-center gap-2">
@@ -418,25 +284,7 @@ function Pricing(props) {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="whitespace-nowrap">
-                    1-minute monitoring interval
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>HTTP & ping monitoring</span>
+                  <span>Safe food list</span>
                 </li>
 
                 <li className="flex items-center gap-2">
@@ -453,10 +301,8 @@ function Pricing(props) {
                     ></path>
                   </svg>
                   <span>
-                    200 SMS{" "}
-                    <strong className="relative text-primary">
-                      per month
-                    </strong>
+                    All <strong className="text-primary">trimester</strong>{" "}
+                    focus
                   </span>
                 </li>
 
@@ -473,54 +319,7 @@ function Pricing(props) {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span>
-                    500 Emails{" "}
-                    <strong className="relative text-primary">
-                      per month
-                    </strong>
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>
-                    10 phone number{" "}
-                    <strong className="relative text-primary">
-                      for alerts
-                    </strong>
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4 opacity-1 fill-emerald-500 shrink"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>
-                    10 email address{" "}
-                    <strong className="relative text-primary">
-                      for alerts
-                    </strong>
-                  </span>
+                  <span>24/7 email support </span>
                 </li>
               </ul>
             </div>
