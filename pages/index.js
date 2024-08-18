@@ -1,4 +1,5 @@
 import Ads from "@/components/Ads";
+import Demo from "@/components/Demo";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -27,6 +28,7 @@ export default function Home() {
         <Main />
         <Ads />
         <Hero />
+        <Demo />
         <Pricing />
       </main>
       <footer className={lato.className}>
