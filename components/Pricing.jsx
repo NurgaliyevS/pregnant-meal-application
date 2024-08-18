@@ -70,7 +70,7 @@ function Pricing(props) {
                 Get my meals
               </button>
 
-              <h4 className="font-bold text-xl tracking-tight">20 recipes</h4>
+              <h4 className="font-bold text-xl tracking-tight">20 <strong className="text-primary">recipes</strong></h4>
 
               <ul className="space-y-2.5 leading-relaxed text-base flex-1">
                 <li className="flex items-center gap-2">
@@ -170,7 +170,7 @@ function Pricing(props) {
                 Get my meals
               </button>
 
-              <h4 className="font-bold text-xl tracking-tight">50 recipes</h4>
+              <h4 className="font-bold text-xl tracking-tight">50 <strong className="text-primary">recipes</strong></h4>
 
               <ul className="space-y-2.5 leading-relaxed text-base flex-1">
                 <li className="flex items-center gap-2">
@@ -268,7 +268,7 @@ function Pricing(props) {
                 Get my meals
               </button>
 
-              <h4 className="font-bold text-xl tracking-tight">150 recipes</h4>
+              <h4 className="font-bold text-xl tracking-tight">150 <strong className="text-primary">recipes</strong></h4>
 
               <ul className="space-y-2.5 leading-relaxed text-base flex-1">
                 <li className="flex items-center gap-2">
