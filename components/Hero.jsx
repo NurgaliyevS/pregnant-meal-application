@@ -76,7 +76,7 @@ function Hero() {
             className="max-w-sm rounded-lg shadow-2xl"
           />
           <div className="flex items-center justify-center flex-col lg:items-start lg:justify-end">
-            <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
+            <h3 className="text-3xl lg:text-5xl font-bold tracking-tight text-center lg:text-left">
               Lisa, Second-time Mom
             </h3>
             <p className="py-6 opacity-60 text-center lg:text-left">
