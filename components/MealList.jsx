@@ -46,6 +46,13 @@ function MealList() {
     return lines.slice(0, 3).join("\n") + (lines.length > 3 ? "\n..." : "");
   };
 
+  const formatDate = (date) => {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+    return `${month}-${day}-${year}`;
+  };
+
   return (
     <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 lg:py-20 gap-10">
       <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex justify-center items-center mb-0 lg:mb-7">
@@ -68,6 +75,10 @@ function MealList() {
                       <strong className="text-primary">Meal Plan</strong>
                     </span>
                   </h2>
+
+                  <h4 className="opacity-60">
+                    Created on: {formatDate(new Date(meal.dateModified))}
+                  </h4>
 
                   {expandedMeals[meal._id] && (
                     <>

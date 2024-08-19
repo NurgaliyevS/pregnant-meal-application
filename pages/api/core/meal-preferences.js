@@ -9,7 +9,10 @@ export default async function handler(req, res) {
   switch (method) {
     case "POST":
       try {
-        const preference = new UserMealPreference(req.body);
+        const preference = new UserMealPreference({
+          ...req.body,
+          dateModified: new Date()
+        });
         await preference.save();
         res.status(201).json({
           message: "Meal preference created successfully",
@@ -37,12 +40,12 @@ export default async function handler(req, res) {
         }
 
         if (user_email) {
-          const preferences = await UserMealPreference.find({ user_email });
+          const preferences = await UserMealPreference.find({ user_email }).sort({ dateModified: -1 });
           return res.status(200).json(preferences);
         }
 
         if (Object.keys(req.query).length === 0) {
-          const preferences = await UserMealPreference.find();
+          const preferences = await UserMealPreference.find().sort({ dateModified: -1 });
           return res.status(200).json(preferences);
         }
 
@@ -58,7 +61,7 @@ export default async function handler(req, res) {
         const { id } = req.query;
         const updatedPreference = await UserMealPreference.findByIdAndUpdate(
           id,
-          req.body,
+          { ...req.body, dateModified: new Date() },
           { new: true }
         );
 

@@ -30,6 +30,7 @@ const UserMealPreferenceSchema = new mongoose.Schema({
   },
   mealGenerationCount: Number,
   generatedMealPlans: String,
+  dateModified: { type: Date, default: Date.now }
 });
 
 const UserMealPreference =
