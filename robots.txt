@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Disallow: /meal
+Allow: /
+
+# Host
+Host: https://pregnantmeal.com
+
+# Sitemaps
+Sitemap: https://pregnantmeal.com/sitemap.xml
