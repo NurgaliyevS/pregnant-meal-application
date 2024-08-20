@@ -5,6 +5,12 @@ const fs = require('fs');
 module.exports = {
   siteUrl: "https://pregnantmeal.com",
   generateRobotsTxt: true,
+  robotsTxtOptions: {
+    policies: [
+      { userAgent: '*', disallow: '/meal/' },
+      { userAgent: '*', allow: '/' },
+    ],
+  },
   exclude: ["/meal", "/meal/*", "/blocked"],
   additionalPaths: async (config) => {
     const result = [];
