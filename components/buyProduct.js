@@ -3,10 +3,13 @@
 import { isDevelopment } from "@/utils/isDevelopment";
 import axios from "axios";
 
+const LEMON_SQEEZY_PRODUCT_ID_TEST = process.env.NEXT_PUBLIC_LEMON_SQEEZY_PRODUCT_ID_TEST;
+const NEXT_PUBLIC_LEMON_SQEEZY_PRODUCT_ID = process.env.NEXT_PUBLIC_LEMON_SQEEZY_PRODUCT_ID;
+
 export async function buyProduct(variantId) {
   try {
     const payload = {
-      productId: isDevelopment() ? "311180" : "310762",
+      productId: isDevelopment() ? LEMON_SQEEZY_PRODUCT_ID_TEST : NEXT_PUBLIC_LEMON_SQEEZY_PRODUCT_ID, 
     };
 
     if (typeof variantId === 'string') {
