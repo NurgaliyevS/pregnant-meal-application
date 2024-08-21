@@ -20,7 +20,7 @@ export default async function handler(req, res) {
               user_id: request?.userId || "123",
               email: request?.email || "123",
             },
-            discount_code: isDevelopment() ? "C4MJAXOQ" : "LAUNCH",
+            discount_code: isDevelopment() ? "C4MJAXOQ" : "Y2OTIXNQ",
           },
         },
         relationships: {
