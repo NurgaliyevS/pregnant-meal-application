@@ -164,7 +164,6 @@ function Pricing(props) {
                   plausible("SUBSCRIBE_NOW_TEAM");
                   buyProduct("493049");
                 }}
-                disabled
               >
                 Get my meals
               </button>
@@ -262,7 +261,6 @@ function Pricing(props) {
                   plausible("SUBSCRIBE_NOW_ENTERPRISE");
                   buyProduct("493050");
                 }}
-                disabled
               >
                 Get my meals
               </button>
