@@ -65,7 +65,6 @@ function Pricing(props) {
                   plausible("SUBSCRIBE_NOW_PERSONAL");
                   buyProduct();
                 }}
-                disabled
               >
                 Get my meals
               </button>
@@ -163,7 +162,7 @@ function Pricing(props) {
                 onClick={(e) => {
                   e.preventDefault();
                   plausible("SUBSCRIBE_NOW_TEAM");
-                  buyProduct("449166");
+                  buyProduct("493049");
                 }}
                 disabled
               >
@@ -261,7 +260,7 @@ function Pricing(props) {
                 onClick={(e) => {
                   e.preventDefault();
                   plausible("SUBSCRIBE_NOW_ENTERPRISE");
-                  buyProduct("449167");
+                  buyProduct("493050");
                 }}
                 disabled
               >
