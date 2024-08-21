@@ -1,6 +1,6 @@
 # *
 User-agent: *
-Disallow: /meal
+Disallow: /meal/
 Allow: /
 
 # Sitemaps
