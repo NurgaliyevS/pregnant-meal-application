@@ -108,15 +108,11 @@ function NewMeal() {
       });
 
       if (response?.data?.success) {
-        const variantName = response.data?.data?.variant;
-        console.log("variantName", variantName);
-
-        if (variantName !== "free" || variantName !== "") {
+        const variantName = response.data?.data?.variant_name;
+        if (variantName && variantName !== "free" || variantName !== "") {
           setIsDisabled(false);
         }
       }
-
-      console.log("User data:", response.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
