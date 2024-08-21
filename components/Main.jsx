@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { handleSignIn } from "./handleSignIn";
 import { usePlausible } from "next-plausible";
+import CTAButton from "./CTAButton";
 
 function Main() {
   const plausible = usePlausible();
@@ -42,17 +43,7 @@ function Main() {
             monthly <strong className="relative text-primary">meal</strong>{" "}
             plan.
           </p>
-          <Link
-            href="#"
-            className="btn btn-primary btn-wide no-underline"
-            onClick={(e) => {
-              e.preventDefault();
-              plausible("GET_STARTED_MAIN");
-              handleSignIn(e);
-            }}
-          >
-            Make My Meals
-          </Link>
+          <CTAButton plausibleNameBeforeLogin="GET_STARTED_MAIN" />
         </div>
 
         <div className="hidden lg:block relative max-md:-m-4 lg:w-1/2">

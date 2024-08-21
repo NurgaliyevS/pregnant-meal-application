@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { handleSignIn } from "./handleSignIn";
 import { usePlausible } from "next-plausible";
+import CTAButton from "./CTAButton";
 
 const faqList = [
   {
@@ -165,16 +166,7 @@ function FAQ() {
       </div>
 
       <div className="flex items-center justify-center mt-20">
-        <Link
-          href="#"
-          className="btn btn-primary btn-wide no-underline"
-          onClick={(e) => {
-            handleSignIn(e);
-            plausible("GET_STARTED_FAQ");
-          }}
-        >
-          Get Started
-        </Link>
+        <CTAButton plausibleNameBeforeLogin="GET_STARTED_FAQ" />
       </div>
     </section>
   );

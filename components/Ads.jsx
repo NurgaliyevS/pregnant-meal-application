@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { handleSignIn } from "./handleSignIn";
 import { usePlausible } from "next-plausible";
+import CTAButton from "./CTAButton";
 
 function Ads() {
   //
@@ -163,17 +164,7 @@ function Ads() {
         </div> */}
 
         <div className="flex items-center justify-center mt-20">
-          {" "}
-          <Link
-            href="#"
-            className="btn btn-primary btn-wide no-underline"
-            onClick={(e) => {
-              handleSignIn(e);
-              plausible("GET_STARTED_ADS");
-            }}
-          >
-            Make my meals
-          </Link>
+          <CTAButton plausibleNameBeforeLogin="GET_STARTED_ADS" />
         </div>
       </div>
     </section>
