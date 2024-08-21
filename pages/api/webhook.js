@@ -31,10 +31,10 @@ async function handleOrderCreated(body) {
 
   const userData = {
     name: body.data.attributes.user_name,
-    user_status: isSuccessful ? userStatus || "paid" : "unpaid",
+    user_status: isSuccessful ? userStatus || "paid" : "free",
     receipt_link: receiptLink,
     variant_id: variantId,
-    variant_name: isSuccessful ? userStatus || "paid" : "unpaid"
+    variant_name: isSuccessful ? userStatus || "paid" : "free"
   };
 
   if (emailAuthorized && typeof emailAuthorized === 'string' && emailAuthorized.length > 3) {
