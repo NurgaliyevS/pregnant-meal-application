@@ -14,6 +14,10 @@ const lato = Lato({
 
 const links = [
   {
+    href: "/",
+    label: "Home",
+  },
+  {
     href: "/#pricing",
     label: "Pricing",
   },

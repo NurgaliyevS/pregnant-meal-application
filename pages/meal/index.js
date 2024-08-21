@@ -12,6 +12,10 @@ const lato = Lato({
 
 const links = [
   {
+    href: "/",
+    label: "Home",
+  },
+  {
     href: "/#pricing",
     label: "Pricing",
   },
@@ -31,6 +35,7 @@ function Meal(props) {
       <header className={lato.className}>
         <Header linksOutside={links} buttonCore={button} />
       </header>
+      {/* go back gutton */}
       <main className={`flex flex-col min-h-screen mx-auto ${lato.className}`}>
         <MealList />
       </main>
