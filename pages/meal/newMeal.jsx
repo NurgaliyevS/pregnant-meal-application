@@ -109,6 +109,7 @@ function NewMeal() {
 
       if (response?.data?.success) {
         const variantName = response.data?.data?.variant;
+        console.log("variantName", variantName);
 
         if (variantName !== "free" || variantName !== "") {
           setIsDisabled(false);
