@@ -47,17 +47,8 @@ function NewMeal() {
     { name: "Done", active: currentStep >= 2 },
   ];
 
-  // IIFE function only once as the page loads
   useEffect(() => {
-    if (session?.user?.email) {
-      if (
-        session.user.email === "nurgaliev000@gmail.com" ||
-        session.user.email === "nurgasab@gmail.com" ||
-        session.user.email === "kabduldinova.aiym111@gmail.com"
-      ) {
-        setIsDisabled(false);
-      }
-    }
+    fetchUserData();
   }, [session]);
 
   const handleInputChange = (e) => {
@@ -104,6 +95,31 @@ function NewMeal() {
     } finally {
     }
   };
+
+  // fetch user data from api/users/user.js
+
+  const fetchUserData = async () => {
+    if (!session) return;
+    try {
+      const response = await axios.get("/api/users/user", {
+        params: {
+          email: session.user.email,
+        },
+      });
+
+      if (response?.data?.success) {
+        const variantName = response.data?.data?.variant;
+
+        if (variantName !== "free" || variantName !== "") {
+          setIsDisabled(false);
+        }
+      }
+
+      console.log("User data:", response.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  }
 
   return (
     <>
