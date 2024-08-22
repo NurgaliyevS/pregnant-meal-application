@@ -40,6 +40,7 @@ function NewMeal() {
   });
   const [mealPlan, setMealPlan] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [mealGenerationCount, setMealGenerationCount] = useState(0);
 
   const steps = [
     { name: "You", active: currentStep >= 0 },
@@ -95,28 +96,51 @@ function NewMeal() {
     } finally {
     }
   };
-
-  // fetch user data from api/users/user.js
-
+  
   const fetchUserData = async () => {
     if (!session) return;
     try {
-      const response = await axios.get("/api/users/user", {
+      const userData = await axios.get("/api/users/user", {
         params: {
           email: session.user.email,
         },
       });
+      const mealPreferencesResponse = await axios.get(
+        "/api/core/meal-preferences",
+        {
+          params: {
+            user_email: session.user.email,
+          },
+        }
+      );
+      const mealGenerationCount = mealPreferencesResponse?.data;
 
-      if (response?.data?.success) {
-        const variantName = response.data?.data?.variant_name;
+      if (userData?.data?.success && mealGenerationCount) {
+        const variantName = userData.data?.data?.variant_name;
         if (variantName && variantName !== "free") {
-          setIsDisabled(false);
+          const maxRecipes = getMaxRecipesForPlan(variantName.toLowerCase());
+          if (mealGenerationCount.length <= maxRecipes) {
+            setIsDisabled(false);
+          }
         }
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
-  }
+  };
+
+  const getMaxRecipesForPlan = (variantName) => {
+    switch (variantName) {
+      case "yummy starter":
+        return 20;
+      case "super food pack":
+        return 50;
+      case "magic mom menu":
+        return 150;
+      default:
+        return 0;
+    }
+  };
 
   return (
     <>
@@ -236,7 +260,11 @@ function NewMeal() {
                       </select>
                     </label>
                     <div className="card-actions justify-end mt-6 lg:mt-0">
-                      <button className="btn btn-primary" type="submit" disabled={isDisabled}>
+                      <button
+                        className="btn btn-primary"
+                        type="submit"
+                        disabled={isDisabled}
+                      >
                         Get Meal
                       </button>
                     </div>
