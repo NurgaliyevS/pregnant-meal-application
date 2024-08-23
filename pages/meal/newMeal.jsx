@@ -96,7 +96,7 @@ function NewMeal() {
     } finally {
     }
   };
-  
+
   const fetchUserData = async () => {
     if (!session) return;
     try {
@@ -260,13 +260,15 @@ function NewMeal() {
                       </select>
                     </label>
                     <div className="card-actions justify-end mt-6 lg:mt-0">
-                      <button
-                        className="btn btn-primary"
-                        type="submit"
-                        disabled={isDisabled}
-                      >
-                        Get Meal
-                      </button>
+                      <div className="tooltip" data-tip="Paid feature">
+                        <button
+                          className="btn btn-primary"
+                          type="submit"
+                          disabled={isDisabled}
+                        >
+                          Get Meal
+                        </button>
+                      </div>
                     </div>
                   </form>
                 </>
