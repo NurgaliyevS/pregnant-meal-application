@@ -30,8 +30,14 @@ export const authOptions = {
         ]
       : []),
   ],
-  adapter: MongoDBAdapter(clientPromise),
-
+  adapter: (() => {
+    try {
+      return MongoDBAdapter(clientPromise);
+    } catch (error) {
+      console.error('Failed to create MongoDB adapter:', error);
+      return null;
+    }
+  })(),
   callbacks: {
     session: async ({ session, token }) => {
       if (session?.user) {

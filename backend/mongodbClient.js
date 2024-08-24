@@ -11,6 +11,7 @@ if (!uri) {
 
 const options = {
   useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000,
 };
 
 let client;
