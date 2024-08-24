@@ -52,6 +52,7 @@ export const authOptions = {
   theme: {
     logo: `https://pregnantmeal.com/logoAndName200x50.png`,
   },
+  debug: true, // Enable debug mode for more detailed logs
 };
 
 export default NextAuth(authOptions);
