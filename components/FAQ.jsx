@@ -166,7 +166,7 @@ function FAQ() {
       </div>
 
       <div className="flex items-center justify-center mt-20">
-        <CTAButton plausibleNameBeforeLogin="GET_STARTED_FAQ" />
+        <CTAButton plausibleNameBeforeLogin="GET_STARTED_FAQ" plausibleNameAfterLogin="GET_STARTED_FAQ_AFTER_LOGIN" />
       </div>
     </section>
   );
