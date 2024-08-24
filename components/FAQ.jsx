@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { handleSignIn } from "./handleSignIn";
 import { usePlausible } from "next-plausible";
