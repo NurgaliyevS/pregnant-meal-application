@@ -163,7 +163,7 @@ function NewMeal() {
                 </li>
               ))}
             </ul>
-            <div className="card-body">
+            <div className={`card-body min-h-screen ${currentStep === 1 && "flex items-center justify-center"}`}>
               {currentStep === 0 && (
                 <>
                   <h2 className="card-title font-extrabold text-4xl lg:text-6xl tracking-tight mb-4">
