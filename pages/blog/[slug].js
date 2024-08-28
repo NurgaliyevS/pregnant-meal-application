@@ -82,7 +82,7 @@ const renderAst = (content) =>
         th: (props) => <th className="bg-base-200" {...props} />,
         a: (props) => (
           <a
-            className="link link-info"
+            className="link link-primary"
             target="_blank"
             rel="nofollow"
             {...props}
