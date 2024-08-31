@@ -91,7 +91,7 @@ Diet plays a huge role in managing gestational diabetes. But don't worry, you do
 **Fiber is Your Friend**: Choose whole grains, fruits, and vegetables for their fiber content.
 **Timing is Everything**: Eat smaller, more frequent meals to keep your blood sugar steady.
 
-Need some meal inspiration? Check out this [gestational diabetes meal plan](https://www.diabetes.org/healthy-living/recipes-nutrition/meal-planning/sample-meal-plan-gestational-diabetes) from the American Diabetes Association.
+Need some meal inspiration? Check out this [gestational diabetes meal plan](https://www.eatingwell.com/article/291744/gestational-diabetes-meal-plan-diet-guidelines/) from the American Diabetes Association.
 
 ### Exercise: Get Moving, Mama!
 
