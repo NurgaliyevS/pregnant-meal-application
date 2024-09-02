@@ -1,9 +1,9 @@
 import Footer from "@/components/Footer";
-import BlogHeader from "../BlogHeader";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { customConfig } from "@/project.custom.config";
+import BlogHeader from "@/components/BlogHeader";
 
 function Sabyr({ posts }) {
   console.log(posts, "posts sabyr");

@@ -5,7 +5,6 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
-import BlogHeader from "./BlogHeader";
 import Link from "next/link";
 import Image from "next/image";
 import { unified } from "unified";
@@ -14,6 +13,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeReact from "rehype-react";
 import React from "react";
 import Footer from "@/components/Footer";
+import BlogHeader from "@/components/BlogHeader";
 
 const renderAst = (content) =>
   unified()
