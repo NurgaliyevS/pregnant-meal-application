@@ -19,6 +19,10 @@ export default function Home() {
   return (
     <>
       <Head>
+        <meta
+          name="description"
+          content={customConfig.seo.description}
+        />
         <title>{customConfig.documentTitle}</title>
         <link rel="canonical" href={customConfig.domainWithHttps} />
       </Head>

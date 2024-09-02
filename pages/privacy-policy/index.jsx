@@ -1,14 +1,19 @@
 import Link from "next/link";
 import { customConfig } from "@/project.custom.config";
+import Head from "next/head";
 
 export const metadata = {
   title: `Privacy Policy | ${customConfig.domainName}`,
   canonicalUrlRelative: "/privacy-policy",
-}
+};
 
 const PrivacyPolicy = () => {
   return (
     <main className="max-w-xl mx-auto">
+      <Head>
+        <title>{metadata.title}</title> {/* Add title tag */}
+        <meta name="robots" content="index, follow" />
+      </Head>
       <div className="p-5">
         <Link href="/" className="btn btn-ghost">
           <svg
