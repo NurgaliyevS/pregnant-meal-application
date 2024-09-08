@@ -48,9 +48,9 @@ Protein is like the construction crew of the nutrient world. It's busy building 
 Last but not least, let's talk about omega-3 fatty acids. These little powerhouses are crucial for your baby's brain and eye development. Fatty fish like salmon, sardines, and trout are excellent sources. If you're not a fan of fish, walnuts, chia seeds, and flaxseeds are good alternatives. Your baby's future Nobel Prize thanks you!
 
 For more detailed information on these nutrients and their role in pregnancy, check out these Wikipedia pages:
-- [Folic acid in pregnancy](https://en.wikipedia.org/wiki/Folic_acid_in_pregnancy)
 - [Nutrition and pregnancy](https://en.wikipedia.org/wiki/Nutrition_and_pregnancy)
 - [Prenatal vitamins](https://en.wikipedia.org/wiki/Prenatal_vitamins)
+- [Folate deficiency](https://en.wikipedia.org/wiki/Folate_deficiency)
 
 ## Planning Your Meals: The Art of Pregnancy Plate-Building
 
