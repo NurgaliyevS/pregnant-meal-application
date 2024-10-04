@@ -19,11 +19,11 @@ function Footer({ bgColor }) {
             <Link
               className="flex gap-2 justify-center md:justify-start items-center"
               href="/"
-              title="Uptime Friend - home page"
+              title="Pregnant Meal - home page"
             >
               <Image
                 src={"/company_related/logo.webp"}
-                alt="Uptime Friend logo"
+                alt="Pregnant Meal logo"
                 className="w-5 h-5"
                 priority={true}
                 width={24}
@@ -97,7 +97,7 @@ function Footer({ bgColor }) {
                 <Link
                   className="link link-hover"
                   href="#pricing"
-                  title="Uptime Friend - home page"
+                  title="Pregnant Meal - home page"
                   onClick={() => {
                     plausible("PRICING");
                   }}
@@ -107,7 +107,7 @@ function Footer({ bgColor }) {
                 <Link
                   className="link link-hover"
                   href="mailto:nurgasab@gmail.com"
-                  title="Uptime Friend - home page"
+                  title="Pregnant Meal - home page"
                   onClick={() => {
                     plausible("CONTACT_US");
                   }}
@@ -117,7 +117,7 @@ function Footer({ bgColor }) {
                 <Link
                   className="link link-hover"
                   href="#faq"
-                  title="Uptime Friend - home page"
+                  title="Pregnant Meal - home page"
                   onClick={() => {
                     plausible("FAQ");
                   }}
@@ -129,7 +129,7 @@ function Footer({ bgColor }) {
                   href={
                     isDevelopment() ? "/blog" : "https://pregnantmeal.com/blog"
                   }
-                  title="Uptime Friend - blog"
+                  title="Pregnant Meal - blog"
                 >
                   Blog
                 </Link>
@@ -144,7 +144,7 @@ function Footer({ bgColor }) {
                   className="link link-hover"
                   href="http://uptimefriend.com/"
                   target="_blank"
-                  title="Uptime Friend - home page"
+                  title="Pregnant Meal - home page"
                   onClick={() => {
                     plausible("UptimeFriend");
                   }}

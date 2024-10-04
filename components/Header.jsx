@@ -52,11 +52,11 @@ const Header = ({ linksOutside, buttonCore }) => {
           <Link
             className="flex items-center gap-2 shrink-0 "
             href="/"
-            title="Uptime Friend - home page"
+            title="Pregnant Meal - home page"
           >
             <Image
               src={"/company_related/logo.webp"}
-              alt="Uptime Friend logo"
+              alt="Pregnant Meal logo"
               className="w-5 h-5"
               priority={true}
               width={24}
@@ -169,12 +169,12 @@ const Header = ({ linksOutside, buttonCore }) => {
           <div className="flex items-center justify-between">
             <Link
               className="flex items-center gap-2 shrink-0 "
-              title="Uptime Friend - home page"
+              title="Pregnant Meal - home page"
               href="/"
             >
               <Image
                 src={"/company_related/logo.webp"}
-                alt="Uptime Friend logo"
+                alt="Pregnant Meal logo"
                 className="w-5 h-5"
                 priority={true}
                 width={24}
