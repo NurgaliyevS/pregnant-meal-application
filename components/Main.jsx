@@ -49,7 +49,7 @@ function Main() {
         <div className="hidden lg:block relative max-md:-m-4 lg:w-1/2">
           <Image
             src={"/main.webp"}
-            alt="Uptime 24/7 notify via SMS, EMAIL"
+            alt="Pregnant meal plan"
             width={1080}
             height={1080}
             className="w-full max-w-xl ml-auto"
