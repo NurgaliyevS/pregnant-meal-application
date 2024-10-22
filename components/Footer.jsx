@@ -142,7 +142,29 @@ function Footer({ bgColor }) {
               <div className="flex flex-col justify-center items-center md:items-start gap-2 mb-10 text-sm">
                 <Link
                   className="link link-hover"
-                  href="http://uptimefriend.com/"
+                  href="https://environmentaljobboards.com/"
+                  target="_blank"
+                  title="Environmental Job Boards - home page"
+                  onClick={() => {
+                    plausible("EnvironmentalJobBoards");
+                  }}
+                >
+                  Environmental Job Boards
+                </Link>
+                <Link
+                  className="link link-hover"
+                  href="https://subpage.io/"
+                  target="_blank"
+                  title="SubPage - home page"
+                  onClick={() => {
+                    plausible("SubPage");
+                  }}
+                >
+                  SubPage
+                </Link>
+                <Link
+                  className="link link-hover"
+                  href="https://uptimefriend.com/"
                   target="_blank"
                   title="Pregnant Meal - home page"
                   onClick={() => {
@@ -164,7 +186,7 @@ function Footer({ bgColor }) {
                 </Link>
                 <Link
                   className="link link-hover"
-                  href="http://weeealth.com/"
+                  href="https://weeealth.com/"
                   target="_blank"
                   title="Weeealth - home page"
                   onClick={() => {
