@@ -195,6 +195,14 @@ function Footer({ bgColor }) {
                 >
                   Weeealth
                 </Link>
+                <Link
+                  className="link link-hover"
+                  href="https://namewith.ai/"
+                  target="_blank"
+                  title="Namewith - home page"
+                >
+                  Namewith
+                </Link>
               </div>
             </div>
           </div>
