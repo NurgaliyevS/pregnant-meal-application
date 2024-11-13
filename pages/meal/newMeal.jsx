@@ -113,13 +113,15 @@ function NewMeal() {
           },
         }
       );
-      const mealGenerationCount = mealPreferencesResponse?.data;
+      const mealsUser = mealPreferencesResponse?.data;
 
-      if (userData?.data?.success && mealGenerationCount) {
+      console.log(mealsUser, 'mealsUser')
+
+      if (userData?.data?.success && mealsUser) {
         const variantName = userData.data?.data?.variant_name;
         if (variantName && variantName !== "free") {
           const maxRecipes = getMaxRecipesForPlan(variantName.toLowerCase());
-          if (mealGenerationCount.length <= maxRecipes) {
+          if (mealsUser.length <= maxRecipes) {
             setIsDisabled(false);
           }
         }
