@@ -1,6 +1,6 @@
 ---
 title: "Nourishing Pregnancy: Delectable Dishes for the First Trimester"
-date: "2024-11-16" 
+date: "2024-11-15" 
 excerpt: "Discover recipes and meal ideas to nourish both you and your growing baby during the first trimester."
 author: "Sabyr Nurgaliyev"
 tags:
