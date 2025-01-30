@@ -23,11 +23,9 @@ function Main() {
             <strong className="relative text-primary">meal</strong> plan.
           </p>
           <p className="lg:hidden block text-base opacity-90 leading-relaxed overflow-x-auto whitespace-nowrap">
-            Personal <strong className="relative text-primary">meal </strong>
-            plan for <strong className="relative text-primary">
-              pregnant
-            </strong>{" "}
-            women. <br /> Get daily,{" "}
+            <strong className="relative text-primary">Pregnancy</strong> dinner
+            recipes <strong className="relative text-primary">first</strong>{" "}
+            trimester <br /> Get daily,{" "}
             <strong className="relative text-primary">weekly</strong>, and
             monthly <strong className="relative text-primary">meal</strong>{" "}
             plan.
