@@ -14,21 +14,21 @@ export const customConfig = {
     supportEmail: "support@pregnantmeal.com",
     forwardRepliesTo: "nurgasab@gmail.com",
   },
-  documentTitle: "Yummy Meals, Strong Baby - PregnantMeal",
+  documentTitle: "PregnantMeal - Pregnancy dinner recipes first trimester",
   domainWithHttps: "https://pregnantmeal.com",
   seo: {
     keywords:
       "first trimester recipes, 7 day meal plan for pregnant woman, pregnancy dinner recipes first trimester, dinner ideas for first trimester, meal plans for pregnant moms",
     description:
-      "Yummy Meals, Strong Baby! Get personalized daily, weekly, and monthly meal plans for a healthy pregnancy. Eat smart and grow a happy baby with our easy-to-use food guide.",
+      "PregnantMeal - pregnancy dinner recipes first trimester! Get personalized daily, weekly, and monthly meal plans for a healthy pregnancy.",
     themeColor: "#ffffff",
     applicationName: "pregnantmeal",
     og: {
-      title: "PregnantMeal - Yummy Meals, Strong Baby!",
+      title: "PregnantMeal - pregnancy dinner recipes first trimester!",
       url: "https://pregnantmeal.com",
       image: "https://pregnantmeal.com/company_related/og-image.webp",
       imageAlt:
-        "PregnantMeal - Yummy Meals, Strong Baby! Get personalized daily, weekly, and monthly meal plans for a healthy pregnancy. Eat smart and grow a happy baby with our easy-to-use food guide.",
+        "PregnantMeal - pregnancy dinner recipes first trimester! Get personalized daily, weekly, and monthly meal plans for a healthy pregnancy.",
       content: "https://x.com/tech_nurgaliyev",
       twitterSite: "@tech_nurgaliyev",
       twitterImage: "https://pregnantmeal.com/company_related/og-image.webp",

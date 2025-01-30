@@ -14,11 +14,10 @@ function Main() {
             Pregnant Meal
           </h1>
           <p className="hidden lg:block text-xl opacity-90 leading-relaxed">
-            Personal <strong className="relative text-primary">meal </strong>
-            plan for <strong className="relative text-primary">
-              pregnant
-            </strong>{" "}
-            women. <br />
+            <strong className="relative text-primary">Pregnancy</strong> dinner
+            recipes <strong className="relative text-primary">first</strong>{" "}
+            trimester
+            <br />
             Get daily, <strong className="relative text-primary">weekly</strong>
             , and monthly{" "}
             <strong className="relative text-primary">meal</strong> plan.
