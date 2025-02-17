@@ -1,4 +1,6 @@
 function MealCard({ mealNumber, title, description, ingredients }) {
+  const cleanIngredients = ingredients?.replace("Key ingredients:", "").trim();
+
   return (
     <div className="card bg-base-200 hover:bg-base-300 transition-colors duration-200">
       <div className="card-body p-4">
@@ -8,22 +10,25 @@ function MealCard({ mealNumber, title, description, ingredients }) {
               {mealNumber}
             </span>
           </div>
-          <h4 className="font-semibold text-base leading-tight">
-            {title}
-          </h4>
+          <h4 className="font-semibold text-base leading-tight">{title}</h4>
         </div>
 
-        <div className="text-sm">
-          <span className="font-medium text-primary">Ingredients: </span>
-          {ingredients}
+        <div className="text-sm flex flex-col gap-2">
+          <span className="font-medium">Ingridients</span>
+          {cleanIngredients?.split(",").map((ingredient, i) => (
+            <span
+              key={i}
+              className="badge badge-outline badge-sm whitespace-normal text-left h-auto py-1"
+            >
+              {ingredient.trim()}
+            </span>
+          ))}
         </div>
-        
-        <p className="text-sm text-base-content/70 mb-3">
-          {description}
-        </p>
+
+        <p className="text-sm text-base-content/70 mb-3">{description}</p>
       </div>
     </div>
   );
 }
 
-export default MealCard; 
+export default MealCard;
