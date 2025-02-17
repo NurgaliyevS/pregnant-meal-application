@@ -1,7 +1,5 @@
 import MealCard from './MealCard';
 
-const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
 function DayCard({ dayNumber, meals }) {
   return (
     <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">

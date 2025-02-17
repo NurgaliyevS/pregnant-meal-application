@@ -62,7 +62,7 @@ function MealForm({ initialFormData, isDisabled, onSubmit }) {
             value={formData.mealCountPerDay}
             onChange={handleInputChange}
             min={1}
-            max={6}
+            max={5}
             step={1}
           />
           <div className="flex w-full justify-between px-2 text-xs">
@@ -71,7 +71,6 @@ function MealForm({ initialFormData, isDisabled, onSubmit }) {
             <span>3</span>
             <span>4</span>
             <span>5</span>
-            <span>6</span>
           </div>
         </label>
         <label className="form-control">
