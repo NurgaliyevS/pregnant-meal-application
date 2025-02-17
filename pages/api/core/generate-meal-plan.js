@@ -34,14 +34,14 @@ export default async function handler(req, res) {
     }
 
     const prompt = `Create a personalized pregnant meal plan with the following preferences:
-    - Cuisine Type: ${cuisineType}
-    - Pregnancy Stage: ${pregnancyStage}
-    - Meals per Day: ${mealCountPerDay}
-    - Allergies/Restrictions: ${
-      allergiesFoodAversionsDietaryRestrictions || "None"
-    }
-    - Cooking Level: ${cookingLevel}
-    
+      - Cuisine Type: ${userPreference.cuisineType}
+      - Pregnancy Stage: ${userPreference.pregnancyStage}
+      - Meals per Day: ${userPreference.mealCountPerDay}
+      - Allergies/Restrictions: ${
+        userPreference.allergiesFoodAversionsDietaryRestrictions || "None"
+      }
+      - Cooking Level: ${userPreference.cookingLevel}
+      
     Please provide a detailed meal plan that is safe for pregnancy and takes into account these preferences.
     
     Format:
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
       messages: [{ role: "user", content: prompt }],
       model: "gpt-4o-mini",
       temperature: 0.7,
-      max_tokens: 1500,
+      max_tokens: 5000,
       stream: false, // Changed to false since we're not using streaming in Pages Router
     });
 
