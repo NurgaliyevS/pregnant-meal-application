@@ -165,16 +165,16 @@ function NewMeal() {
                 </li>
               ))}
             </ul>
-            <div className={`card-body min-h-screen ${currentStep === 1 && "flex items-center justify-center"}`}>
+            <div className={`${currentStep === 1 && "flex items-center justify-center"} px-8 py-4`}>
               {currentStep === 0 && (
                 <>
-                  <h2 className="card-title font-extrabold text-4xl lg:text-6xl tracking-tight mb-4">
+                  <h2 className="font-extrabold text-4xl lg:text-6xl tracking-tight mb-4">
                     <span className="relative">
                       To make personal{" "}
                       <strong className="text-primary">meals</strong>
                     </span>
                   </h2>
-                  <p className="mb-8">
+                  <p className="my-2">
                     Fill out the form below to create a new meal.
                   </p>
                   <form onSubmit={submitForm}>
