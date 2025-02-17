@@ -25,19 +25,19 @@ function MealPlanDisplay({ mealPlan }) {
   const days = parseMealPlan(mealPlan);
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-primary mb-2">Your Weekly Meal Plan</h2>
+    <div className="w-full max-w-7xl mx-auto px-4">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold text-primary mb-3">Your Weekly Meal Plan</h2>
         <p className="text-base-content/70">A personalized 7-day meal plan designed for your needs</p>
       </div>
 
-      <div className="grid gap-8 mb-8">
+      <div className="grid gap-10 mb-12">
         {days.map((meals, index) => (
           <DayCard key={index} dayNumber={index + 1} meals={meals} />
         ))}
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12 mb-6">
+      <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12 mb-8">
         <button 
           className="btn btn-primary btn-lg"
           onClick={() => {

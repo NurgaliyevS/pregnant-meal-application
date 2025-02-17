@@ -1,23 +1,30 @@
 import MealCard from './MealCard';
 
+const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 function DayCard({ dayNumber, meals }) {
   return (
-    <div className="card bg-base-100 shadow-xl">
-      <div className="card-body">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-            <span className="text-primary-content font-bold text-xl">
+    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+      <div className="card-body p-6">
+        {/* Day Header */}
+        <div className="flex items-center gap-4 mb-6 border-b border-base-300 pb-4">
+          <div className="w-16 h-16 rounded-xl bg-primary flex flex-col items-center justify-center shrink-0">
+            <span className="text-primary-content font-bold text-2xl">
               {dayNumber}
             </span>
           </div>
-          <h3 className="card-title text-2xl">Day {dayNumber}</h3>
+          <div>
+            <p className="text-base-content/70 text-sm">{meals.length} meals planned</p>
+          </div>
         </div>
         
-        <div className="grid gap-4 md:grid-cols-3">
+        {/* Meals Grid */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
           {meals.map((meal, index) => (
             <MealCard 
               key={index}
               mealNumber={index + 1}
+              totalMeals={meals.length}
               {...meal}
             />
           ))}
