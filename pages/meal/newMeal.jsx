@@ -31,19 +31,19 @@ const button = {
   label: "Back to Meal List",
 };
 
+const formData = {
+  cuisineType: "European",
+  pregnancyStage: "First Trimester",
+  mealCountPerDay: 3,
+  allergiesFoodAversionsDietaryRestrictions: "",
+  cookingLevel: "Easy",
+};
+
 function NewMeal() {
   const { data: session } = useSession();
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({
-    cuisineType: "European",
-    pregnancyStage: "First Trimester",
-    mealCountPerDay: 3,
-    allergiesFoodAversionsDietaryRestrictions: "",
-    cookingLevel: "Easy",
-  });
   const [mealPlan, setMealPlan] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [mealGenerationCount, setMealGenerationCount] = useState(0);
 
   const steps = [
     { name: "You", active: currentStep >= 0 },
@@ -55,22 +55,23 @@ function NewMeal() {
     fetchUserData();
   }, [session]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
   const handleSubmit = async (formData) => {
     setCurrentStep(1);
     try {
-      const preferenceResponse = await axios.post("/api/core/meal-preferences", {
-        user_email: session.user.email,
-        ...formData,
-      });
+      const preferenceResponse = await axios.post(
+        "/api/core/meal-preferences",
+        {
+          user_email: session.user.email,
+          ...formData,
+        }
+      );
 
-      const mealPlanResponse = await axios.post("/api/core/generate-meal-plan", {
-        id: preferenceResponse?.data?.preference._id,
-      });
+      const mealPlanResponse = await axios.post(
+        "/api/core/generate-meal-plan",
+        {
+          id: preferenceResponse?.data?.preference._id,
+        }
+      );
 
       setMealPlan(mealPlanResponse.data?.mealPlan);
       setCurrentStep(2);
@@ -99,8 +100,6 @@ function NewMeal() {
         }
       );
       const mealsUser = mealPreferencesResponse?.data;
-
-      console.log(mealsUser, 'mealsUser')
 
       if (userData?.data?.success && mealsUser) {
         const variantName = userData.data?.data?.variant_name;
@@ -150,7 +149,11 @@ function NewMeal() {
                 </li>
               ))}
             </ul>
-            <div className={`${currentStep === 1 && "flex items-center justify-center"} px-8 py-4`}>
+            <div
+              className={`${
+                currentStep === 1 && "flex items-center justify-center"
+              } px-8 py-4`}
+            >
               {currentStep === 0 && (
                 <MealForm
                   initialFormData={formData}
