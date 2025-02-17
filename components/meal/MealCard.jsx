@@ -12,15 +12,15 @@ function MealCard({ mealNumber, title, description, ingredients }) {
             {title}
           </h4>
         </div>
-        
-        <p className="text-sm text-base-content/70 mb-3">
-          {description}
-        </p>
-        
+
         <div className="text-sm">
           <span className="font-medium text-primary">Ingredients: </span>
           {ingredients}
         </div>
+        
+        <p className="text-sm text-base-content/70 mb-3">
+          {description}
+        </p>
       </div>
     </div>
   );
