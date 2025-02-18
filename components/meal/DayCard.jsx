@@ -1,4 +1,4 @@
-import MealCard from './MealCard';
+import MealCard from "./MealCard";
 
 function DayCard({ dayNumber, meals }) {
   return (
@@ -12,14 +12,15 @@ function DayCard({ dayNumber, meals }) {
             </span>
           </div>
           <div>
-            <p className="text-base-content/70 text-sm">{meals.length} meals planned</p>
+            <p className="text-base-content/70 text-sm">
+              {meals.length} meals planned
+            </p>
           </div>
         </div>
-        
-        {/* Meals Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+
+        <div className="grid gap-4 md:grid-cols-2">
           {meals.map((meal, index) => (
-            <MealCard 
+            <MealCard
               key={index}
               mealNumber={index + 1}
               totalMeals={meals.length}
@@ -32,4 +33,4 @@ function DayCard({ dayNumber, meals }) {
   );
 }
 
-export default DayCard; 
+export default DayCard;
