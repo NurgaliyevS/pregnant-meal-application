@@ -1,9 +1,61 @@
 import OpenAI from "openai";
-import { generateAsync } from "stability-client";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
+async function generateImage(prompt) {
+  try {
+    const response = await fetch(
+      'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.STABILITY_API_KEY}`,
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          text_prompts: [
+            {
+              text: prompt,
+              weight: 1
+            }
+          ],
+          cfg_scale: 7,
+          clip_guidance_preset: "FAST_BLUE",
+          height: 1024,
+          width: 1024,
+          samples: 1,
+          steps: 30,
+          style_preset: "photographic"
+        })
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      console.error('Stability API Error:', {
+        status: response.status,
+        statusText: response.statusText,
+        errorData
+      });
+      throw new Error(`Stability API error: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.artifacts?.[0]?.base64) {
+      throw new Error('No image data received from Stability API');
+    }
+
+    return data.artifacts[0].base64;
+  } catch (error) {
+    console.error('Image generation error:', error);
+    // Return null instead of throwing to prevent the entire meal plan from failing
+    return null;
+  }
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -80,37 +132,18 @@ export default async function handler(req, res) {
           });
       });
 
-    // Generate images for each meal
+    // Generate images for each meal with error handling
     const mealPlanWithImages = await Promise.all(days.map(async (day) => {
       const mealsWithImages = await Promise.all(day.map(async (meal) => {
-        try {
-          const prompt = `A beautiful, appetizing photo of ${meal.title}. Food photography style, well-lit, professional presentation`;
-          
-          const generation = await generateAsync({
-            prompt,
-            apiKey: process.env.STABILITY_API_KEY,
-            height: 256,
-            width: 256,
-            samples: 1,
-            cfgScale: 7,
-            engine: "stable-diffusion-v1"
-          });
+        const imagePrompt = `A beautiful, appetizing photo of ${meal.title}. Professional food photography style, well-lit, on a clean plate with garnish. Focus on the food presentation.`;
+        const image = await generateImage(imagePrompt);
 
-          console.log(generation, 'generation');
+        console.log(image, 'image generated');
 
-          // The response includes a base64 image
-          const image = generation.artifacts[0].base64;
-
-          console.log(image, 'image');
-
-          return {
-            ...meal,
-            image
-          };
-        } catch (error) {
-          console.error(`Error generating image for ${meal.title}:`, error);
-          return meal;
-        }
+        return {
+          ...meal,
+          image: image || null // Use null if image generation failed
+        };
       }));
       return mealsWithImages;
     }));

@@ -1,7 +1,5 @@
 function MealCard({ mealNumber, title, description, ingredients, image }) {
     const cleanIngredients = ingredients?.replace("Key ingredients:", "").trim();
-
-    console.log(image, 'image');
   
     return (
       <div className="card bg-base-200 hover:bg-base-300 transition-colors duration-200">
