@@ -13,7 +13,7 @@ function DayCard({ dayNumber, meals }) {
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {meals.map((meal, index) => (
             <MealCard key={index} mealNumber={index + 1} totalMeals={meals.length} {...meal} />
           ))}
