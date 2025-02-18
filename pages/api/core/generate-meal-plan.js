@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { generateAsync } from "stability-client";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -59,12 +60,64 @@ export default async function handler(req, res) {
       model: "gpt-4o-mini",
       temperature: 0.7,
       max_tokens: 5000,
-      stream: false, // Changed to false since we're not using streaming in Pages Router
+      stream: false,
     });
 
-    // Return the completed response
+    const mealPlanText = completion.choices[0].message.content;
+    const days = mealPlanText.split(/\[Day \d+\]/)
+      .filter(day => day.trim())
+      .map(day => {
+        return day.split('\n-')
+          .filter(meal => meal.trim())
+          .map(meal => {
+            const parts = meal.split(' - ').map(s => s.trim());
+            return {
+              title: parts[0]?.replace(/Meal \d+:\s*/, ''),
+              description: parts[1] || '',
+              ingredients: parts[2]?.replace(/\.$/, '') || '',
+              type: parts[0]?.match(/Meal \d+/)?.[0] || 'Meal'
+            };
+          });
+      });
+
+    // Generate images for each meal
+    const mealPlanWithImages = await Promise.all(days.map(async (day) => {
+      const mealsWithImages = await Promise.all(day.map(async (meal) => {
+        try {
+          const prompt = `A beautiful, appetizing photo of ${meal.title}. Food photography style, well-lit, professional presentation`;
+          
+          const generation = await generateAsync({
+            prompt,
+            apiKey: process.env.STABILITY_API_KEY,
+            height: 256,
+            width: 256,
+            samples: 1,
+            cfgScale: 7,
+            engine: "stable-diffusion-v1"
+          });
+
+          console.log(generation, 'generation');
+
+          // The response includes a base64 image
+          const image = generation.artifacts[0].base64;
+
+          console.log(image, 'image');
+
+          return {
+            ...meal,
+            image
+          };
+        } catch (error) {
+          console.error(`Error generating image for ${meal.title}:`, error);
+          return meal;
+        }
+      }));
+      return mealsWithImages;
+    }));
+
     return res.status(200).json({
-      mealPlan: completion.choices[0].message.content,
+      mealPlan: mealPlanText,
+      mealPlanStructured: mealPlanWithImages
     });
   } catch (error) {
     console.error("Error generating meal plan:", error);

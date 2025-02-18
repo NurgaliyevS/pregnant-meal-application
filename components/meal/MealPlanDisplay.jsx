@@ -1,29 +1,7 @@
 import { toast } from 'react-toastify';
 import DayCard from './DayCard';
 
-function MealPlanDisplay({ mealPlan }) {
-  // Parse the meal plan text into structured data
-  const parseMealPlan = (text) => {
-    return text.split(/\[Day \d+\]/)
-      .filter(day => day.trim())
-      .map(day => {
-        const meals = day.split('\n-')
-          .filter(meal => meal.trim())
-          .map(meal => {
-            const parts = meal.split(' - ').map(s => s.trim());
-            return {
-              title: parts[0]?.replace(/Meal \d+:\s*/, ''), // Remove any "Meal X:" prefix
-              description: parts[1] || '',
-              ingredients: parts[2]?.replace(/\.$/, '') || '', // Remove trailing period
-              type: parts[0]?.match(/Meal \d+/)?.[0] || 'Meal' // Extract meal number or default to 'Meal'
-            };
-          });
-        return meals;
-      });
-  };
-
-  const days = parseMealPlan(mealPlan);
-
+function MealPlanDisplay({ mealPlan, mealPlanStructured }) {
   return (
     <div className="w-full max-w-7xl mx-auto px-4">
       <div className="text-center mb-12">
@@ -32,7 +10,7 @@ function MealPlanDisplay({ mealPlan }) {
       </div>
 
       <div className="grid gap-10 mb-12">
-        {days.map((meals, index) => (
+        {mealPlanStructured.map((meals, index) => (
           <DayCard key={index} dayNumber={index + 1} meals={meals} />
         ))}
       </div>

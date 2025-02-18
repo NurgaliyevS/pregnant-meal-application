@@ -43,6 +43,7 @@ function NewMeal() {
   const { data: session } = useSession();
   const [currentStep, setCurrentStep] = useState(0);
   const [mealPlan, setMealPlan] = useState(null);
+  const [mealPlanStructured, setMealPlanStructured] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
 
   const steps = [
@@ -72,11 +73,13 @@ function NewMeal() {
       });
 
       setMealPlan(mealPlanResponse.data.mealPlan);
+      setMealPlanStructured(mealPlanResponse.data.mealPlanStructured);
       setCurrentStep(2);
     } catch (error) {
       console.error("Error submitting form:", error);
       setCurrentStep(0);
       setMealPlan(null);
+      setMealPlanStructured(null);
       toast.error("Error generating meal plan");
     }
   };
@@ -160,7 +163,12 @@ function NewMeal() {
                 />
               )}
               {currentStep === 1 && <LoadingState />}
-              {currentStep === 2 && <MealPlanDisplay mealPlan={mealPlan} />}
+              {currentStep === 2 && (
+                <MealPlanDisplay 
+                  mealPlan={mealPlan} 
+                  mealPlanStructured={mealPlanStructured} 
+                />
+              )}
             </div>
           </div>
         </section>
