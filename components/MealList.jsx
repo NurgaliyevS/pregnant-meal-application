@@ -37,19 +37,21 @@ function MealList() {
 
   const parseMealPlan = (mealPlanText) => {
     if (!mealPlanText) return [];
-    
-    const days = mealPlanText.split(/\[Day \d+\]/)
-      .filter(day => day.trim())
-      .map(day => {
-        return day.split('\n-')
-          .filter(meal => meal.trim())
-          .map(meal => {
-            const parts = meal.split(' - ').map(s => s.trim());
+
+    const days = mealPlanText
+      .split(/\[Day \d+\]/)
+      .filter((day) => day.trim())
+      .map((day) => {
+        return day
+          .split("\n-")
+          .filter((meal) => meal.trim())
+          .map((meal) => {
+            const parts = meal.split(" - ").map((s) => s.trim());
             return {
-              title: parts[0]?.replace(/Meal \d+:\s*/, ''),
-              description: parts[1] || '',
-              ingredients: parts[2]?.replace(/\.$/, '') || '',
-              type: parts[0]?.match(/Meal \d+/)?.[0] || 'Meal'
+              title: parts[0]?.replace(/Meal \d+:\s*/, ""),
+              description: parts[1] || "",
+              ingredients: parts[2]?.replace(/\.$/, "") || "",
+              type: parts[0]?.match(/Meal \d+/)?.[0] || "Meal",
             };
           });
       });
@@ -75,7 +77,7 @@ function MealList() {
         <p className="text-sm opacity-70">{meal.description}</p>
         <div className="mt-2">
           <div className="flex flex-wrap gap-1">
-            {meal.ingredients.split(',').map((ingredient, i) => (
+            {meal.ingredients.split(",").map((ingredient, i) => (
               <span key={i} className="badge badge-outline badge-sm">
                 {ingredient.trim()}
               </span>
@@ -88,7 +90,7 @@ function MealList() {
 
   const DaySection = ({ dayMeals, dayNumber, mealImages }) => (
     <div className="collapse collapse-plus bg-base-200">
-      <input type="checkbox" /> 
+      <input type="checkbox" />
       <div className="collapse-title text-xl font-medium flex items-center gap-4">
         <div className="badge badge-primary badge-lg">Day {dayNumber}</div>
         <span className="text-base-content/70">{dayMeals.length} meals</span>
@@ -99,7 +101,10 @@ function MealList() {
             <MealCard
               key={index}
               meal={meal}
-              image={mealImages?.find(img => img.mealTitle === meal.title)?.imageUrl}
+              image={
+                mealImages?.find((img) => img.mealTitle === meal.title)
+                  ?.imageUrl
+              }
             />
           ))}
         </div>
@@ -116,39 +121,71 @@ function MealList() {
       </h1>
       <div className="w-full">
         {mealPlans.map((mealPlan, planIndex) => (
-          <div key={mealPlan._id} className="card bg-neutral-300 shadow-xl mb-8">
+          <div
+            key={mealPlan._id}
+            className="card bg-neutral-300 shadow-xl mb-8"
+          >
             <div className="card-body p-6">
-              <div className="flex justify-between items-center mb-6">
+              <div
+                className="flex justify-between items-center mb-6"
+                onClick={() =>
+                  setExpandedPlan(expandedPlan === planIndex ? null : planIndex)
+                }
+              >
                 <div>
-                  <h2 className="card-title">Meal Plan #{mealPlans.length - planIndex}</h2>
+                  <h2 className="card-title">
+                    Meal Plan #{mealPlans.length - planIndex}
+                  </h2>
                   <p className="text-sm text-base-content/70">
-                    Created on: {new Date(mealPlan.dateModified).toLocaleDateString()}
+                    Created on:{" "}
+                    {new Date(mealPlan.dateModified).toLocaleDateString()}
                   </p>
                 </div>
-                <button 
+                <button
                   className="btn btn-circle btn-ghost"
-                  onClick={() => setExpandedPlan(expandedPlan === planIndex ? null : planIndex)}
+                  onClick={() =>
+                    setExpandedPlan(
+                      expandedPlan === planIndex ? null : planIndex
+                    )
+                  }
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
                     {expandedPlan === planIndex ? (
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4.5 15.75l7.5-7.5 7.5 7.5"
+                      />
                     ) : (
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                      />
                     )}
                   </svg>
                 </button>
               </div>
-              
+
               {expandedPlan === planIndex && (
                 <div className="space-y-4">
-                  {parseMealPlan(mealPlan.generatedMealPlans).map((dayMeals, dayIndex) => (
-                    <DaySection
-                      key={`${mealPlan._id}-${dayIndex}`}
-                      dayNumber={dayIndex + 1}
-                      dayMeals={dayMeals}
-                      mealImages={mealPlan.mealImages}
-                    />
-                  ))}
+                  {parseMealPlan(mealPlan.generatedMealPlans).map(
+                    (dayMeals, dayIndex) => (
+                      <DaySection
+                        key={`${mealPlan._id}-${dayIndex}`}
+                        dayNumber={dayIndex + 1}
+                        dayMeals={dayMeals}
+                        mealImages={mealPlan.mealImages}
+                      />
+                    )
+                  )}
                 </div>
               )}
             </div>
