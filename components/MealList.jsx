@@ -57,14 +57,15 @@ function MealList() {
   };
 
   const MealCard = ({ meal, image }) => (
-    <div className="card bg-base-100 shadow-lg hover:shadow-xl transition-all">
+    <div className="card bg-neutral-200 shadow-lg hover:shadow-xl transition-all">
       <div className="card-body p-4">
         {image && (
           <figure className="relative h-48 w-full rounded-lg overflow-hidden mb-4">
             <img
               src={image}
               alt={meal.title}
-              fill
+              width={400}
+              height={300}
               className="object-cover"
             />
           </figure>
@@ -107,7 +108,7 @@ function MealList() {
   );
 
   return (
-    <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 lg:py-20 gap-10">
+    <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 lg:py-20 gap-10 bg-neutral-400">
       <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex justify-center items-center mb-0 lg:mb-7">
         <span className="relative">
           Your <strong className="text-primary">meals</strong>
@@ -115,7 +116,7 @@ function MealList() {
       </h1>
       <div className="w-full">
         {mealPlans.map((mealPlan, planIndex) => (
-          <div key={mealPlan._id} className="card bg-base-100 shadow-xl mb-8">
+          <div key={mealPlan._id} className="card bg-neutral-300 shadow-xl mb-8">
             <div className="card-body p-6">
               <div className="flex justify-between items-center mb-6">
                 <div>
