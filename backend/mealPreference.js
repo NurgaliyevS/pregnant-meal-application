@@ -30,6 +30,10 @@ const UserMealPreferenceSchema = new mongoose.Schema({
   },
   mealGenerationCount: Number,
   generatedMealPlans: String,
+  mealImages: [{
+    mealTitle: String,
+    imageUrl: String
+  }],
   dateModified: { type: Date, default: Date.now }
 });
 

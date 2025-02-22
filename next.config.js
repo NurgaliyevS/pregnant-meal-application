@@ -7,9 +7,9 @@ const nextConfig = withPlausibleProxy()({
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "0d3810ffb029f275b4526ce60d3098d7.r2.cloudflarestorage.com",
         port: "",
-        pathname: "**",
+        pathname: "/pregnant-meal-images/**",
       },
     ],
   },

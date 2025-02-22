@@ -1,8 +1,42 @@
 import OpenAI from "openai";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import crypto from 'crypto';
+import UserMealPreference from "@/backend/mealPreference";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
+const s3Client = new S3Client({
+  region: "auto",
+  endpoint: `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+  credentials: {
+    accessKeyId: process.env.R2_ACCESS_KEY_ID,
+    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
+  },
+});
+
+async function uploadToR2(base64Image, mealTitle) {
+  try {
+    const buffer = Buffer.from(base64Image, 'base64');
+    const uniqueId = crypto.randomBytes(8).toString('hex');
+    const key = `meals/${uniqueId}-${mealTitle.toLowerCase().replace(/\s+/g, '-')}.png`;
+
+    await s3Client.send(
+      new PutObjectCommand({
+        Bucket: "pregnant-meal-images",
+        Key: key,
+        Body: buffer,
+        ContentType: "image/png",
+      })
+    );
+
+    return `${process.env.NEXT_PUBLIC_R2_URL}/${key}`;
+  } catch (error) {
+    console.error('Error uploading to R2:', error);
+    return null;
+  }
+}
 
 async function generateImage(prompt) {
   try {
@@ -132,21 +166,50 @@ export default async function handler(req, res) {
           });
       });
 
-    // Generate images for each meal with error handling
-    const mealPlanWithImages = await Promise.all(days.map(async (day) => {
-      const mealsWithImages = await Promise.all(day.map(async (meal) => {
-        const imagePrompt = `A beautiful, appetizing photo of ${meal.title}. Professional food photography style, well-lit, on a clean plate with garnish. Focus on the food presentation.`;
-        const image = await generateImage(imagePrompt);
+    // Generate images and store them
+    const mealImages = [];
+    const mealPlanWithImages = await Promise.all(days.map(async (dayMeals) => {
+      const mealsWithImages = await Promise.all(dayMeals.map(async (meal) => {
+        if (!meal.title) return meal;
 
-        console.log(image, 'image generated');
+        const imagePrompt = `A beautiful, appetizing photo of ${meal.title}. Professional food photography style, well-lit, on a clean plate with garnish. Focus on the food presentation.`;
+        const base64Image = await generateImage(imagePrompt);
+
+        let imageUrl = null;
+        if (base64Image) {
+          imageUrl = await uploadToR2(base64Image, meal.title);
+          if (imageUrl) {
+            mealImages.push({
+              mealTitle: meal.title,
+              imageUrl: imageUrl
+            });
+          }
+        }
 
         return {
           ...meal,
-          image: image || null // Use null if image generation failed
+          image: base64Image || null
         };
       }));
       return mealsWithImages;
     }));
+
+    // Update the meal preference document with both meal plan and images
+    const updatedPreference = await UserMealPreference.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          generatedMealPlans: mealPlanText,
+          mealImages: mealImages,
+          dateModified: new Date()
+        }
+      },
+      { new: true }
+    );
+
+    if (!updatedPreference) {
+      throw new Error('Failed to update meal preference');
+    }
 
     return res.status(200).json({
       mealPlan: mealPlanText,
@@ -154,6 +217,6 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error("Error generating meal plan:", error);
-    return res.status(500).json({ message: "Error generating meal plan" });
+    return res.status(500).json({ message: "Error generating meal plan", error: error.message });
   }
 }
