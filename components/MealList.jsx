@@ -47,10 +47,11 @@ function MealList() {
           .filter((meal) => meal.trim())
           .map((meal) => {
             const parts = meal.split(" - ").map((s) => s.trim());
+            const ingredients = parts[2]?.replace(/^Key ingredients:\s*/, "").replace(/\.$/, "") || "";
             return {
               title: parts[0]?.replace(/Meal \d+:\s*/, ""),
               description: parts[1] || "",
-              ingredients: parts[2]?.replace(/\.$/, "") || "",
+              ingredients: ingredients,
               type: parts[0]?.match(/Meal \d+/)?.[0] || "Meal",
             };
           });
@@ -76,12 +77,15 @@ function MealList() {
         <h4 className="font-medium">{meal.title}</h4>
         <p className="text-sm opacity-70">{meal.description}</p>
         <div className="mt-2">
+          <p className="text-sm font-medium mb-2">Key ingredients:</p>
           <div className="flex flex-wrap gap-1">
-            {meal.ingredients.split(",").map((ingredient, i) => (
-              <span key={i} className="badge badge-outline badge-sm">
-                {ingredient.trim()}
-              </span>
-            ))}
+            {meal.ingredients
+              .split(/[,\n]/)
+              .map((ingredient, i) => (
+                <span key={i} className="badge badge-outline badge-sm">
+                  {ingredient.trim()}
+                </span>
+              ))}
           </div>
         </div>
       </div>
