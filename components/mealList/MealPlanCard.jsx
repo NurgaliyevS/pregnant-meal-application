@@ -37,34 +37,30 @@ export default function MealPlanCard({
           onToggle={handleExpand}
         />
 
-        {isExpanded && (
-          <>
-            <div className="mt-6 space-y-4">
-              {parseMealPlan(
-                mealPlan.generatedMealPlans,
-                loadedImages || mealPlan.mealImages
-              ).map((dayMeals, dayIndex) => (
-                <DaySection
-                  key={`${mealPlan._id}-${dayIndex}`}
-                  dayNumber={dayIndex + 1}
-                  dayMeals={dayMeals}
-                  showPlaceholder={!imagesAreLoaded}
-                />
-              ))}
-            </div>
-
-            <MealPlanActions
-              isPdfLoading={isPdfLoading}
-              isImagesLoaded={isImagesLoaded}
-              planId={mealPlan._id}
-              loadImagesForPlan={loadImagesForPlan}
-              mealPlan={mealPlan}
-              parseMealPlan={parseMealPlan}
-              handleCopyToClipboard={handleCopyToClipboard}
-              showImages={imagesAreLoaded}
+        <div className={`mt-6 space-y-4 ${isExpanded ? '' : 'hidden'}`}>
+          {parseMealPlan(
+            mealPlan.generatedMealPlans,
+            loadedImages || mealPlan.mealImages
+          ).map((dayMeals, dayIndex) => (
+            <DaySection
+              key={`${mealPlan._id}-${dayIndex}`}
+              dayNumber={dayIndex + 1}
+              dayMeals={dayMeals}
+              showPlaceholder={!imagesAreLoaded}
             />
-          </>
-        )}
+          ))}
+        </div>
+
+        <MealPlanActions
+          isPdfLoading={isPdfLoading}
+          isImagesLoaded={isImagesLoaded}
+          planId={mealPlan._id}
+          loadImagesForPlan={loadImagesForPlan}
+          mealPlan={mealPlan}
+          parseMealPlan={parseMealPlan}
+          handleCopyToClipboard={handleCopyToClipboard}
+          showImages={imagesAreLoaded}
+        />
       </div>
     </div>
   );
