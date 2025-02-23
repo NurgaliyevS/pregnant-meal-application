@@ -43,6 +43,9 @@ async function uploadToR2(base64Image, mealTitle) {
 
 async function generateImage(prompt) {
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+
     const response = await fetch(
       "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image",
       {
@@ -67,8 +70,11 @@ async function generateImage(prompt) {
           steps: 30,
           style_preset: "photographic",
         }),
+        signal: controller.signal,
       }
     );
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
@@ -173,39 +179,53 @@ export default async function handler(req, res) {
           });
       });
 
-    // Generate images and store them
+    const BATCH_SIZE = 3;
     const mealImages = [];
     const mealPlanWithImages = await Promise.all(
       days.map(async (dayMeals) => {
-        const mealsWithImages = await Promise.all(
-          dayMeals.map(async (meal) => {
+        const mealsWithImages = [];
+        
+        // Process meals in batches
+        for (let i = 0; i < dayMeals.length; i += BATCH_SIZE) {
+          const batch = dayMeals.slice(i, i + BATCH_SIZE);
+          const batchPromises = batch.map(async (meal) => {
             if (!meal.title) return meal;
 
-            const imagePrompt = `A beautiful, appetizing photo of ${meal.title}. Professional food photography style, well-lit, on a clean plate with garnish. Focus on the food presentation.`;
+            const imagePrompt = `A beautiful, appetizing photo of ${meal.title}. Professional food photography style, well-lit, on a clean plate with garnish.`;
             const base64Image = await generateImage(imagePrompt);
 
             let imageUrl = null;
             if (base64Image) {
-              imageUrl = await uploadToR2(base64Image, meal.title);
-              if (imageUrl) {
-                mealImages.push({
-                  mealTitle: meal.title,
-                  imageUrl: imageUrl,
-                });
+              try {
+                imageUrl = await uploadToR2(base64Image, meal.title);
+                if (imageUrl) {
+                  mealImages.push({
+                    mealTitle: meal.title,
+                    imageUrl: imageUrl,
+                  });
+                }
+              } catch (error) {
+                console.error("Error uploading to R2:", error);
               }
             }
 
             return {
               ...meal,
-              image: base64Image || null,
+              imageUrl: imageUrl || null,
             };
-          })
-        );
+          });
+
+          const batchResults = await Promise.all(batchPromises);
+          mealsWithImages.push(...batchResults);
+          
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+        
         return mealsWithImages;
       })
     );
 
-    // Update the meal preference document with both meal plan and images
+    // Update the meal preference document
     const updatedPreference = await UserMealPreference.findByIdAndUpdate(
       id,
       {
@@ -222,14 +242,16 @@ export default async function handler(req, res) {
       throw new Error("Failed to update meal preference");
     }
 
+    // Send a more compact response
     return res.status(200).json({
       mealPlan: mealPlanText,
       mealPlanStructured: mealPlanWithImages,
     });
   } catch (error) {
     console.error("Error generating meal plan:", error);
-    return res
-      .status(500)
-      .json({ message: "Error generating meal plan", error: error.message });
+    return res.status(500).json({ 
+      message: "Error generating meal plan", 
+      error: error.message 
+    });
   }
 }

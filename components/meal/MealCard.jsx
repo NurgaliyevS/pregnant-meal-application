@@ -1,12 +1,24 @@
-function MealCard({ mealNumber, title, description, ingredients, image }) {
+function MealCard({ mealNumber, title, description, ingredients, imageUrl }) {
   const cleanIngredients = ingredients?.replace("Key ingredients:", "")
 
   return (
     <div className="h-full flex flex-col border border-base-300 rounded-xl">
-      {image && (
+      {imageUrl ? (
         <figure className="rounded-t-xl overflow-hidden">
-          <img src={`data:image/png;base64,${image}`} alt={title} className="object-cover w-full aspect-[4/3]" />
+          <img 
+            src={imageUrl}
+            alt={title} 
+            className="object-cover w-full aspect-[4/3]"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.style.display = 'none';
+            }}
+          />
         </figure>
+      ) : (
+        <div className="rounded-t-xl bg-base-200 aspect-[4/3] flex items-center justify-center">
+          <span className="text-base-content/50">No image available</span>
+        </div>
       )}
       <div className="p-4 flex flex-col h-full justify-between gap-4">
         <div className="space-y-4">
