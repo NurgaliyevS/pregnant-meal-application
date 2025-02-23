@@ -59,6 +59,7 @@ function NewMeal() {
   const handleSubmit = async (formData) => {
     setCurrentStep(1);
     try {
+      // Create meal preference
       const preferenceResponse = await axios.post("/api/core/meal-preferences", {
         user_email: session.user.email,
         ...formData,
@@ -68,14 +69,23 @@ function NewMeal() {
         throw new Error('Failed to create meal preference');
       }
 
-      const mealPlanResponse = await axios.post("/api/core/generate-meal-plan", {
+      // Generate meal plan text
+      const mealPlanResponse = await axios.post("/api/core/generate-meal-plan-text", {
         prompt: preferenceResponse.data.preference._id,
         formData: formData,
       });
 
       setMealPlan(mealPlanResponse.data.mealPlan);
       setMealPlanStructured(mealPlanResponse.data.mealPlanStructured);
+
+      // Generate images for the meal plan
+      const imagesResponse = await axios.post("/api/core/generate-meal-images", {
+        id: preferenceResponse.data.preference._id,
+        mealPlanStructured: mealPlanResponse.data.mealPlanStructured
+      });
+
       setCurrentStep(2);
+      setMealPlanStructured(imagesResponse.data.mealPlanStructured);
     } catch (error) {
       console.error("Error submitting form:", error);
       setCurrentStep(0);
