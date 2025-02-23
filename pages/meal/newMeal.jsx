@@ -69,7 +69,8 @@ function NewMeal() {
       }
 
       const mealPlanResponse = await axios.post("/api/core/generate-meal-plan", {
-        prompt: preferenceResponse.data.preference._id
+        prompt: preferenceResponse.data.preference._id,
+        formData: formData,
       });
 
       setMealPlan(mealPlanResponse.data.mealPlan);

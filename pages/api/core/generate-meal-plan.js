@@ -108,52 +108,39 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { prompt: id } = req.body;
-
-    if (!id) {
-      return res.status(400).json({ message: "Missing meal preference ID" });
-    }
-
-    // Fetch user preferences using fetch API
-    const preferenceRes = await fetch(
-      `${process.env.NEXTAUTH_URL}/api/core/meal-preferences?id=${id}`
-    );
-
-    if (!preferenceRes.ok) {
-      return res
-        .status(preferenceRes.status)
-        .json({ message: "Failed to fetch user preferences" });
-    }
-
-    const { preference: userPreference } = await preferenceRes.json();
-
-    if (!userPreference) {
-      return res.status(404).json({ message: "User preferences not found" });
+    const { prompt: id, formData } = req.body;
+    if (!id || !formData) {
+      return res.status(400).json({ message: "Missing required data" });
     }
 
     const prompt = `Create a personalized pregnant meal plan with the following preferences:
-      - Cuisine Type: ${userPreference.cuisineType}
-      - Pregnancy Stage: ${userPreference.pregnancyStage}
-      - Meals per Day: ${userPreference.mealCountPerDay}
-      - Allergies/Restrictions: ${
-        userPreference.allergiesFoodAversionsDietaryRestrictions || "None"
-      }
-      - Cooking Level: ${userPreference.cookingLevel}
-      
-    Please provide a detailed meal plan that is safe for pregnancy and takes into account these preferences.
-    
-    Format:
-    [Day]
-    - Meal 1: [Name] - [Brief description] - [Key ingredients]
-    - Meal 2: [Name] - [Brief description] - [Key ingredients]
-    - Meal 3: [Name] - [Brief description] - [Key ingredients]
-    (Adjust meals as needed)
+          - Cuisine Type: ${formData.cuisineType}
+          - Pregnancy Stage: ${formData.pregnancyStage}
+          - Meals per Day: ${formData.mealCountPerDay}
+          - Allergies/Restrictions: ${
+            formData.allergiesFoodAversionsDietaryRestrictions || "None"
+          }
+          - Cooking Level: ${formData.cookingLevel}
+          
+        Please provide a detailed meal plan that is safe for pregnancy and takes into account these preferences.
+        
+        Format:
+        [Day]
+        - Meal 1: [Name] - [Brief description] - [Key ingredients]
+        - Meal 2: [Name] - [Brief description] - [Key ingredients]
+        - Meal 3: [Name] - [Brief description] - [Key ingredients]
+        (Adjust meals as needed)
 
-    Do not include any introductory text or conclusion. Start directly with the first day of the week.
-    Provide a complete 7-day plan. Be concise but ensure all days are included.`;
+        Do not include any introductory text or conclusion. Start directly with the first day of the week.
+        Provide a complete 7-day plan. Be concise but ensure all days are included.`;
 
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: prompt }],
+      messages: [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
       model: "gpt-4o-mini",
       temperature: 0.7,
       max_tokens: 5000,
@@ -161,6 +148,8 @@ export default async function handler(req, res) {
     });
 
     const mealPlanText = completion.choices[0].message.content;
+
+    // Parse meal plan text into structured format
     const days = mealPlanText
       .split(/\[Day \d+\]/)
       .filter((day) => day.trim())
@@ -184,74 +173,82 @@ export default async function handler(req, res) {
     const mealPlanWithImages = await Promise.all(
       days.map(async (dayMeals) => {
         const mealsWithImages = [];
-        
+
+        // Pre-generate all image prompts for the day
+        const imagePrompts = dayMeals.map((meal) => ({
+          title: meal.title,
+          prompt: `A beautiful, appetizing photo of ${meal.title}. Professional food photography style, well-lit, on a clean plate with garnish.`,
+        }));
+
         // Process meals in batches
-        for (let i = 0; i < dayMeals.length; i += BATCH_SIZE) {
-          const batch = dayMeals.slice(i, i + BATCH_SIZE);
-          const batchPromises = batch.map(async (meal) => {
-            if (!meal.title) return meal;
+        for (let i = 0; i < imagePrompts.length; i += BATCH_SIZE) {
+          const batch = imagePrompts.slice(i, i + BATCH_SIZE);
 
-            const imagePrompt = `A beautiful, appetizing photo of ${meal.title}. Professional food photography style, well-lit, on a clean plate with garnish.`;
-            const base64Image = await generateImage(imagePrompt);
+          // Generate all images in batch simultaneously
+          const batchResults = await Promise.all(
+            batch.map(async ({ title, prompt }) => {
+              const base64Image = await generateImage(prompt);
+              if (!base64Image) return null;
 
-            let imageUrl = null;
-            if (base64Image) {
               try {
-                imageUrl = await uploadToR2(base64Image, meal.title);
+                const imageUrl = await uploadToR2(base64Image, title);
                 if (imageUrl) {
-                  mealImages.push({
-                    mealTitle: meal.title,
-                    imageUrl: imageUrl,
-                  });
+                  mealImages.push({ mealTitle: title, imageUrl });
                 }
+                return imageUrl;
               } catch (error) {
                 console.error("Error uploading to R2:", error);
+                return null;
               }
-            }
+            })
+          );
 
-            return {
+          // Map results back to meals
+          const batchMeals = dayMeals
+            .slice(i, i + BATCH_SIZE)
+            .map((meal, idx) => ({
               ...meal,
-              imageUrl: imageUrl || null,
-            };
-          });
+              imageUrl: batchResults[idx] || null,
+            }));
 
-          const batchResults = await Promise.all(batchPromises);
-          mealsWithImages.push(...batchResults);
-          
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          mealsWithImages.push(...batchMeals);
+
+          if (i + BATCH_SIZE < imagePrompts.length) {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+          }
         }
-        
+
         return mealsWithImages;
       })
     );
 
-    // Update the meal preference document
-    const updatedPreference = await UserMealPreference.findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          generatedMealPlans: mealPlanText,
-          mealImages: mealImages,
-          dateModified: new Date(),
+    // Update preference and send response in parallel
+    const [updatedPreference] = await Promise.all([
+      UserMealPreference.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            generatedMealPlans: mealPlanText,
+            mealImages: mealImages,
+            dateModified: new Date(),
+          },
         },
-      },
-      { new: true }
-    );
+        { new: true }
+      ),
+      res.status(200).json({
+        mealPlan: mealPlanText,
+        mealPlanStructured: mealPlanWithImages,
+      }),
+    ]);
 
     if (!updatedPreference) {
-      throw new Error("Failed to update meal preference");
+      console.error("Failed to update meal preference");
     }
-
-    // Send a more compact response
-    return res.status(200).json({
-      mealPlan: mealPlanText,
-      mealPlanStructured: mealPlanWithImages,
-    });
   } catch (error) {
     console.error("Error generating meal plan:", error);
-    return res.status(500).json({ 
-      message: "Error generating meal plan", 
-      error: error.message 
+    return res.status(500).json({
+      message: "Error generating meal plan",
+      error: error.message,
     });
   }
 }
