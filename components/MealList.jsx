@@ -13,7 +13,6 @@ function MealList() {
   const [expandedPlan, setExpandedPlan] = useState(null);
   const loadedImagesRef = useRef({});
   const [isPdfLoading, setIsPdfLoading] = useState(false);
-  const [pdfReady, setPdfReady] = useState({});
   const [allImagesLoaded, setAllImagesLoaded] = useState({});
 
   useEffect(() => {
