@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import crypto from 'crypto';
+import crypto from "crypto";
 import UserMealPreference from "@/backend/mealPreference";
 
 const openai = new OpenAI({
@@ -18,9 +18,11 @@ const s3Client = new S3Client({
 
 async function uploadToR2(base64Image, mealTitle) {
   try {
-    const buffer = Buffer.from(base64Image, 'base64');
-    const uniqueId = crypto.randomBytes(8).toString('hex');
-    const key = `meals/${uniqueId}-${mealTitle.toLowerCase().replace(/\s+/g, '-')}.png`;
+    const buffer = Buffer.from(base64Image, "base64");
+    const uniqueId = crypto.randomBytes(8).toString("hex");
+    const key = `meals/${uniqueId}-${mealTitle
+      .toLowerCase()
+      .replace(/\s+/g, "-")}.png`;
 
     await s3Client.send(
       new PutObjectCommand({
@@ -28,12 +30,13 @@ async function uploadToR2(base64Image, mealTitle) {
         Key: key,
         Body: buffer,
         ContentType: "image/png",
+        ACL: "public-read",
       })
     );
 
     return `${process.env.NEXT_PUBLIC_R2_URL}/${key}`;
   } catch (error) {
-    console.error('Error uploading to R2:', error);
+    console.error("Error uploading to R2:", error);
     return null;
   }
 }
@@ -41,20 +44,20 @@ async function uploadToR2(base64Image, mealTitle) {
 async function generateImage(prompt) {
   try {
     const response = await fetch(
-      'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image',
+      "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image",
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.STABILITY_API_KEY}`,
-          'Accept': 'application/json'
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.STABILITY_API_KEY}`,
+          Accept: "application/json",
         },
         body: JSON.stringify({
           text_prompts: [
             {
               text: prompt,
-              weight: 1
-            }
+              weight: 1,
+            },
           ],
           cfg_scale: 7,
           clip_guidance_preset: "FAST_BLUE",
@@ -62,30 +65,32 @@ async function generateImage(prompt) {
           width: 1024,
           samples: 1,
           steps: 30,
-          style_preset: "photographic"
-        })
+          style_preset: "photographic",
+        }),
       }
     );
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      console.error('Stability API Error:', {
+      console.error("Stability API Error:", {
         status: response.status,
         statusText: response.statusText,
-        errorData
+        errorData,
       });
-      throw new Error(`Stability API error: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `Stability API error: ${response.status} ${response.statusText}`
+      );
     }
 
     const data = await response.json();
-    
+
     if (!data.artifacts?.[0]?.base64) {
-      throw new Error('No image data received from Stability API');
+      throw new Error("No image data received from Stability API");
     }
 
     return data.artifacts[0].base64;
   } catch (error) {
-    console.error('Image generation error:', error);
+    console.error("Image generation error:", error);
     // Return null instead of throwing to prevent the entire meal plan from failing
     return null;
   }
@@ -150,49 +155,55 @@ export default async function handler(req, res) {
     });
 
     const mealPlanText = completion.choices[0].message.content;
-    const days = mealPlanText.split(/\[Day \d+\]/)
-      .filter(day => day.trim())
-      .map(day => {
-        return day.split('\n-')
-          .filter(meal => meal.trim())
-          .map(meal => {
-            const parts = meal.split(' - ').map(s => s.trim());
+    const days = mealPlanText
+      .split(/\[Day \d+\]/)
+      .filter((day) => day.trim())
+      .map((day) => {
+        return day
+          .split("\n-")
+          .filter((meal) => meal.trim())
+          .map((meal) => {
+            const parts = meal.split(" - ").map((s) => s.trim());
             return {
-              title: parts[0]?.replace(/Meal \d+:\s*/, ''),
-              description: parts[1] || '',
-              ingredients: parts[2]?.replace(/\.$/, '') || '',
-              type: parts[0]?.match(/Meal \d+/)?.[0] || 'Meal'
+              title: parts[0]?.replace(/Meal \d+:\s*/, ""),
+              description: parts[1] || "",
+              ingredients: parts[2]?.replace(/\.$/, "") || "",
+              type: parts[0]?.match(/Meal \d+/)?.[0] || "Meal",
             };
           });
       });
 
     // Generate images and store them
     const mealImages = [];
-    const mealPlanWithImages = await Promise.all(days.map(async (dayMeals) => {
-      const mealsWithImages = await Promise.all(dayMeals.map(async (meal) => {
-        if (!meal.title) return meal;
+    const mealPlanWithImages = await Promise.all(
+      days.map(async (dayMeals) => {
+        const mealsWithImages = await Promise.all(
+          dayMeals.map(async (meal) => {
+            if (!meal.title) return meal;
 
-        const imagePrompt = `A beautiful, appetizing photo of ${meal.title}. Professional food photography style, well-lit, on a clean plate with garnish. Focus on the food presentation.`;
-        const base64Image = await generateImage(imagePrompt);
+            const imagePrompt = `A beautiful, appetizing photo of ${meal.title}. Professional food photography style, well-lit, on a clean plate with garnish. Focus on the food presentation.`;
+            const base64Image = await generateImage(imagePrompt);
 
-        let imageUrl = null;
-        if (base64Image) {
-          imageUrl = await uploadToR2(base64Image, meal.title);
-          if (imageUrl) {
-            mealImages.push({
-              mealTitle: meal.title,
-              imageUrl: imageUrl
-            });
-          }
-        }
+            let imageUrl = null;
+            if (base64Image) {
+              imageUrl = await uploadToR2(base64Image, meal.title);
+              if (imageUrl) {
+                mealImages.push({
+                  mealTitle: meal.title,
+                  imageUrl: imageUrl,
+                });
+              }
+            }
 
-        return {
-          ...meal,
-          image: base64Image || null
-        };
-      }));
-      return mealsWithImages;
-    }));
+            return {
+              ...meal,
+              image: base64Image || null,
+            };
+          })
+        );
+        return mealsWithImages;
+      })
+    );
 
     // Update the meal preference document with both meal plan and images
     const updatedPreference = await UserMealPreference.findByIdAndUpdate(
@@ -201,22 +212,24 @@ export default async function handler(req, res) {
         $set: {
           generatedMealPlans: mealPlanText,
           mealImages: mealImages,
-          dateModified: new Date()
-        }
+          dateModified: new Date(),
+        },
       },
       { new: true }
     );
 
     if (!updatedPreference) {
-      throw new Error('Failed to update meal preference');
+      throw new Error("Failed to update meal preference");
     }
 
     return res.status(200).json({
       mealPlan: mealPlanText,
-      mealPlanStructured: mealPlanWithImages
+      mealPlanStructured: mealPlanWithImages,
     });
   } catch (error) {
     console.error("Error generating meal plan:", error);
-    return res.status(500).json({ message: "Error generating meal plan", error: error.message });
+    return res
+      .status(500)
+      .json({ message: "Error generating meal plan", error: error.message });
   }
 }

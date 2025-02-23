@@ -47,7 +47,10 @@ function MealList() {
           .filter((meal) => meal.trim())
           .map((meal) => {
             const parts = meal.split(" - ").map((s) => s.trim());
-            const ingredients = parts[2]?.replace(/^Key ingredients:\s*/, "").replace(/\.$/, "") || "";
+            const ingredients =
+              parts[2]
+                ?.replace(/^Key ingredients:\s*/, "")
+                .replace(/\.$/, "") || "";
             return {
               title: parts[0]?.replace(/Meal \d+:\s*/, ""),
               description: parts[1] || "",
@@ -59,38 +62,44 @@ function MealList() {
     return days;
   };
 
-  const MealCard = ({ meal, image }) => (
-    <div className="card bg-neutral-200 shadow-lg hover:shadow-xl transition-all">
-      <div className="card-body p-4">
-        {image && (
-          <figure className="relative h-48 w-full rounded-lg overflow-hidden mb-4">
-            <img
-              src={image}
-              alt={meal.title}
-              width={400}
-              height={300}
-              className="object-cover"
-            />
-          </figure>
-        )}
-        <h3 className="card-title text-sm text-primary">{meal.type}</h3>
-        <h4 className="font-medium">{meal.title}</h4>
-        <p className="text-sm opacity-70">{meal.description}</p>
-        <div className="mt-2">
-          <p className="text-sm font-medium mb-2">Key ingredients:</p>
-          <div className="flex flex-wrap gap-1">
-            {meal.ingredients
-              .split(/[,\n]/)
-              .map((ingredient, i) => (
+  const MealCard = ({ meal, image }) => {
+    const imageUrl = image
+      ? `${process.env.NEXT_PUBLIC_R2_URL}/pregnant-meal-images/meals/${
+          image.split("/meals/")[1]
+        }`
+      : null;
+
+    return (
+      <div className="card bg-neutral-200 shadow-lg hover:shadow-xl transition-all">
+        <div className="card-body p-4">
+          {image && (
+            <figure className="relative h-48 w-full rounded-lg overflow-hidden mb-4">
+              <img
+                src={imageUrl}
+                alt={meal.title}
+                width={400}
+                height={300}
+                className="object-cover"
+              />
+            </figure>
+          )}
+          <h3 className="card-title text-sm text-primary">{meal.type}</h3>
+          <h4 className="font-medium">{meal.title}</h4>
+          <p className="text-sm opacity-70">{meal.description}</p>
+          <div className="mt-2">
+            <p className="text-sm font-medium mb-2">Key ingredients:</p>
+            <div className="flex flex-wrap gap-1">
+              {meal.ingredients.split(/[,\n]/).map((ingredient, i) => (
                 <span key={i} className="badge badge-outline badge-sm">
                   {ingredient.trim()}
                 </span>
               ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const DaySection = ({ dayMeals, dayNumber, mealImages }) => (
     <div className="collapse collapse-plus bg-base-200">
