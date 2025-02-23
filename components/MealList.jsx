@@ -5,13 +5,11 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import EmptyMealPlan from "./mealList/EmptyMealPlan";
-import MealPlanActions from "./mealList/MealPlanActions";
-import DaySection from "./mealList/DaySection";
+import MealPlanCard from "./mealList/MealPlanCard";
 
 function MealList() {
   const { data: session } = useSession();
   const [mealPlans, setMealPlans] = useState([]);
-  const [expandedPlan, setExpandedPlan] = useState(null);
   const loadedImagesRef = useRef({});
   const [isPdfLoading, setIsPdfLoading] = useState(false);
   const [allImagesLoaded, setAllImagesLoaded] = useState({});
@@ -138,77 +136,16 @@ function MealList() {
         ) : (
           <div className="space-y-6">
             {mealPlans.map((mealPlan, planIndex) => (
-              <div
+              <MealPlanCard
                 key={mealPlan._id}
-                className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
-              >
-                <div className="p-6">
-                  <div
-                    className="flex justify-between items-center cursor-pointer hover:bg-gray-50 rounded-lg transition-colors p-2"
-                    onClick={() => {
-                      setExpandedPlan(
-                        expandedPlan === planIndex ? null : planIndex
-                      );
-                    }}
-                  >
-                    <div>
-                      <h2 className="text-xl font-semibold text-gray-900">
-                        Meal Plan {planIndex + 1}
-                      </h2>
-                      <p className="text-sm text-gray-500 mt-1">
-                        Created on:{" "}
-                        {new Date(mealPlan.dateModified).toLocaleDateString(
-                          undefined,
-                          { year: "numeric", month: "long", day: "numeric" }
-                        )}
-                      </p>
-                    </div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                      className={`w-6 h-6 text-gray-500 transition-transform ${
-                        expandedPlan === planIndex ? "rotate-180" : ""
-                      }`}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                      />
-                    </svg>
-                  </div>
-
-                  {expandedPlan === planIndex && (
-                    <>
-                      <div className="mt-6 space-y-4">
-                        {parseMealPlan(
-                          mealPlan.generatedMealPlans,
-                          mealPlan.mealImages
-                        ).map((dayMeals, dayIndex) => (
-                          <DaySection
-                            key={`${mealPlan._id}-${dayIndex}`}
-                            dayNumber={dayIndex + 1}
-                            dayMeals={dayMeals}
-                          />
-                        ))}
-                      </div>
-
-                      <MealPlanActions
-                        isPdfLoading={isPdfLoading}
-                        allImagesLoaded={allImagesLoaded}
-                        planIndex={planIndex}
-                        loadImagesForPlan={loadImagesForPlan}
-                        mealPlan={mealPlan}
-                        parseMealPlan={parseMealPlan}
-                        handleCopyToClipboard={handleCopyToClipboard}
-                      />
-                    </>
-                  )}
-                </div>
-              </div>
+                mealPlan={mealPlan}
+                planIndex={planIndex}
+                isPdfLoading={isPdfLoading}
+                allImagesLoaded={allImagesLoaded}
+                loadImagesForPlan={loadImagesForPlan}
+                parseMealPlan={parseMealPlan}
+                handleCopyToClipboard={handleCopyToClipboard}
+              />
             ))}
           </div>
         )}
