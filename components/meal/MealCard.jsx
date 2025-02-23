@@ -17,7 +17,7 @@ function MealCard({ mealNumber, title, description, ingredients, imageUrl }) {
         </figure>
       ) : (
         <div className="rounded-t-xl bg-base-200 aspect-[4/3] flex items-center justify-center">
-          <span className="text-base-content/50">No image available</span>
+          <span className="text-base-content/50">Image loading...</span>
         </div>
       )}
       <div className="p-4 flex flex-col h-full justify-between gap-4">
