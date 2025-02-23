@@ -64,8 +64,8 @@ function MealList() {
 
   const MealCard = ({ meal, image }) => {
     return (
-      <div className="card bg-neutral-200 shadow-lg hover:shadow-xl transition-all">
-        <div className="card-body p-4">
+      <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
+        <div className="p-4">
           {image && (
             <figure className="relative h-48 w-full rounded-lg overflow-hidden mb-4">
               <img
@@ -77,14 +77,17 @@ function MealList() {
               />
             </figure>
           )}
-          <h3 className="card-title text-sm text-primary">{meal.type}</h3>
-          <h4 className="font-medium">{meal.title}</h4>
-          <p className="text-sm opacity-70">{meal.description}</p>
-          <div className="mt-2">
-            <p className="text-sm font-medium mb-2">Key ingredients:</p>
-            <div className="flex flex-wrap gap-1">
+          <h3 className="text-sm font-medium text-blue-600">{meal.type}</h3>
+          <h4 className="text-lg font-semibold text-gray-900 mt-2">{meal.title}</h4>
+          <p className="text-sm text-gray-600 mt-2">{meal.description}</p>
+          <div className="mt-4">
+            <p className="text-sm font-medium text-gray-900 mb-2">Key ingredients:</p>
+            <div className="flex flex-wrap gap-2">
               {meal.ingredients.split(/[,\n]/).map((ingredient, i) => (
-                <span key={i} className="badge badge-outline badge-sm">
+                <span
+                  key={i}
+                  className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full"
+                >
                   {ingredient.trim()}
                 </span>
               ))}
@@ -96,14 +99,17 @@ function MealList() {
   };
 
   const DaySection = ({ dayMeals, dayNumber, mealImages }) => (
-    <div className="collapse collapse-plus bg-base-200">
-      <input type="checkbox" />
-      <div className="collapse-title text-xl font-medium flex items-center gap-4">
-        <div className="badge badge-primary badge-lg">Day {dayNumber}</div>
-        <span className="text-base-content/70">{dayMeals.length} meals</span>
-      </div>
-      <div className="collapse-content">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+    <div className="border border-gray-200 rounded-lg bg-gray-50 mb-4">
+      <button className="w-full px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+            Day {dayNumber}
+          </span>
+          <span className="text-gray-600">{dayMeals.length} meals</span>
+        </div>
+      </button>
+      <div className="px-6 pb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {dayMeals.map((meal, index) => (
             <MealCard
               key={index}
@@ -120,84 +126,76 @@ function MealList() {
   );
 
   return (
-    <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 lg:py-20 gap-10 bg-neutral-400">
-      <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex justify-center items-center mb-0 lg:mb-7">
-        <span className="relative">
-          Your <strong className="text-primary">meals</strong>
-        </span>
-      </h1>
-      <div className="w-full">
-        {mealPlans.map((mealPlan, planIndex) => (
-          <div
-            key={mealPlan._id}
-            className="card bg-neutral-300 shadow-xl mb-8"
-          >
-            <div className="card-body p-6">
-              <div
-                className="flex justify-between items-center mb-6"
-                onClick={() =>
-                  setExpandedPlan(expandedPlan === planIndex ? null : planIndex)
-                }
-              >
-                <div>
-                  <h2 className="card-title">
-                    Meal Plan #{mealPlans.length - planIndex}
-                  </h2>
-                  <p className="text-sm text-base-content/70">
-                    Created on:{" "}
-                    {new Date(mealPlan.dateModified).toLocaleDateString()}
-                  </p>
-                </div>
-                <button
-                  className="btn btn-circle btn-ghost"
+    <section className="min-h-screen bg-gray-50">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 className="text-center text-4xl font-bold text-gray-900 mb-12">
+          Your <span className="text-blue-600">Meal</span> Plans
+        </h1>
+        <div className="space-y-6">
+          {mealPlans.map((mealPlan, planIndex) => (
+            <div
+              key={mealPlan._id}
+              className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
+            >
+              <div className="p-6">
+                <div
+                  className="flex justify-between items-center cursor-pointer"
                   onClick={() =>
-                    setExpandedPlan(
-                      expandedPlan === planIndex ? null : planIndex
-                    )
+                    setExpandedPlan(expandedPlan === planIndex ? null : planIndex)
                   }
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
+                  <div>
+                    <h2 className="text-xl font-semibold text-gray-900">
+                      Meal Plan {planIndex + 1}
+                    </h2>
+                    <p className="text-sm text-gray-500 mt-1">
+                      Created on:{" "}
+                      {new Date(mealPlan.dateModified).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </p>
+                  </div>
+                  <button
+                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                    onClick={() =>
+                      setExpandedPlan(expandedPlan === planIndex ? null : planIndex)
+                    }
                   >
-                    {expandedPlan === planIndex ? (
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M4.5 15.75l7.5-7.5 7.5 7.5"
-                      />
-                    ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className={`w-6 h-6 text-gray-500 transition-transform ${
+                        expandedPlan === planIndex ? "rotate-180" : ""
+                      }`}
+                    >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         d="M19.5 8.25l-7.5 7.5-7.5-7.5"
                       />
-                    )}
-                  </svg>
-                </button>
-              </div>
-
-              {expandedPlan === planIndex && (
-                <div className="space-y-4">
-                  {parseMealPlan(mealPlan.generatedMealPlans).map(
-                    (dayMeals, dayIndex) => (
-                      <DaySection
-                        key={`${mealPlan._id}-${dayIndex}`}
-                        dayNumber={dayIndex + 1}
-                        dayMeals={dayMeals}
-                        mealImages={mealPlan.mealImages}
-                      />
-                    )
-                  )}
+                    </svg>
+                  </button>
                 </div>
-              )}
+
+                {expandedPlan === planIndex && (
+                  <div className="mt-6 space-y-4">
+                    {parseMealPlan(mealPlan.generatedMealPlans).map(
+                      (dayMeals, dayIndex) => (
+                        <DaySection
+                          key={`${mealPlan._id}-${dayIndex}`}
+                          dayNumber={dayIndex + 1}
+                          dayMeals={dayMeals}
+                          mealImages={mealPlan.mealImages}
+                        />
+                      )
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
