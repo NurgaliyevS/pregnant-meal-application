@@ -70,7 +70,7 @@ const Header = ({ linksOutside, buttonCore }) => {
           <div className="flex lg:hidden">
             <Link
               href={buttonCore.href}
-              className="btn btn-md"
+              className="btn btn-primary no-underline"
               title="Create new meal"
               rel="nofollow"
             >
@@ -128,7 +128,7 @@ const Header = ({ linksOutside, buttonCore }) => {
         {/* CTA on large screens */}
         {!session?.user ? (
           <div className="hidden lg:flex lg:justify-end lg:flex-1">
-            <button className="btn btn-neutral btn-sm" onClick={handleSignIn}>
+            <button className="btn btn-primary btn-wide no-underline" onClick={handleSignIn}>
               Login
             </button>
           </div>
@@ -137,7 +137,7 @@ const Header = ({ linksOutside, buttonCore }) => {
             {buttonCore ? (
               <Link
                 href={buttonCore.href}
-                className="btn btn-md btn-neutral"
+                className="btn btn-primary btn-wide no-underline"
                 title="Create new meal"
                 rel="nofollow"
               >
@@ -146,7 +146,7 @@ const Header = ({ linksOutside, buttonCore }) => {
             ) : (
               <Link
                 href="/meal"
-                className="btn btn-sm btn-neutral"
+                className="btn btn-primary btn-wide no-underline"
                 title="Admin page"
                 rel="nofollow"
                 onClick={() => {
@@ -226,7 +226,7 @@ const Header = ({ linksOutside, buttonCore }) => {
             {!session?.user ? (
               <div className="flex flex-col">
                 <button
-                  className="btn btn-sm w-full btn-neutral"
+                  className="btn btn-primary no-underline"
                   onClick={handleSignIn}
                 >
                   Login
@@ -236,7 +236,7 @@ const Header = ({ linksOutside, buttonCore }) => {
               <div className="flex flex-col">
                 <Link
                   href="/meal"
-                  className="btn btn-sm w-full btn-neutral"
+                  className="btn btn-primary no-underline"
                   title="Admin page"
                   rel="nofollow"
                 >

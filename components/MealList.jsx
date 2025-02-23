@@ -22,6 +22,7 @@ function MealList() {
         );
         if (response.data.length === 0) {
           console.log("No meal preferences found for user");
+          setMealPlans([]);
           return;
         }
         setMealPlans(response.data);
@@ -131,71 +132,84 @@ function MealList() {
         <h1 className="text-center text-4xl font-bold text-gray-900 mb-12">
           Your <span className="text-blue-600">Meal</span> Plans
         </h1>
-        <div className="space-y-6">
-          {mealPlans.map((mealPlan, planIndex) => (
-            <div
-              key={mealPlan._id}
-              className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
+        
+        {mealPlans.length === 0 ? (
+          <div className="text-center">
+            <p className="text-gray-600 mb-6">You haven't created any meal plans yet.</p>
+            <a 
+              href="/meal/newMeal" 
+              className="btn btn-primary font-semibold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
             >
-              <div className="p-6">
-                <div
-                  className="flex justify-between items-center cursor-pointer"
-                  onClick={() =>
-                    setExpandedPlan(expandedPlan === planIndex ? null : planIndex)
-                  }
-                >
-                  <div>
-                    <h2 className="text-xl font-semibold text-gray-900">
-                      Meal Plan {planIndex + 1}
-                    </h2>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Created on:{" "}
-                      {new Date(mealPlan.dateModified).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
-                    </p>
-                  </div>
-                  <button
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              Create Your First Meal Plan
+            </a>
+          </div>
+        ) : (
+          <div className="space-y-6">
+            {mealPlans.map((mealPlan, planIndex) => (
+              <div
+                key={mealPlan._id}
+                className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
+              >
+                <div className="p-6">
+                  <div
+                    className="flex justify-between items-center cursor-pointer"
                     onClick={() =>
                       setExpandedPlan(expandedPlan === planIndex ? null : planIndex)
                     }
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                      className={`w-6 h-6 text-gray-500 transition-transform ${
-                        expandedPlan === planIndex ? "rotate-180" : ""
-                      }`}
+                    <div>
+                      <h2 className="text-xl font-semibold text-gray-900">
+                        Meal Plan {planIndex + 1}
+                      </h2>
+                      <p className="text-sm text-gray-500 mt-1">
+                        Created on:{" "}
+                        {new Date(mealPlan.dateModified).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </p>
+                    </div>
+                    <button
+                      className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                      onClick={() =>
+                        setExpandedPlan(expandedPlan === planIndex ? null : planIndex)
+                      }
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                      />
-                    </svg>
-                  </button>
-                </div>
-
-                {expandedPlan === planIndex && (
-                  <div className="mt-6 space-y-4">
-                    {parseMealPlan(mealPlan.generatedMealPlans).map(
-                      (dayMeals, dayIndex) => (
-                        <DaySection
-                          key={`${mealPlan._id}-${dayIndex}`}
-                          dayNumber={dayIndex + 1}
-                          dayMeals={dayMeals}
-                          mealImages={mealPlan.mealImages}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className={`w-6 h-6 text-gray-500 transition-transform ${
+                          expandedPlan === planIndex ? "rotate-180" : ""
+                        }`}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 8.25l-7.5 7.5-7.5-7.5"
                         />
-                      )
-                    )}
+                      </svg>
+                    </button>
                   </div>
-                )}
+
+                  {expandedPlan === planIndex && (
+                    <div className="mt-6 space-y-4">
+                      {parseMealPlan(mealPlan.generatedMealPlans).map(
+                        (dayMeals, dayIndex) => (
+                          <DaySection
+                            key={`${mealPlan._id}-${dayIndex}`}
+                            dayNumber={dayIndex + 1}
+                            dayMeals={dayMeals}
+                            mealImages={mealPlan.mealImages}
+                          />
+                        )
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

@@ -23,7 +23,7 @@ const links = [
 
 const button = {
   href: "/meal/newMeal",
-  label: "Add Meal",
+  label: "Create Meal Plan",
 };
 
 function Meal(props) {
