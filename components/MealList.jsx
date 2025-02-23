@@ -63,8 +63,6 @@ function MealList() {
   };
 
   const MealCard = ({ meal, image }) => {
-    console.log(image, "image");
-
     return (
       <div className="card bg-neutral-200 shadow-lg hover:shadow-xl transition-all">
         <div className="card-body p-4">
