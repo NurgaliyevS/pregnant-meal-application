@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { PDFDownloadLink } from "@react-pdf/renderer";
@@ -11,6 +11,10 @@ function MealList() {
   const { data: session } = useSession();
   const [mealPlans, setMealPlans] = useState([]);
   const [expandedPlan, setExpandedPlan] = useState(null);
+  const loadedImagesRef = useRef({});
+  const [isPdfLoading, setIsPdfLoading] = useState(false);
+  const [pdfReady, setPdfReady] = useState({});
+  const [allImagesLoaded, setAllImagesLoaded] = useState({});
 
   useEffect(() => {
     getAllMeals();
@@ -27,13 +31,60 @@ function MealList() {
           setMealPlans([]);
           return;
         }
-        setMealPlans(response.data);
+        const plansWithCachedState = response.data.map((plan, index) => ({
+          ...plan,
+          imagesLoaded: loadedImagesRef.current[index] || false
+        }));
+        setMealPlans(plansWithCachedState);
       } catch (error) {
         console.error("Error fetching meals:", error);
-        const timer = setTimeout(() => {
-          getAllMeals();
-        }, 2000);
-        return () => clearTimeout(timer);
+      }
+    }
+  };
+
+  const loadImagesForPlan = async (planIndex, e) => {
+    // Prevent event propagation
+    e?.stopPropagation();
+    
+    if (!loadedImagesRef.current[planIndex]) {
+      setIsPdfLoading(true);
+      setAllImagesLoaded(prev => ({ ...prev, [planIndex]: false }));
+
+      try {
+        const loadedUrls = [];
+        const totalImages = mealPlans[planIndex].mealImages.length;
+        let loadedCount = 0;
+        
+        // Load each image sequentially
+        for (const img of mealPlans[planIndex].mealImages) {
+          try {
+            await new Promise((resolve, reject) => {
+              const image = new Image();
+              image.onload = () => {
+                loadedUrls.push(img.imageUrl);
+                loadedCount++;
+                resolve();
+              };
+              image.onerror = reject;
+              image.src = img.imageUrl;
+            });
+          } catch (err) {
+            console.warn(`Failed to load image: ${img.imageUrl}`);
+          }
+        }
+
+        // Only proceed if all images are loaded
+        if (loadedCount === totalImages) {
+          loadedImagesRef.current[planIndex] = true;
+          setAllImagesLoaded(prev => ({ ...prev, [planIndex]: true }));
+        } else {
+          toast.error("Some images failed to load. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error loading images:", error);
+        toast.error("Failed to load images");
+      } finally {
+        setIsPdfLoading(false);
       }
     }
   };
@@ -161,7 +212,12 @@ function MealList() {
                 className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
               >
                 <div className="p-6">
-                  <div className="flex justify-between items-center">
+                  <div 
+                    className="flex justify-between items-center cursor-pointer hover:bg-gray-50 rounded-lg transition-colors p-2"
+                    onClick={() => {
+                      setExpandedPlan(expandedPlan === planIndex ? null : planIndex);
+                    }}
+                  >
                     <div>
                       <h2 className="text-xl font-semibold text-gray-900">
                         Meal Plan {planIndex + 1}
@@ -174,124 +230,83 @@ function MealList() {
                         )}
                       </p>
                     </div>
-                    <div className="flex gap-2">
-                      <PDFDownloadLink
-                        document={
-                          <MealPlanPDF 
-                            mealPlanStructured={parseMealPlan(
-                              mealPlan.generatedMealPlans,
-                              mealPlan.mealImages
-                            )}
-                          />
-                        }
-                        fileName={`meal-plan-${planIndex + 1}.pdf`}
-                        className="btn btn-primary btn-sm"
-                      >
-                        {({ blob, url, loading, error }) =>
-                          loading ? (
-                            <>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="w-4 h-4 mr-2"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-                                />
-                              </svg>
-                              Preparing PDF...
-                            </>
-                          ) : (
-                            <>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="w-4 h-4 mr-2"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-                                />
-                              </svg>
-                              Download PDF
-                            </>
-                          )
-                        }
-                      </PDFDownloadLink>
-
-                      <button
-                        className="btn btn-secondary btn-sm"
-                        onClick={() =>
-                          handleCopyToClipboard(mealPlan.generatedMealPlans)
-                        }
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-4 h-4 mr-2"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V19.5a2.25 2.25 0 0 0 2.25 2.25h.75m0-3H12m-.75 3h3.75m-3.75 0V13.5m0 6.75"
-                          />
-                        </svg>
-                        Copy
-                      </button>
-
-                      <button
-                        className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                        onClick={() =>
-                          setExpandedPlan(
-                            expandedPlan === planIndex ? null : planIndex
-                          )
-                        }
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={2}
-                          stroke="currentColor"
-                          className={`w-6 h-6 text-gray-500 transition-transform ${
-                            expandedPlan === planIndex ? "rotate-180" : ""
-                          }`}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                          />
-                        </svg>
-                      </button>
-                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className={`w-6 h-6 text-gray-500 transition-transform ${
+                        expandedPlan === planIndex ? "rotate-180" : ""
+                      }`}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                      />
+                    </svg>
                   </div>
 
                   {expandedPlan === planIndex && (
-                    <div className="mt-6 space-y-4">
-                      {parseMealPlan(mealPlan.generatedMealPlans, mealPlan.mealImages).map(
-                        (dayMeals, dayIndex) => (
+                    <>
+                      <div className="mt-6 space-y-4">
+                        {parseMealPlan(
+                          mealPlan.generatedMealPlans,
+                          mealPlan.mealImages
+                        ).map((dayMeals, dayIndex) => (
                           <DaySection
                             key={`${mealPlan._id}-${dayIndex}`}
                             dayNumber={dayIndex + 1}
                             dayMeals={dayMeals}
-                            mealImages={mealPlan.mealImages}
                           />
-                        )
-                      )}
-                    </div>
+                        ))}
+                      </div>
+
+                      <div className="flex gap-2 mt-4" onClick={e => e.stopPropagation()}>
+                        {isPdfLoading ? (
+                          <button className="btn btn-primary btn-sm">
+                            Loading Images...
+                          </button>
+                        ) : allImagesLoaded[planIndex] ? (
+                          <div onClick={e => e.stopPropagation()}>
+                            <PDFDownloadLink
+                              document={
+                                <MealPlanPDF 
+                                  mealPlanStructured={parseMealPlan(
+                                    mealPlan.generatedMealPlans,
+                                    mealPlan.mealImages
+                                  )}
+                                />
+                              }
+                              fileName={`meal-plan-${planIndex + 1}.pdf`}
+                              className="btn btn-primary btn-sm"
+                            >
+                              {({ loading }) => 
+                                loading ? "Preparing PDF..." : "Download PDF"
+                              }
+                            </PDFDownloadLink>
+                          </div>
+                        ) : (
+                          <button 
+                            className="btn btn-primary btn-sm"
+                            onClick={(e) => loadImagesForPlan(planIndex, e)}
+                          >
+                            Prepare PDF
+                          </button>
+                        )}
+
+                        <button 
+                          className="btn btn-secondary btn-sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCopyToClipboard(mealPlan.generatedMealPlans);
+                          }}
+                        >
+                          Copy to Clipboard
+                        </button>
+                      </div>
+                    </>
                   )}
                 </div>
               </div>
