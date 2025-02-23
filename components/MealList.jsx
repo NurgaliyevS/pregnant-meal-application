@@ -38,7 +38,7 @@ function MealList() {
     }
   };
 
-  const parseMealPlan = (mealPlanText) => {
+  const parseMealPlan = (mealPlanText, mealImages) => {
     if (!mealPlanText) return [];
 
     const days = mealPlanText
@@ -50,15 +50,15 @@ function MealList() {
           .filter((meal) => meal.trim())
           .map((meal) => {
             const parts = meal.split(" - ").map((s) => s.trim());
-            const ingredients =
-              parts[2]
-                ?.replace(/^Key ingredients:\s*/, "")
-                .replace(/\.$/, "") || "";
+            const title = parts[0]?.replace(/Meal \d+:\s*/, "");
+            const mealImage = mealImages?.find(img => img.mealTitle === title);
+            
             return {
-              title: parts[0]?.replace(/Meal \d+:\s*/, ""),
+              title,
               description: parts[1] || "",
-              ingredients: ingredients,
+              ingredients: parts[2]?.replace(/^Key ingredients:\s*/, "").replace(/\.$/, "") || "",
               type: parts[0]?.match(/Meal \d+/)?.[0] || "Meal",
+              imageUrl: mealImage?.imageUrl || null
             };
           });
       });
@@ -121,10 +121,7 @@ function MealList() {
             <MealCard
               key={index}
               meal={meal}
-              image={
-                mealImages?.find((img) => img.mealTitle === meal.title)
-                  ?.imageUrl
-              }
+              image={meal.imageUrl}
             />
           ))}
         </div>
@@ -180,11 +177,11 @@ function MealList() {
                     <div className="flex gap-2">
                       <PDFDownloadLink
                         document={
-                          <MealPlanPDF
+                          <MealPlanPDF 
                             mealPlanStructured={parseMealPlan(
-                              mealPlan.generatedMealPlans
+                              mealPlan.generatedMealPlans,
+                              mealPlan.mealImages
                             )}
-                            mealImages={mealPlan.mealImages}
                           />
                         }
                         fileName={`meal-plan-${planIndex + 1}.pdf`}
@@ -284,7 +281,7 @@ function MealList() {
 
                   {expandedPlan === planIndex && (
                     <div className="mt-6 space-y-4">
-                      {parseMealPlan(mealPlan.generatedMealPlans).map(
+                      {parseMealPlan(mealPlan.generatedMealPlans, mealPlan.mealImages).map(
                         (dayMeals, dayIndex) => (
                           <DaySection
                             key={`${mealPlan._id}-${dayIndex}`}
