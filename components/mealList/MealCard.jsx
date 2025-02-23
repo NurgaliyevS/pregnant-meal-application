@@ -14,7 +14,7 @@ export default function MealCard({ meal, image }) {
           </figure>
         ) : (
           <div className="h-48 w-full rounded-lg bg-gray-100 flex items-center justify-center mb-4">
-            <span className="text-gray-400">Click "Load Images" to view</span>
+            <span className="text-gray-400">Loading images...</span>
           </div>
         )}
         
