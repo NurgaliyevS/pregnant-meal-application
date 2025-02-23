@@ -116,8 +116,6 @@ function MealPlanPDF({ mealPlanStructured, mealImages }) {
             <Text style={styles.dayTitle}>Day {dayIndex + 1}</Text>
 
             {dayMeals.map((meal, mealIndex) => {
-              console.log(meal, "meal");
-
               const imageUrl = findMealImage(meal);
 
               return (
