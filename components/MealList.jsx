@@ -1,18 +1,16 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import EmptyMealPlan from "./mealList/EmptyMealPlan";
 import MealPlanCard from "./mealList/MealPlanCard";
+import { MealPlanProvider } from "./mealList/MealPlanProvider";
 
 function MealList() {
   const { data: session } = useSession();
   const [mealPlans, setMealPlans] = useState([]);
-  const loadedImagesRef = useRef({});
-  const [isPdfLoading, setIsPdfLoading] = useState(false);
-  const [allImagesLoaded, setAllImagesLoaded] = useState({});
 
   useEffect(() => {
     getAllMeals();
@@ -29,60 +27,9 @@ function MealList() {
           setMealPlans([]);
           return;
         }
-        const plansWithCachedState = response.data.map((plan, index) => ({
-          ...plan,
-          imagesLoaded: loadedImagesRef.current[index] || false,
-        }));
-        setMealPlans(plansWithCachedState);
+        setMealPlans(response.data);
       } catch (error) {
         console.error("Error fetching meals:", error);
-      }
-    }
-  };
-
-  const loadImagesForPlan = async (planIndex, e) => {
-    // Prevent event propagation
-    e?.stopPropagation();
-
-    if (!loadedImagesRef.current[planIndex]) {
-      setIsPdfLoading(true);
-      setAllImagesLoaded((prev) => ({ ...prev, [planIndex]: false }));
-
-      try {
-        const loadedUrls = [];
-        const totalImages = mealPlans[planIndex].mealImages.length;
-        let loadedCount = 0;
-
-        // Load each image sequentially
-        for (const img of mealPlans[planIndex].mealImages) {
-          try {
-            await new Promise((resolve, reject) => {
-              const image = new Image();
-              image.onload = () => {
-                loadedUrls.push(img.imageUrl);
-                loadedCount++;
-                resolve();
-              };
-              image.onerror = reject;
-              image.src = img.imageUrl;
-            });
-          } catch (err) {
-            console.warn(`Failed to load image: ${img.imageUrl}`);
-          }
-        }
-
-        // Only proceed if all images are loaded
-        if (loadedCount === totalImages) {
-          loadedImagesRef.current[planIndex] = true;
-          setAllImagesLoaded((prev) => ({ ...prev, [planIndex]: true }));
-        } else {
-          toast.error("Some images failed to load. Please try again.");
-        }
-      } catch (error) {
-        console.error("Error loading images:", error);
-        toast.error("Failed to load images");
-      } finally {
-        setIsPdfLoading(false);
       }
     }
   };
@@ -125,32 +72,31 @@ function MealList() {
   };
 
   return (
-    <section className="min-h-screen bg-gray-50">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-center text-4xl font-bold text-gray-900 mb-12">
-          Your <span className="text-blue-600">Meal</span> Plans
-        </h1>
+    <MealPlanProvider>
+      <section className="min-h-screen bg-gray-50">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h1 className="text-center text-4xl font-bold text-gray-900 mb-12">
+            Your <span className="text-blue-600">Meal</span> Plans
+          </h1>
 
-        {mealPlans.length === 0 ? (
-          <EmptyMealPlan />
-        ) : (
-          <div className="space-y-6">
-            {mealPlans.map((mealPlan, planIndex) => (
-              <MealPlanCard
-                key={mealPlan._id}
-                mealPlan={mealPlan}
-                planIndex={planIndex}
-                isPdfLoading={isPdfLoading}
-                allImagesLoaded={allImagesLoaded}
-                loadImagesForPlan={loadImagesForPlan}
-                parseMealPlan={parseMealPlan}
-                handleCopyToClipboard={handleCopyToClipboard}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+          {mealPlans.length === 0 ? (
+            <EmptyMealPlan />
+          ) : (
+            <div className="space-y-6">
+              {mealPlans.map((mealPlan, planIndex) => (
+                <MealPlanCard
+                  key={mealPlan._id}
+                  mealPlan={mealPlan}
+                  planIndex={planIndex}
+                  parseMealPlan={parseMealPlan}
+                  handleCopyToClipboard={handleCopyToClipboard}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </MealPlanProvider>
   );
 }
 

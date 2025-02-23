@@ -3,8 +3,8 @@ import MealPlanPDF from "../meal/MealPlanPDF";
 
 export default function MealPlanActions({
   isPdfLoading,
-  allImagesLoaded,
-  planIndex,
+  isImagesLoaded,
+  planId,
   loadImagesForPlan,
   mealPlan,
   parseMealPlan,
@@ -14,7 +14,7 @@ export default function MealPlanActions({
     <div className="flex gap-2 mt-4" onClick={(e) => e.stopPropagation()}>
       {isPdfLoading ? (
         <button className="btn btn-primary btn-sm">Loading Images...</button>
-      ) : allImagesLoaded[planIndex] ? (
+      ) : isImagesLoaded(planId) ? (
         <div onClick={(e) => e.stopPropagation()}>
           <PDFDownloadLink
             document={
@@ -25,7 +25,7 @@ export default function MealPlanActions({
                 )}
               />
             }
-            fileName={`meal-plan-${planIndex + 1}.pdf`}
+            fileName={`meal-plan.pdf`}
             className="btn btn-primary btn-sm"
           >
             {({ loading }) => (loading ? "Preparing PDF..." : "Download PDF")}
@@ -34,7 +34,7 @@ export default function MealPlanActions({
       ) : (
         <button
           className="btn btn-primary btn-sm"
-          onClick={(e) => loadImagesForPlan(planIndex, e)}
+          onClick={(e) => loadImagesForPlan(planId, mealPlan.mealImages)}
         >
           Prepare PDF
         </button>
