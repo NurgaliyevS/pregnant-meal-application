@@ -63,11 +63,7 @@ function MealList() {
   };
 
   const MealCard = ({ meal, image }) => {
-    const imageUrl = image
-      ? `${process.env.NEXT_PUBLIC_R2_URL}/pregnant-meal-images/meals/${
-          image.split("/meals/")[1]
-        }`
-      : null;
+    console.log(image, "image");
 
     return (
       <div className="card bg-neutral-200 shadow-lg hover:shadow-xl transition-all">
@@ -75,7 +71,7 @@ function MealList() {
           {image && (
             <figure className="relative h-48 w-full rounded-lg overflow-hidden mb-4">
               <img
-                src={imageUrl}
+                src={image}
                 alt={meal.title}
                 width={400}
                 height={300}
