@@ -46,7 +46,7 @@ export default async function handler(req, res) {
       ],
       model: "gpt-4o-mini",
       temperature: 0.7,
-      max_tokens: 5000,
+      max_tokens: 10000,
       stream: false,
     });
 
