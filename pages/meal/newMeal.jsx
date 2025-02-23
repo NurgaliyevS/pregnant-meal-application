@@ -77,15 +77,22 @@ function NewMeal() {
 
       setMealPlan(mealPlanResponse.data.mealPlan);
       setMealPlanStructured(mealPlanResponse.data.mealPlanStructured);
-
-      // Generate images for the meal plan
-      const imagesResponse = await axios.post("/api/core/generate-meal-images", {
-        id: preferenceResponse.data.preference._id,
-        mealPlanStructured: mealPlanResponse.data.mealPlanStructured
-      });
-
       setCurrentStep(2);
-      setMealPlanStructured(imagesResponse.data.mealPlanStructured);
+
+      // Generate images in the background
+
+      try {
+        const imagesResponse = await axios.post("/api/core/generate-meal-images", {
+          id: preferenceResponse.data.preference._id,
+          mealPlanStructured: mealPlanResponse.data.mealPlanStructured
+        });
+        setMealPlanStructured(imagesResponse.data.mealPlanStructured);
+      } catch (imageError) {
+        console.error("Error generating images:", imageError);
+        toast.warning("Some meal images could not be generated");
+      } finally {
+      }
+
     } catch (error) {
       console.error("Error submitting form:", error);
       setCurrentStep(0);
