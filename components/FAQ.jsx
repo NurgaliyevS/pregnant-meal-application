@@ -146,36 +146,36 @@ const FaqItem = ({ item }) => {
 
 function FAQ() {
   return (
-    <section className="bg-white px-8 py-16 lg:py-24" id="faq">
+    <section className="bg-white px-4 sm:px-8 py-10 lg:py-24" id="faq">
       <div className="container max-w-7xl mx-auto">
-        <h2 className="font-bold text-3xl lg:text-5xl text-center mb-16 text-primary">
+        <h2 className="font-bold text-2xl sm:text-3xl lg:text-5xl text-center mb-10 lg:mb-16 text-primary">
           Common Questions
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h3 className="font-bold text-xl mb-2 text-primary-focus">What foods should I avoid during pregnancy?</h3>
-            <p>Raw fish, unpasteurized cheese, and undercooked meat should be avoided during pregnancy.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <h3 className="font-bold text-lg sm:text-xl mb-2 text-primary-focus">What foods should I avoid during pregnancy?</h3>
+            <p className="text-sm sm:text-base">Raw fish, unpasteurized cheese, and undercooked meat should be avoided during pregnancy.</p>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h3 className="font-bold text-xl mb-2 text-primary-focus">How many extra calories do I need?</h3>
-            <p>Most women need about 300-500 extra calories per day during pregnancy.</p>
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <h3 className="font-bold text-lg sm:text-xl mb-2 text-primary-focus">How many extra calories do I need?</h3>
+            <p className="text-sm sm:text-base">Most women need about 300-500 extra calories per day during pregnancy.</p>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h3 className="font-bold text-xl mb-2 text-primary-focus">What's good for morning sickness?</h3>
-            <p>Small, frequent meals and ginger-based foods can help ease morning sickness.</p>
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <h3 className="font-bold text-lg sm:text-xl mb-2 text-primary-focus">What's good for morning sickness?</h3>
+            <p className="text-sm sm:text-base">Small, frequent meals and ginger-based foods can help ease morning sickness.</p>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h3 className="font-bold text-xl mb-2 text-primary-focus">Can I customize my meal plan?</h3>
-            <p>Yes! You can adjust your plan based on food preferences and dietary restrictions.</p>
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <h3 className="font-bold text-lg sm:text-xl mb-2 text-primary-focus">Can I customize my meal plan?</h3>
+            <p className="text-sm sm:text-base">Yes! You can adjust your plan based on food preferences and dietary restrictions.</p>
           </div>
         </div>
         
-        <div className="flex justify-center mt-16">
-          <CTAButton plausibleNameBeforeLogin="GET_STARTED_FAQ" />
+        <div className="flex justify-center mt-10 lg:mt-16">
+          <CTAButton plausibleNameBeforeLogin="GET_STARTED_FAQ" className="w-full sm:w-auto max-w-xs mx-4 sm:mx-0" />
         </div>
       </div>
     </section>

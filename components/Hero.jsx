@@ -6,16 +6,16 @@ import { FiInfo } from "react-icons/fi";
 
 function Hero() {
   return (
-    <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-16 lg:py-24 gap-10">
-      <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
-        <div className="flex flex-col gap-8 items-center lg:items-start text-center lg:text-left w-full lg:w-1/2">
-          <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight text-primary">
+    <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-4 sm:px-8 py-10 lg:py-24 gap-10">
+      <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-8 lg:gap-16">
+        <div className="flex flex-col gap-6 lg:gap-8 items-center lg:items-start text-center lg:text-left w-full lg:w-1/2">
+          <h1 className="font-extrabold text-3xl sm:text-4xl lg:text-6xl tracking-tight text-primary">
             Healthy Meals for You and Your Baby
           </h1>
-          <p className="text-xl opacity-90 leading-relaxed">
+          <p className="text-lg sm:text-xl opacity-90 leading-relaxed">
             Simple meal plans designed for each stage of your pregnancy journey.
           </p>
-          <div className="flex gap-4">
+          <div className="flex flex-row gap-4 w-full justify-center lg:justify-start">
             <CTAButton plausibleNameBeforeLogin="GET_STARTED_HERO" />
             <Link href="/demo" className="btn btn-outline btn-primary">
               <FiInfo className="h-5 w-5 mr-2" />
@@ -23,7 +23,7 @@ function Hero() {
             </Link>
           </div>
         </div>
-        <div className="w-full lg:w-1/2">
+        <div className="w-full lg:w-1/2 mt-6 lg:mt-0">
           <Image
             src="/main.webp"
             alt="Pregnant meal plan"

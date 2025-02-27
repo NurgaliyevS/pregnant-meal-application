@@ -6,7 +6,7 @@ import { usePlausible } from "next-plausible";
 const CTANAME = "Make My Meals";
 
 function CTAButton(props) {
-  const { plausibleNameBeforeLogin, plausibleNameAfterLogin  } = props;
+  const { plausibleNameBeforeLogin, plausibleNameAfterLogin, className = "", buttonText } = props;
 
   const { data: session } = useSession();
   const plausible = usePlausible();
@@ -16,26 +16,26 @@ function CTAButton(props) {
       {!session?.user ? (
         <Link
           href="#"
-          className="btn btn-primary btn-wide no-underline"
+          className={`btn btn-primary no-underline ${className}`}
           onClick={(e) => {
             e.preventDefault();
             plausible(plausibleNameBeforeLogin);
             handleSignIn(e);
           }}
         >
-          {CTANAME}
+          {buttonText || CTANAME}
         </Link>
       ) : (
         <Link
           href="/meal"
-          className="btn btn-primary btn-wide no-underline"
+          className={`btn btn-primary no-underline ${className}`}
           title="Meal page"
           rel="nofollow"
           onClick={() => {
             plausible(plausibleNameAfterLogin);
           }}
         >
-          {CTANAME}
+          {buttonText || CTANAME}
         </Link>
       )}
     </>
