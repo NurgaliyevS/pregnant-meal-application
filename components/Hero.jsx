@@ -1,93 +1,40 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import CTAButton from "@/components/CTAButton";
+import { FiInfo } from "react-icons/fi";
 
 function Hero() {
   return (
-    <article className="flex flex-col gap-24 md:gap-32 w-full bg-neutral text-gray-300 py-20 lg:py-44 px-2" id="reviews">
-      <section>
-        <div className="flex flex-col justify-between items-center lg:flex-row gap-20 container max-w-4xl mx-auto">
-          <Image
-            src="/sarah.webp"
-            alt="Sarah"
-            width={200}
-            height={280}
-            className="max-w-sm rounded-lg shadow-2xl"
-          />
-          <div className="flex items-center justify-center flex-col lg:items-start lg:justify-end">
-            <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
-              Sarah, Expecting Mom
-            </h3>
-            <p className="py-6 opacity-60 text-center lg:text-left">
-              I love how easy it is to plan my meals now! The daily suggestions
-              take all the guesswork out of eating healthy for my baby.
-            </p>
+    <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-16 lg:py-24 gap-10">
+      <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
+        <div className="flex flex-col gap-8 items-center lg:items-start text-center lg:text-left w-full lg:w-1/2">
+          <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight text-primary">
+            Healthy Meals for You and Your Baby
+          </h1>
+          <p className="text-xl opacity-90 leading-relaxed">
+            Simple meal plans designed for each stage of your pregnancy journey.
+          </p>
+          <div className="flex gap-4">
+            <CTAButton plausibleNameBeforeLogin="GET_STARTED_HERO" />
+            <Link href="/demo" className="btn btn-outline btn-primary">
+              <FiInfo className="h-5 w-5 mr-2" />
+              Demo
+            </Link>
           </div>
         </div>
-      </section>
-      <section className="hidden lg:block">
-        <div className="flex flex-col justify-between items-center lg:flex-row gap-20 container max-w-4xl mx-auto">
-          <div className="flex items-center justify-center flex-col lg:items-start lg:justify-end">
-            <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
-              Emma, New Mom
-            </h3>
-            <p className="py-6 opacity-60 text-center lg:text-left">
-              As a new mom, I barely had time to think about cooking. But
-              <strong className="text-primary"> PregnantMeal</strong> changed
-              that! The recipes are so yummy, even my husband loves them!
-            </p>
-          </div>
+        <div className="w-full lg:w-1/2">
           <Image
-            src="/emma.webp"
-            alt="Emma"
-            width={200}
-            height={280}
-            className="max-w-sm rounded-lg shadow-2xl"
+            src="/main.webp"
+            alt="Pregnant meal plan"
+            width={600}
+            height={600}
+            className="w-full rounded-lg shadow-lg"
+            priority={true}
           />
         </div>
-      </section>
-      <section className="lg:hidden block">
-        <div className="flex flex-col justify-between items-center lg:flex-row gap-20 container max-w-4xl mx-auto">
-          <Image
-            src="/emma.webp"
-            alt="Emma"
-            width={200}
-            height={280}
-            className="max-w-sm rounded-lg shadow-2xl"
-          />
-          <div className="flex items-center justify-center flex-col lg:items-start lg:justify-end">
-            <h3 className="text-3xl lg:text-5xl font-bold tracking-tight">
-              Emma, New Mom
-            </h3>
-            <p className="py-6 opacity-60 text-center lg:text-left">
-              As a new mom, I barely had time to think about cooking. But
-              <strong className="text-primary"> PregnantMeal</strong> changed
-              that! The recipes are so yummy, even my husband loves them!
-            </p>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div className="flex flex-col justify-between items-center lg:flex-row gap-20 container max-w-4xl mx-auto">
-          <Image
-            src="/lisa.webp"
-            alt="Lisa"
-            width={200}
-            height={280}
-            className="max-w-sm rounded-lg shadow-2xl"
-          />
-          <div className="flex items-center justify-center flex-col lg:items-start lg:justify-end">
-            <h3 className="text-3xl lg:text-5xl font-bold tracking-tight text-center lg:text-left">
-              Lisa, Second-time Mom
-            </h3>
-            <p className="py-6 opacity-60 text-center lg:text-left">
-              With my first pregnancy, I struggled to eat right. This app helped
-              me eat better for my babies, and I feel so much more energetic. I
-              love how it adapts to each trimester's needs.
-            </p>
-          </div>
-        </div>
-      </section>
-    </article>
+      </div>
+    </section>
   );
 }
 

@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { handleSignIn } from "./handleSignIn";
 import { usePlausible } from "next-plausible";
-import CTAButton from "./CTAButton";
+import CTAButton from "@/components/CTAButton";
 
 const faqList = [
   {
@@ -145,28 +145,38 @@ const FaqItem = ({ item }) => {
 };
 
 function FAQ() {
-  const plausible = usePlausible();
   return (
-    <section
-      className="bg-neutral text-gray-300 py-44 overflow-hidden"
-      id="faq"
-    >
-      <div className="px-8 container max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
-        <div className="flex flex-col text-left basis-1/2">
-          <p className="sm:text-4xl text-3xl font-extrabold">
-            Frequently Asked Questions
-          </p>
+    <section className="bg-white px-8 py-16 lg:py-24" id="faq">
+      <div className="container max-w-7xl mx-auto">
+        <h2 className="font-bold text-3xl lg:text-5xl text-center mb-16 text-primary">
+          Common Questions
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="font-bold text-xl mb-2 text-primary-focus">What foods should I avoid during pregnancy?</h3>
+            <p>Raw fish, unpasteurized cheese, and undercooked meat should be avoided during pregnancy.</p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="font-bold text-xl mb-2 text-primary-focus">How many extra calories do I need?</h3>
+            <p>Most women need about 300-500 extra calories per day during pregnancy.</p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="font-bold text-xl mb-2 text-primary-focus">What's good for morning sickness?</h3>
+            <p>Small, frequent meals and ginger-based foods can help ease morning sickness.</p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="font-bold text-xl mb-2 text-primary-focus">Can I customize my meal plan?</h3>
+            <p>Yes! You can adjust your plan based on food preferences and dietary restrictions.</p>
+          </div>
         </div>
-
-        <ul className="basis-1/2">
-          {faqList.map((item, i) => (
-            <FaqItem key={i} item={item} />
-          ))}
-        </ul>
-      </div>
-
-      <div className="flex items-center justify-center mt-20">
-        <CTAButton plausibleNameBeforeLogin="GET_STARTED_FAQ" plausibleNameAfterLogin="GET_STARTED_FAQ_AFTER_LOGIN" />
+        
+        <div className="flex justify-center mt-16">
+          <CTAButton plausibleNameBeforeLogin="GET_STARTED_FAQ" />
+        </div>
       </div>
     </section>
   );
