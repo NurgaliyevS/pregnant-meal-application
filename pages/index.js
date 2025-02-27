@@ -374,19 +374,19 @@ export default function Home() {
         </section>
 
         {/* Final CTA */}
-        <section className="bg-primary text-white py-16">
+        <section className="bg-gradient-to-r from-pink-500 to-purple-600 text-white py-16">
           <div className="container max-w-7xl mx-auto px-8 text-center">
             <h2 className="font-bold text-3xl lg:text-5xl mb-6">
-              Start Your Healthy Pregnancy Journey Today
+              Start Your Healthy Pregnancy Now!
             </h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Join thousands of moms who are enjoying stress-free meal planning with PregnantMeal.
+              Join our growing community of moms who are enjoying delicious, nutrient-packed meals designed specifically for pregnancy. Give your baby the best start with proper nutrition!
             </p>
             <div className="flex gap-4 justify-center">
-              <CTAButton plausibleNameBeforeLogin="GET_STARTED_FINAL" buttonText="Get Started Now" />
-              <Link href="/demo" className="btn btn-outline bg-white text-primary hover:bg-white hover:text-primary-focus">
+              <CTAButton plausibleNameBeforeLogin="GET_STARTED_FINAL" buttonText="Get My Meal Plan Now" />
+              <Link href="/demo" className="btn btn-outline bg-white text-purple-600 hover:bg-white hover:text-pink-500 border-0">
                 <FiInfo className="h-5 w-5 mr-2" />
-                View Demo
+                See Sample Meals
               </Link>
             </div>
           </div>
