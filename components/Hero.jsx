@@ -20,15 +20,14 @@ function Hero() {
           </p>
           <div className="flex flex-row gap-4 w-full justify-center lg:justify-start">
             <CTAButton 
-              plausibleNameBeforeLogin="GET_STARTED_HERO" 
-              buttonText="Dashboard"
+              plausibleNameBeforeLogin="GET_STARTED_HERO"
             />
             <button 
               onClick={() => setIsModalOpen(true)}
               className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-gray-700 font-medium text-base border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors"
             >
               <FiPlay className="mr-2 h-5 w-5 text-gray-600" />
-              Watch Demo
+              Demo
             </button>
           </div>
         </div>

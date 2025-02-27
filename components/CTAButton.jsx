@@ -15,9 +15,8 @@ function CTAButton(props) {
   return (
     <>
       {!session?.user ? (
-        <Link
-          href="#"
-          className={`btn btn-primary no-underline text-base sm:text-lg px-5 py-3 h-auto min-h-12 ${className}`}
+        <button
+          className={`inline-flex items-center justify-center px-6 py-3 rounded-full bg-blue-500 text-white font-medium text-base border border-blue-600 shadow-sm hover:bg-blue-600 transition-colors ${className}`}
           onClick={(e) => {
             e.preventDefault();
             plausible(plausibleNameBeforeLogin);
@@ -26,11 +25,11 @@ function CTAButton(props) {
         >
           {buttonText || CTANAME}
           <FiArrowRight className="ml-2 h-5 w-5" />
-        </Link>
+        </button>
       ) : (
         <Link
           href="/meal"
-          className={`btn btn-primary no-underline text-base sm:text-lg px-5 py-3 h-auto min-h-12 ${className}`}
+          className={`inline-flex items-center justify-center px-6 py-3 rounded-full bg-blue-500 text-white font-medium text-base border border-blue-600 shadow-sm hover:bg-blue-600 transition-colors ${className}`}
           title="Meal page"
           rel="nofollow"
           onClick={() => {
