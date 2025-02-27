@@ -153,7 +153,7 @@ export default function Home() {
               <div className="bg-white rounded-lg overflow-hidden shadow-lg">
                 <div className="h-48 bg-gray-200 relative">
                   <Image 
-                    src="/breakfast.webp" 
+                    src="/avocado-breakfast.webp" 
                     alt="Breakfast example" 
                     fill 
                     className="object-cover"
@@ -171,7 +171,7 @@ export default function Home() {
               <div className="bg-white rounded-lg overflow-hidden shadow-lg">
                 <div className="h-48 bg-gray-200 relative">
                   <Image 
-                    src="/lunch.webp" 
+                    src="/Caesar-salad.webp" 
                     alt="Lunch example" 
                     fill 
                     className="object-cover"
@@ -182,14 +182,16 @@ export default function Home() {
                 </div>
                 <div className="p-6 text-primary-focus">
                   <h3 className="font-bold text-xl mb-2">Lunch</h3>
-                  <p>Spinach salad with grilled chicken and avocado</p>
+                  <p>
+                    Caesar Salad with grilled chicken
+                  </p>
                 </div>
               </div>
               
               <div className="bg-white rounded-lg overflow-hidden shadow-lg">
                 <div className="h-48 bg-gray-200 relative">
                   <Image 
-                    src="/dinner.webp" 
+                    src="/pasta-Primavera.webp" 
                     alt="Dinner example" 
                     fill 
                     className="object-cover"
@@ -200,7 +202,9 @@ export default function Home() {
                 </div>
                 <div className="p-6 text-primary-focus">
                   <h3 className="font-bold text-xl mb-2">Dinner</h3>
-                  <p>Salmon with roasted vegetables and quinoa</p>
+                  <p>
+                    Pasta Primavera with salmon and roasted vegetables
+                  </p>
                 </div>
               </div>
             </div>
