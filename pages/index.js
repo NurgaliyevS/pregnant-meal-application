@@ -6,6 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import CTAButton from "@/components/CTAButton";
 import Link from "next/link";
+import { buyProduct } from "@/components/buyProduct";
 
 // Let's install and use react-icons instead
 import { FiInfo, FiUser, FiCalendar, FiClipboard, FiShoppingBag, FiCheck } from "react-icons/fi";
@@ -89,8 +90,8 @@ export default function Home() {
                 <div className="text-primary mb-4 flex justify-center">
                   <FiShoppingBag className="h-16 w-16" />
                 </div>
-                <h3 className="font-bold text-xl mb-4 text-center">Grocery Planning</h3>
-                <p>Organized shopping guidance to make grocery trips stress-free.</p>
+                <h3 className="font-bold text-xl mb-4 text-center">Trimester Focus</h3>
+                <p>Specialized nutrition guidance for each stage of your pregnancy.</p>
               </div>
             </div>
             
@@ -243,7 +244,15 @@ export default function Home() {
                 </li>
               </ul>
               
-              <button className="btn btn-primary w-full">Get Started</button>
+              <button 
+                className="btn btn-primary w-full"
+                onClick={(e) => {
+                  e.preventDefault();
+                  buyProduct();
+                }}
+              >
+                Get my meals
+              </button>
             </div>
             
             <div className="bg-white p-8 rounded-lg shadow-lg border-2 border-primary relative flex flex-col h-full">
@@ -275,7 +284,15 @@ export default function Home() {
                 </li>
               </ul>
               
-              <button className="btn btn-primary w-full">Get Started</button>
+              <button 
+                className="btn btn-primary w-full"
+                onClick={(e) => {
+                  e.preventDefault();
+                  buyProduct("493049");
+                }}
+              >
+                Get my meals
+              </button>
             </div>
             
             <div className="bg-white p-8 rounded-lg shadow-lg border border-primary border-opacity-20 flex flex-col h-full">
@@ -304,7 +321,15 @@ export default function Home() {
                 </li>
               </ul>
               
-              <button className="btn btn-primary w-full">Get Started</button>
+              <button 
+                className="btn btn-primary w-full"
+                onClick={(e) => {
+                  e.preventDefault();
+                  buyProduct("493050");
+                }}
+              >
+                Get my meals
+              </button>
             </div>
           </div>
         </section>
