@@ -31,7 +31,6 @@ export default function WeekSidebar({ weekNumber, relatedWeeks, router }) {
                     <option key={w} value={w}>Week {w}</option>
                   ))}
                 </select>
-                <button className="btn btn-primary">Go</button>
               </div>
             </div>
           </div>
