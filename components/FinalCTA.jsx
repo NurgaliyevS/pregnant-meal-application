@@ -19,7 +19,7 @@ function FinalCTA() {
           />
           <Link 
             href="/demo" 
-            className="btn btn-outline bg-white text-purple-600 hover:bg-white hover:text-pink-500 border-0"
+            className="btn btn-outline bg-white text-purple-600 hover:bg-white hover:text-pink-500 border-0 text-base sm:text-lg px-5 py-3 h-auto min-h-12"
           >
             <FiInfo className="h-5 w-5 mr-2" />
             See Sample Meals

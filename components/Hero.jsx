@@ -17,7 +17,10 @@ function Hero() {
           </p>
           <div className="flex flex-row gap-4 w-full justify-center lg:justify-start">
             <CTAButton plausibleNameBeforeLogin="GET_STARTED_HERO" />
-            <Link href="/demo" className="btn btn-outline btn-primary">
+            <Link 
+              href="/demo" 
+              className="btn btn-outline btn-primary text-base sm:text-lg px-5 py-3 h-auto min-h-12"
+            >
               <FiInfo className="h-5 w-5 mr-2" />
               Demo
             </Link>

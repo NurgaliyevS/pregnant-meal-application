@@ -2,6 +2,7 @@ import Link from "next/link";
 import { handleSignIn } from "./handleSignIn";
 import { useSession } from "next-auth/react";
 import { usePlausible } from "next-plausible";
+import { FiArrowRight } from "react-icons/fi";
 
 const CTANAME = "Make My Meals";
 
@@ -16,7 +17,7 @@ function CTAButton(props) {
       {!session?.user ? (
         <Link
           href="#"
-          className={`btn btn-primary no-underline ${className}`}
+          className={`btn btn-primary no-underline text-base sm:text-lg px-5 py-3 h-auto min-h-12 ${className}`}
           onClick={(e) => {
             e.preventDefault();
             plausible(plausibleNameBeforeLogin);
@@ -24,11 +25,12 @@ function CTAButton(props) {
           }}
         >
           {buttonText || CTANAME}
+          <FiArrowRight className="ml-2 h-5 w-5" />
         </Link>
       ) : (
         <Link
           href="/meal"
-          className={`btn btn-primary no-underline ${className}`}
+          className={`btn btn-primary no-underline text-base sm:text-lg px-5 py-3 h-auto min-h-12 ${className}`}
           title="Meal page"
           rel="nofollow"
           onClick={() => {
@@ -36,6 +38,7 @@ function CTAButton(props) {
           }}
         >
           {buttonText || CTANAME}
+          <FiArrowRight className="ml-2 h-5 w-5" />
         </Link>
       )}
     </>
