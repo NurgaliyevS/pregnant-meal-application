@@ -137,8 +137,14 @@ function NewMeal() {
       if (userData?.data?.success && mealsUser) {
         const variantName = userData.data?.data?.variant_name;
         if (variantName && variantName !== "free") {
-          const maxRecipes = getMaxRecipesForPlan(variantName.toLowerCase());
-          if (mealsUser.length <= maxRecipes) {
+          const maxMeals = getMaxRecipesForPlan(variantName.toLowerCase());
+          
+          // Calculate total meal count from all preferences
+          const totalMealCount = mealsUser.reduce((total, preference) => {
+            return total + (preference.mealCountPerDay || 0);
+          }, 0);
+          
+          if (totalMealCount < maxMeals) {
             setIsDisabled(false);
           }
         }
