@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import { isDevelopment } from "@/utils/isDevelopment";
 
 const uri = isDevelopment()
-  ? process.env.MONGODB_URI_DEV
+  ? process.env.MONGODB_URI
   : process.env.MONGODB_URI;
 
 if (!uri) {
