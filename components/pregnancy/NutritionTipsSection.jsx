@@ -1,3 +1,5 @@
+import CTAButton from "@/components/CTAButton";
+
 export default function NutritionTipsSection({ weekNumber }) {
   return (
     <section id="nutrition" className="card bg-base-100 shadow-xl mb-8">
@@ -91,8 +93,12 @@ export default function NutritionTipsSection({ weekNumber }) {
           )}
         </div>
         
-        <div className="mt-6">
-          <a href="/meal-plans" className="btn btn-primary btn-block">Get Your Personalized Meal Plan</a>
+        <div className="mt-6 flex justify-center">
+          <CTAButton 
+            plausibleNameBeforeLogin={`MEAL_PLAN_NUTRITION_WEEK_${weekNumber}`}
+            text="Get Your Personalized Meal Plan"
+            className="w-full"
+          />
         </div>
       </div>
     </section>

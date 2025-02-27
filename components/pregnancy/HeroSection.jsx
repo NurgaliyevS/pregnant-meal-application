@@ -1,3 +1,5 @@
+import CTAButton from "@/components/CTAButton";
+
 export default function HeroSection({ weekNumber, months, trimester, fruitSize }) {
   return (
     <section className="bg-gradient-to-b from-primary/10 to-base-100 py-12">
@@ -22,7 +24,9 @@ export default function HeroSection({ weekNumber, months, trimester, fruitSize }
               You're making great progress in your pregnancy journey!
             </p>
             <div className="flex flex-wrap gap-3">
-              <a href="/meal-plans" className="btn btn-primary">Get Meal Plans</a>
+              <CTAButton 
+                plausibleNameBeforeLogin={`GET_MEAL_PLANS_WEEK_${weekNumber}`}
+              />
               <a href="#nutrition" className="btn btn-outline">Nutrition Tips</a>
             </div>
           </div>

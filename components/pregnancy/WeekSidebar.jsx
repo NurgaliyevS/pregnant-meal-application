@@ -1,3 +1,5 @@
+import CTAButton from "@/components/CTAButton";
+
 export default function WeekSidebar({ weekNumber, relatedWeeks, router }) {
   return (
     <div className="lg:col-span-1">
@@ -39,7 +41,10 @@ export default function WeekSidebar({ weekNumber, relatedWeeks, router }) {
           <div className="card-body">
             <h3 className="card-title text-xl">Personalized Meal Plans</h3>
             <p className="mb-4">Get nutrition plans tailored to week {weekNumber} of your pregnancy.</p>
-            <a href="/meal-plans" className="btn btn-secondary">Get Started</a>
+            <CTAButton 
+              plausibleNameBeforeLogin={`SIDEBAR_MEAL_PLAN_WEEK_${weekNumber}`}
+              className="btn-secondary"
+            />
           </div>
         </div>
         
