@@ -44,7 +44,10 @@ function NewMeal() {
   const [currentStep, setCurrentStep] = useState(0);
   const [mealPlan, setMealPlan] = useState(null);
   const [mealPlanStructured, setMealPlanStructured] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isFreePlan, setIsFreePlan] = useState(true);
+  const [hasReachedLimit, setHasReachedLimit] = useState(true);
+  const [showLimitModal, setShowLimitModal] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const steps = [
     { name: "You", active: currentStep >= 0 },
@@ -57,9 +60,17 @@ function NewMeal() {
   }, [session]);
 
   const handleSubmit = async (formData) => {
+    if (isButtonClicked) return;
+    setIsButtonClicked(true);
+    
+    if (isFreePlan || hasReachedLimit) {
+      setShowLimitModal(true);
+      setIsButtonClicked(false);
+      return;
+    }
+    
     setCurrentStep(1);
     try {
-      // Create meal preference and generate meal plan
       const preferenceId = await createMealPreference(formData);
       const mealPlanData = await generateMealPlan(preferenceId, formData);
       
@@ -67,7 +78,6 @@ function NewMeal() {
       setMealPlanStructured(mealPlanData.mealPlanStructured);
       setCurrentStep(2);
 
-      // Generate images in the background
       generateMealImages(preferenceId, mealPlanData.mealPlanStructured);
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -75,6 +85,8 @@ function NewMeal() {
       setMealPlan(null);
       setMealPlanStructured(null);
       toast.error("Error generating meal plan");
+    } finally {
+      setIsButtonClicked(false);
     }
   };
 
@@ -118,6 +130,9 @@ function NewMeal() {
 
   const fetchUserData = async () => {
     if (!session) return;
+    setIsFreePlan(true);
+    setHasReachedLimit(true);
+    
     try {
       const userData = await axios.get("/api/users/user", {
         params: {
@@ -134,23 +149,33 @@ function NewMeal() {
       );
       const mealsUser = mealPreferencesResponse?.data;
 
-      if (userData?.data?.success && mealsUser) {
+      if (userData?.data?.success) {
         const variantName = userData.data?.data?.variant_name;
-        if (variantName && variantName !== "free") {
+        
+        if (!variantName || variantName === "free") {
+          setIsFreePlan(true);
+          setHasReachedLimit(true);
+        } else {
+          setIsFreePlan(false);
+          
           const maxMeals = getMaxRecipesForPlan(variantName.toLowerCase());
           
-          // Calculate total meal count from all preferences
-          const totalMealCount = mealsUser.reduce((total, preference) => {
+          const totalMealCount = mealsUser ? mealsUser.reduce((total, preference) => {
             return total + (preference.mealCountPerDay || 0);
-          }, 0);
+          }, 0) : 0;
           
-          if (totalMealCount < maxMeals) {
-            setIsDisabled(false);
+          if (totalMealCount >= maxMeals) {
+            setHasReachedLimit(true);
+          } else {
+            setHasReachedLimit(false);
           }
         }
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
+      setIsFreePlan(true);
+      setHasReachedLimit(true);
+    } finally {
     }
   };
 
@@ -165,6 +190,10 @@ function NewMeal() {
       default:
         return 0;
     }
+  };
+
+  const navigateToPricing = () => {
+    window.location.href = "/#pricing";
   };
 
   return (
@@ -196,7 +225,6 @@ function NewMeal() {
               {currentStep === 0 && (
                 <MealForm
                   initialFormData={formData}
-                  isDisabled={isDisabled}
                   onSubmit={handleSubmit}
                 />
               )}
@@ -214,6 +242,35 @@ function NewMeal() {
       <footer className={lato.className}>
         <Footer />
       </footer>
+
+      {showLimitModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
+            <h3 className="font-bold text-xl mb-4 text-primary">
+              {isFreePlan ? "Upgrade Required" : "Meal Plan Limit Reached"}
+            </h3>
+            <p className="mb-6">
+              {isFreePlan 
+                ? "You're currently on the free plan. Upgrade to create delicious meal plans tailored for your pregnancy journey."
+                : "You've reached your meal plan limit. Upgrade to a higher plan to create more meal plans."}
+            </p>
+            <div className="flex justify-between">
+              <button 
+                className="btn btn-outline"
+                onClick={() => setShowLimitModal(false)}
+              >
+                Close
+              </button>
+              <button 
+                className="btn btn-primary"
+                onClick={navigateToPricing}
+              >
+                View Pricing Plans
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
