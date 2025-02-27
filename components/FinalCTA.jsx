@@ -11,10 +11,10 @@ function FinalCTA() {
     <section className="bg-gradient-to-r from-pink-500 to-purple-600 text-white py-10 lg:py-16">
       <div className="container max-w-7xl mx-auto px-4 sm:px-8 text-center">
         <h2 className="font-bold text-2xl sm:text-3xl lg:text-5xl mb-4 lg:mb-6">
-          Nourish Your Baby's Future Today!
+          Start Your Healthy Pregnancy Now!
         </h2>
         <p className="text-base sm:text-lg lg:text-xl mb-6 lg:mb-8 max-w-2xl mx-auto">
-          Join thousands of happy moms who discovered delicious, nutrient-packed meals designed specifically for pregnancy. Your baby will thank you!
+          Join our community of moms who are enjoying delicious, healthy meals for pregnancy. Give your baby the best start with proper nutrition!
         </p>
         <div className="flex flex-row flex-wrap gap-4 justify-center">
           <CTAButton 
