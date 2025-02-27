@@ -24,7 +24,7 @@ function SampleMeals() {
             </div>
             <div className="p-4 sm:p-6 text-primary-focus">
               <h3 className="font-bold text-lg sm:text-xl mb-2">Breakfast</h3>
-              <p className="text-sm sm:text-base">Greek yogurt with berries and granola</p>
+              <p className="text-sm sm:text-base">Avocado toast with eggs</p>
             </div>
           </div>
           
@@ -43,7 +43,7 @@ function SampleMeals() {
             <div className="p-4 sm:p-6 text-primary-focus">
               <h3 className="font-bold text-lg sm:text-xl mb-2">Lunch</h3>
               <p className="text-sm sm:text-base">
-                Caesar Salad with grilled chicken
+                Caesar salad with grilled chicken and homemade dressing
               </p>
             </div>
           </div>
@@ -63,7 +63,7 @@ function SampleMeals() {
             <div className="p-4 sm:p-6 text-primary-focus">
               <h3 className="font-bold text-lg sm:text-xl mb-2">Dinner</h3>
               <p className="text-sm sm:text-base">
-                Pasta Primavera with salmon and roasted vegetables
+                Pasta primavera with seasonal vegetables and fresh herbs
               </p>
             </div>
           </div>
