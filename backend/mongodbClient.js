@@ -14,7 +14,6 @@ const options = {
   serverSelectionTimeoutMS: 30000,
   socketTimeoutMS: 45000,
   connectTimeoutMS: 30000,
-  keepAlive: true,
 };
 
 let client;
