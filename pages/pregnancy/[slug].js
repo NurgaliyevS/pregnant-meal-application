@@ -1,18 +1,29 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { customConfig } from "../../project.custom.config";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Noto_Sans } from "next/font/google";
-import { 
-  FaSeedling, FaAppleAlt, FaLemon, FaCarrot, 
-  FaPepperHot, FaEgg, FaPumpkin 
+import { GiPumpkin } from "react-icons/gi"; // Replace FaPumpkin with GiPumpkin
+import {
+  FaSeedling,
+  FaAppleAlt,
+  FaLemon,
+  FaCarrot,
+  FaPepperHot,
 } from "react-icons/fa";
-import { 
-  GiCherry, GiStrawberry, GiCoconuts, GiPineapple, 
-  GiWatermelon, GiAvocado, GiBanana, GiPeach, 
-  GiPear, GiGrapes, GiCorn, GiCauliflower 
+import {
+  GiCherry,
+  GiStrawberry,
+  GiCoconuts,
+  GiPineapple,
+  GiWatermelon,
+  GiAvocado,
+  GiBanana,
+  GiPeach,
+  GiPear,
+  GiGrapes,
+  GiCorn,
+  GiBroccoli,
 } from "react-icons/gi";
 import PageHead from "@/components/pregnancy/PageHead";
 import HeroSection from "@/components/pregnancy/HeroSection";
@@ -72,7 +83,11 @@ export default function WeeksToMonthsPage() {
   // Generate related weeks for navigation
   const getRelatedWeeks = (currentWeek) => {
     const weeks = [];
-    for (let i = Math.max(1, currentWeek - 2); i <= Math.min(42, currentWeek + 2); i++) {
+    for (
+      let i = Math.max(1, currentWeek - 2);
+      i <= Math.min(42, currentWeek + 2);
+      i++
+    ) {
       if (i !== currentWeek) {
         weeks.push(i);
       }
@@ -82,30 +97,125 @@ export default function WeeksToMonthsPage() {
 
   // Get fruit size comparison with icon
   const getFruitSize = (week) => {
-    if (week <= 4) return { name: "poppy seed", icon: <FaSeedling className="text-green-500" size={40} /> };
-    if (week <= 6) return { name: "lentil", icon: <FaSeedling className="text-green-700" size={40} /> };
-    if (week <= 7) return { name: "blueberry", icon: <GiGrapes className="text-blue-700" size={40} /> };
-    if (week <= 8) return { name: "raspberry", icon: <GiGrapes className="text-red-500" size={40} /> };
-    if (week <= 9) return { name: "cherry", icon: <GiCherry className="text-red-600" size={40} /> };
-    if (week <= 10) return { name: "strawberry", icon: <GiStrawberry className="text-red-500" size={40} /> };
-    if (week <= 12) return { name: "lime", icon: <FaLemon className="text-green-500" size={40} /> };
-    if (week <= 13) return { name: "lemon", icon: <FaLemon className="text-yellow-400" size={40} /> };
-    if (week <= 14) return { name: "peach", icon: <GiPeach className="text-orange-300" size={40} /> };
-    if (week <= 15) return { name: "apple", icon: <FaAppleAlt className="text-red-500" size={40} /> };
-    if (week <= 16) return { name: "avocado", icon: <GiAvocado className="text-green-700" size={40} /> };
-    if (week <= 17) return { name: "pear", icon: <GiPear className="text-green-500" size={40} /> };
-    if (week <= 18) return { name: "bell pepper", icon: <FaPepperHot className="text-red-500" size={40} /> };
-    if (week <= 20) return { name: "banana", icon: <GiBanana className="text-yellow-400" size={40} /> };
-    if (week <= 21) return { name: "carrot", icon: <FaCarrot className="text-orange-500" size={40} /> };
-    if (week <= 23) return { name: "grapefruit", icon: <GiGrapes className="text-pink-300" size={40} /> };
-    if (week <= 24) return { name: "corn on the cob", icon: <GiCorn className="text-yellow-500" size={40} /> };
-    if (week <= 27) return { name: "cauliflower", icon: <GiCauliflower className="text-gray-100" size={40} /> };
-    if (week <= 29) return { name: "butternut squash", icon: <FaPumpkin className="text-orange-400" size={40} /> };
-    if (week <= 32) return { name: "coconut", icon: <GiCoconuts className="text-brown-500" size={40} /> };
-    if (week <= 33) return { name: "pineapple", icon: <GiPineapple className="text-yellow-500" size={40} /> };
-    if (week <= 36) return { name: "honeydew melon", icon: <GiWatermelon className="text-green-300" size={40} /> };
-    if (week <= 40) return { name: "small pumpkin", icon: <FaPumpkin className="text-orange-500" size={40} /> };
-    return { name: "watermelon", icon: <GiWatermelon className="text-green-600" size={40} /> };
+    if (week <= 4)
+      return {
+        name: "poppy seed",
+        icon: <FaSeedling className="text-green-500" size={40} />,
+      };
+    if (week <= 6)
+      return {
+        name: "lentil",
+        icon: <FaSeedling className="text-green-700" size={40} />,
+      };
+    if (week <= 7)
+      return {
+        name: "blueberry",
+        icon: <GiGrapes className="text-blue-700" size={40} />,
+      };
+    if (week <= 8)
+      return {
+        name: "raspberry",
+        icon: <GiGrapes className="text-red-500" size={40} />,
+      };
+    if (week <= 9)
+      return {
+        name: "cherry",
+        icon: <GiCherry className="text-red-600" size={40} />,
+      };
+    if (week <= 10)
+      return {
+        name: "strawberry",
+        icon: <GiStrawberry className="text-red-500" size={40} />,
+      };
+    if (week <= 12)
+      return {
+        name: "lime",
+        icon: <FaLemon className="text-green-500" size={40} />,
+      };
+    if (week <= 13)
+      return {
+        name: "lemon",
+        icon: <FaLemon className="text-yellow-400" size={40} />,
+      };
+    if (week <= 14)
+      return {
+        name: "peach",
+        icon: <GiPeach className="text-orange-300" size={40} />,
+      };
+    if (week <= 15)
+      return {
+        name: "apple",
+        icon: <FaAppleAlt className="text-red-500" size={40} />,
+      };
+    if (week <= 16)
+      return {
+        name: "avocado",
+        icon: <GiAvocado className="text-green-700" size={40} />,
+      };
+    if (week <= 17)
+      return {
+        name: "pear",
+        icon: <GiPear className="text-green-500" size={40} />,
+      };
+    if (week <= 18)
+      return {
+        name: "bell pepper",
+        icon: <FaPepperHot className="text-red-500" size={40} />,
+      };
+    if (week <= 20)
+      return {
+        name: "banana",
+        icon: <GiBanana className="text-yellow-400" size={40} />,
+      };
+    if (week <= 21)
+      return {
+        name: "carrot",
+        icon: <FaCarrot className="text-orange-500" size={40} />,
+      };
+    if (week <= 23)
+      return {
+        name: "grapefruit",
+        icon: <GiGrapes className="text-pink-300" size={40} />,
+      };
+    if (week <= 24)
+      return {
+        name: "corn on the cob",
+        icon: <GiCorn className="text-yellow-500" size={40} />,
+      };
+    if (week <= 27)
+      return {
+        name: "cauliflower",
+        icon: <GiBroccoli className="text-green-100" size={40} />,
+      };
+    if (week <= 29)
+      return {
+        name: "butternut squash",
+        icon: <GiPumpkin className="text-orange-400" size={40} />,
+      };
+    if (week <= 32)
+      return {
+        name: "coconut",
+        icon: <GiCoconuts className="text-brown-500" size={40} />,
+      };
+    if (week <= 33)
+      return {
+        name: "pineapple",
+        icon: <GiPineapple className="text-yellow-500" size={40} />,
+      };
+    if (week <= 36)
+      return {
+        name: "honeydew melon",
+        icon: <GiWatermelon className="text-green-300" size={40} />,
+      };
+    if (week <= 40)
+      return {
+        name: "small pumpkin",
+        icon: <GiPumpkin className="text-orange-500" size={40} />,
+      };
+    return {
+      name: "watermelon",
+      icon: <GiWatermelon className="text-green-600" size={40} />,
+    };
   };
 
   if (loading) {
@@ -120,13 +230,13 @@ export default function WeeksToMonthsPage() {
   const trimester = getTrimester(weekNumber);
   const relatedWeeks = getRelatedWeeks(weekNumber);
   const fruitSize = getFruitSize(weekNumber);
-  
+
   const pageTitle = `${weekNumber} Weeks Pregnant in Months - ${months} Months | PregnantMeal`;
   const pageDescription = `${weekNumber} weeks pregnant equals ${months} months. Learn about your baby's development, what to expect, and get meal plans for week ${weekNumber} of pregnancy.`;
 
   return (
     <div className={lato.className}>
-      <PageHead 
+      <PageHead
         pageTitle={pageTitle}
         pageDescription={pageDescription}
         weekNumber={weekNumber}
@@ -137,7 +247,7 @@ export default function WeeksToMonthsPage() {
       <Header />
 
       <main className="bg-base-100">
-        <HeroSection 
+        <HeroSection
           weekNumber={weekNumber}
           months={months}
           trimester={trimester}
@@ -156,13 +266,13 @@ export default function WeeksToMonthsPage() {
             </div>
 
             {/* Sidebar */}
-            <WeekSidebar 
+            <WeekSidebar
               weekNumber={weekNumber}
               relatedWeeks={relatedWeeks}
               router={router}
             />
           </div>
-          
+
           <SupportSection />
         </div>
       </main>
