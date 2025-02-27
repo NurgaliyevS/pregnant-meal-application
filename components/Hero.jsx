@@ -1,10 +1,13 @@
-import React from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import CTAButton from "@/components/CTAButton";
-import { FiInfo } from "react-icons/fi";
+import VideoModal from "@/components/VideoModal";
+import { FiInfo, FiPlay } from "react-icons/fi";
 
 function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-4 sm:px-8 py-10 lg:py-24 gap-10">
       <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-8 lg:gap-16">
@@ -16,14 +19,17 @@ function Hero() {
             Simple meal plans designed for each stage of your pregnancy journey.
           </p>
           <div className="flex flex-row gap-4 w-full justify-center lg:justify-start">
-            <CTAButton plausibleNameBeforeLogin="GET_STARTED_HERO" />
-            <Link 
-              href="/demo" 
-              className="btn btn-outline btn-primary text-base sm:text-lg px-5 py-3 h-auto min-h-12"
+            <CTAButton 
+              plausibleNameBeforeLogin="GET_STARTED_HERO" 
+              buttonText="Dashboard"
+            />
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-gray-700 font-medium text-base border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors"
             >
-              <FiInfo className="h-5 w-5 mr-2" />
-              Demo
-            </Link>
+              <FiPlay className="mr-2 h-5 w-5 text-gray-600" />
+              Watch Demo
+            </button>
           </div>
         </div>
         <div className="w-full lg:w-1/2 mt-6 lg:mt-0">
@@ -37,6 +43,12 @@ function Hero() {
           />
         </div>
       </div>
+      
+      <VideoModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        videoId="IKjZ3iLOztw" 
+      />
     </section>
   );
 }
