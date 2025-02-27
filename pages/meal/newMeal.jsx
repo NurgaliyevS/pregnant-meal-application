@@ -59,46 +59,60 @@ function NewMeal() {
   const handleSubmit = async (formData) => {
     setCurrentStep(1);
     try {
-      // Create meal preference
-      const preferenceResponse = await axios.post("/api/core/meal-preferences", {
-        user_email: session.user.email,
-        ...formData,
-      });
-
-      if (!preferenceResponse?.data?.preference?._id) {
-        throw new Error('Failed to create meal preference');
-      }
-
-      // Generate meal plan text
-      const mealPlanResponse = await axios.post("/api/core/generate-meal-plan-text", {
-        prompt: preferenceResponse.data.preference._id,
-        formData: formData,
-      });
-
-      setMealPlan(mealPlanResponse.data.mealPlan);
-      setMealPlanStructured(mealPlanResponse.data.mealPlanStructured);
+      // Create meal preference and generate meal plan
+      const preferenceId = await createMealPreference(formData);
+      const mealPlanData = await generateMealPlan(preferenceId, formData);
+      
+      setMealPlan(mealPlanData.mealPlan);
+      setMealPlanStructured(mealPlanData.mealPlanStructured);
       setCurrentStep(2);
 
       // Generate images in the background
-
-      try {
-        // const imagesResponse = await axios.post("/api/core/generate-meal-images", {
-        //   id: preferenceResponse.data.preference._id,
-        //   mealPlanStructured: mealPlanResponse.data.mealPlanStructured
-        // });
-        // setMealPlanStructured(imagesResponse.data.mealPlanStructured);
-      } catch (imageError) {
-        console.error("Error generating images:", imageError);
-        toast.warning("Some meal images could not be generated");
-      } finally {
-      }
-
+      generateMealImages(preferenceId, mealPlanData.mealPlanStructured);
     } catch (error) {
       console.error("Error submitting form:", error);
       setCurrentStep(0);
       setMealPlan(null);
       setMealPlanStructured(null);
       toast.error("Error generating meal plan");
+    }
+  };
+
+  const createMealPreference = async (formData) => {
+    const preferenceResponse = await axios.post("/api/core/meal-preferences", {
+      user_email: session.user.email,
+      ...formData,
+    });
+
+    if (!preferenceResponse?.data?.preference?._id) {
+      throw new Error('Failed to create meal preference');
+    }
+    
+    return preferenceResponse.data.preference._id;
+  };
+
+  const generateMealPlan = async (preferenceId, formData) => {
+    const mealPlanResponse = await axios.post("/api/core/generate-meal-plan-text", {
+      prompt: preferenceId,
+      formData: formData,
+    });
+    
+    return {
+      mealPlan: mealPlanResponse.data.mealPlan,
+      mealPlanStructured: mealPlanResponse.data.mealPlanStructured
+    };
+  };
+
+  const generateMealImages = async (preferenceId, mealPlanStructured) => {
+    try {
+      const imagesResponse = await axios.post("/api/core/generate-meal-images", {
+        id: preferenceId,
+        mealPlanStructured: mealPlanStructured
+      });
+      setMealPlanStructured(imagesResponse.data.mealPlanStructured);
+    } catch (imageError) {
+      console.error("Error generating images:", imageError);
+      toast.warning("Some meal images could not be generated");
     }
   };
 
