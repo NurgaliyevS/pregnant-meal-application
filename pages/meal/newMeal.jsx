@@ -82,11 +82,11 @@ function NewMeal() {
       // Generate images in the background
 
       try {
-        const imagesResponse = await axios.post("/api/core/generate-meal-images", {
-          id: preferenceResponse.data.preference._id,
-          mealPlanStructured: mealPlanResponse.data.mealPlanStructured
-        });
-        setMealPlanStructured(imagesResponse.data.mealPlanStructured);
+        // const imagesResponse = await axios.post("/api/core/generate-meal-images", {
+        //   id: preferenceResponse.data.preference._id,
+        //   mealPlanStructured: mealPlanResponse.data.mealPlanStructured
+        // });
+        // setMealPlanStructured(imagesResponse.data.mealPlanStructured);
       } catch (imageError) {
         console.error("Error generating images:", imageError);
         toast.warning("Some meal images could not be generated");
