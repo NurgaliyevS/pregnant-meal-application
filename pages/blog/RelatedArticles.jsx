@@ -53,7 +53,7 @@ const RelatedArticles = ({ currentPost, relatedPosts }) => {
               </p>
               <div className="flex items-center gap-4 text-sm mt-auto">
                 <Link
-                  href={`/blog/author/${post.author.toLowerCase()}`}
+                  href={`/blog/author/sabyr`}
                   className="inline-flex items-center gap-2 group"
                   title={`Post By ${post.author}`}
                   rel="author"
