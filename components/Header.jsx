@@ -22,8 +22,8 @@ const defaultLinks = [
     label: "FAQ",
   },
   {
-    href: "/#reviews",
-    label: "Reviews",
+    href: "/#sample",
+    label: "Sample",
   },
 ];
 

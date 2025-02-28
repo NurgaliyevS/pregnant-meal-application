@@ -3,7 +3,7 @@ import CTAButton from "@/components/CTAButton";
 
 function SampleMeals() {
   return (
-    <section className="bg-white py-10 lg:py-24">
+    <section className="bg-white py-10 lg:py-24" id="sample">
       <div className="container max-w-7xl mx-auto px-4 sm:px-8">
         <h2 className="font-bold text-2xl sm:text-3xl lg:text-5xl text-center mb-10 lg:mb-16 text-primary">
           Sample Meals
