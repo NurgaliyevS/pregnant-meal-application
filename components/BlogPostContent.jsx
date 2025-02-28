@@ -1,4 +1,4 @@
-import RelatedArticles from "./RelatedArticles";
+import RelatedArticles from "../pages/blog/RelatedArticles";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,6 +6,7 @@ import Head from "next/head";
 import { format } from "date-fns";
 import BlogHeader from "@/components/BlogHeader";
 import { renderAst } from "@/utils/renderAst";
+import { customConfig } from "@/project.custom.config";
 
 function BlogPostContent({ post, relatedPosts }) {
   if (!post) {
@@ -29,20 +30,42 @@ function BlogPostContent({ post, relatedPosts }) {
     <div className="mx-auto">
       <Head>
         <title>{`${post.title} | PregnantMeal Blog`}</title>
-        <meta name="description" content={post.excerpt} />
-        <meta name="keywords" content={post.tags.join(", ")} />
+        <meta name="description" content={post.excerpt} key="description" />
+        <meta name="keywords" content={post.tags.join(", ")} key="keywords" />
         <link
           rel="canonical"
-          href={`https://pregnantmeal.com/blog/${post.slug}`}
+          href={`${customConfig.domainWithHttps}/blog/${post.slug}`}
+          key="canonical"
         />
-        <meta property="og:title" content={`${post.title} | PregnantMeal Blog`} />
-        <meta property="og:description" content={post.excerpt} />
+        
+        {/* Open Graph / Social Media Meta Tags */}
+        <meta property="og:title" content={`${post.title} | PregnantMeal Blog`} key="og:title" />
+        <meta property="og:description" content={post.excerpt} key="og:description" />
         <meta
           property="og:url"
-          content={`https://pregnantmeal.com/blog/${post.slug}`}
+          content={`${customConfig.domainWithHttps}/blog/${post.slug}`}
+          key="og:url"
         />
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="article" key="og:type" />
+        <meta property="og:site_name" content={customConfig.seo.applicationName} />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:image" content={post.image || customConfig.seo.og.image} key="og:image" />
+        <meta property="og:image:alt" content={post.alt || customConfig.seo.og.imageAlt} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="article:published_time" content={post.date} />
+        <meta property="article:author" content={customConfig.seo.og.articleAuthor} />
+        <meta property="article:tag" content={post.tags.join(", ")} />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" key="twitter:card" />
+        <meta name="twitter:site" content={customConfig.seo.og.twitterSite} key="twitter:site" />
+        <meta name="twitter:creator" content="@tech_nurgaliyev" />
+        <meta name="twitter:title" content={`${post.title} | PregnantMeal Blog`} key="twitter:title" />
+        <meta name="twitter:description" content={post.excerpt} key="twitter:description" />
+        <meta name="twitter:image" content={post.image || customConfig.seo.og.twitterImage} key="twitter:image" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

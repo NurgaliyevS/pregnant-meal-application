@@ -5,7 +5,7 @@ import { remark } from "remark";
 import html from "remark-html";
 import React from "react";
 import remarkGfm from "remark-gfm";
-import BlogPostContent from "./BlogPostContent";
+import BlogPostContent from "../../components/BlogPostContent";
 
 export async function getStaticPaths() {
   const postsDirectory = path.join(process.cwd(), "blog-posts");

@@ -27,16 +27,40 @@ export default function BlogIndex({ posts }) {
   return (
     <div className="mx-auto">
       <Head>
-        <title>PregnantMeal Blog</title>
+        <title>{customConfig.blog.title}</title>
         <meta
           name="description"
-          content={customConfig.seo.description}
+          content={customConfig.blog.description}
+          key="description"
         />
         <meta
           name="keywords"
-          content={customConfig.seo.keywords}
+          content={customConfig.blog.description}
+          key="keywords"
         />
-        <link rel="canonical" href={`https://pregnantmeal.com/blog`} />
+        <link rel="canonical" href={`${customConfig.domainWithHttps}/blog`} key="canonical" />
+        
+        {/* Open Graph / Social Media Meta Tags */}
+        <meta property="og:title" content={customConfig.blog.title} key="og:title" />
+        <meta property="og:description" content={customConfig.blog.description} key="og:description" />
+        <meta property="og:url" content={`${customConfig.domainWithHttps}/blog`} key="og:url" />
+        <meta property="og:type" content="website" key="og:type" />
+        <meta property="og:site_name" content={customConfig.seo.applicationName} />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:image" content={customConfig.seo.og.image} key="og:image" />
+        <meta property="og:image:alt" content={customConfig.seo.og.imageAlt} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="article:author" content={customConfig.seo.og.articleAuthor} />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" key="twitter:card" />
+        <meta name="twitter:site" content={customConfig.seo.og.twitterSite} key="twitter:site" />
+        <meta name="twitter:creator" content="@tech_nurgaliyev" />
+        <meta name="twitter:title" content={customConfig.blog.title} key="twitter:title" />
+        <meta name="twitter:description" content={customConfig.blog.description} key="twitter:description" />
+        <meta name="twitter:image" content={customConfig.seo.og.twitterImage} key="twitter:image" />
       </Head>
       <BlogHeader />
       <main className="min-h-screen max-w-6xl mx-auto p-8">
