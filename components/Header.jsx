@@ -23,7 +23,7 @@ const defaultLinks = [
   },
   {
     href: "/#sample",
-    label: "Sample",
+    label: "Meals",
   },
 ];
 
