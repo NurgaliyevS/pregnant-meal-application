@@ -10,8 +10,14 @@ module.exports = {
       { userAgent: '*', disallow: '/meal/' },
       { userAgent: '*', allow: '/' },
     ],
+    additionalSitemaps: [
+      'https://pregnantmeal.com/sitemap-pregnancy.xml',
+    ],
   },
   exclude: ["/meal", "/meal/*", "/blocked"],
+  sitemapSize: 7000,
+  generateIndexSitemap: true,
+  outDir: "public",
   additionalPaths: async (config) => {
     const result = [];
     const postsDirectory = path.join(process.cwd(), "blog-posts");
@@ -24,6 +30,16 @@ module.exports = {
         priority: 0.7,
       });
     });
+
+    // Add pregnancy week pages
+    for (let week = 1; week <= 42; week++) {
+      result.push({
+        loc: `/pregnancy/${week}-weeks-pregnant-in-months`,
+        lastmod: new Date('2025-03-01').toISOString(),
+        changefreq: "monthly",
+        priority: 0.8,
+      });
+    }
 
     return result;
   },

@@ -21,18 +21,6 @@ We have created the following sitemap files:
 
 ## How to Submit Sitemaps to Search Engines
 
-### Method 1: Using the Script
-
-We've created a script to automatically submit your sitemaps to major search engines:
-
-```bash
-# Navigate to your project directory
-cd /path/to/your/project
-
-# Run the script
-node scripts/submit-sitemaps.js
-```
-
 ### Method 2: Manual Submission
 
 #### Google Search Console
