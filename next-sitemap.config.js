@@ -31,16 +31,26 @@ module.exports = {
       });
     });
 
-    // Add pregnancy week pages
+    return result;
+  },
+  sitemapTransformer: async (config, sitemaps) => {
+    const pregnancyUrls = [];
     for (let week = 1; week <= 42; week++) {
-      result.push({
-        loc: `/pregnancy/${week}-weeks-pregnant-in-months`,
+      pregnancyUrls.push({
+        loc: `${config.siteUrl}/pregnancy/${week}-weeks-pregnant-in-months`,
         lastmod: new Date('2025-03-01').toISOString(),
         changefreq: "monthly",
         priority: 0.8,
       });
     }
 
-    return result;
-  },
+    const pregnancySitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+${pregnancyUrls.map(url => `<url><loc>${url.loc}</loc><lastmod>${url.lastmod}</lastmod><changefreq>${url.changefreq}</changefreq><priority>${url.priority}</priority></url>`).join('\n')}
+</urlset>`;
+
+    fs.writeFileSync(path.join(config.outDir, 'sitemap-pregnancy.xml'), pregnancySitemap);
+
+    return sitemaps;
+  }
 };
