@@ -51,9 +51,9 @@ export default function WeekSidebar({ weekNumber, relatedWeeks, router }) {
           <div className="card-body">
             <h3 className="card-title text-xl">Pregnancy Resources</h3>
             <ul className="menu bg-base-200 rounded-box">
-              <li><a href="/blog/first-trimester-nutrition">First Trimester Nutrition</a></li>
-              <li><a href="/blog/managing-pregnancy-symptoms">Managing Pregnancy Symptoms</a></li>
-              <li><a href="/blog/preparing-for-labor">Preparing for Labor</a></li>
+              <li><a href="/blog/first-trimester-pregnancy-meal-planning">First Trimester Meal Planning</a></li>
+              <li><a href="/blog/food-aversion-pregnancy">Managing Food Aversions</a></li>
+              <li><a href="/blog/7-day-meal-plan-pregnant-women">7-Day Meal Plan</a></li>
               <li><a href="/blog">More Articles</a></li>
             </ul>
           </div>
