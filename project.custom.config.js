@@ -18,7 +18,7 @@ export const customConfig = {
   domainWithHttps: "https://pregnantmeal.com",
   seo: {
     keywords:
-      "first trimester recipes, 7 day meal plan for pregnant woman, pregnancy dinner recipes first trimester, dinner ideas for first trimester, meal plans for pregnant moms",
+      "first trimester recipes, 7 day meal plan for pregnant woman, pregnancy dinner recipes first trimester, dinner ideas for first trimester, meal plans for pregnant moms, pregnantmeal, pregnant meal",
     description:
       "PregnantMeal - pregnancy dinner recipes first trimester! Get personalized daily, weekly, and monthly meal plans for a healthy pregnancy.",
     themeColor: "#ffffff",

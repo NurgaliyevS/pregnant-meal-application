@@ -23,9 +23,15 @@ export default function Home() {
         <meta
           name="description"
           content={customConfig.seo.description}
+          key="description"
+        />
+        <meta
+          name="keywords"
+          content={customConfig.seo.keywords}
+          key="keywords"
         />
         <title>{customConfig.documentTitle}</title>
-        <link rel="canonical" href={customConfig.domainWithHttps} />
+        <link rel="canonical" href={customConfig.domainWithHttps} key="canonical" />
       </Head>
       <header className={lato.className}>
         <Header />

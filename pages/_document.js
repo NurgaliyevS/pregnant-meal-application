@@ -9,11 +9,7 @@ export default function Document() {
       className="scroll-smooth"
     >
       <Head>
-        <meta
-          name="keywords"
-          // website monitoring, web monitoring, site downtime, website monitoring tools, website uptime monitoring, website monitoring services, site monitoring, server uptime, uptime web hosting, uptime robot alternative
-          content={customConfig.seo.keywords}
-        />
+        {/* Removing global keywords to allow page-specific keywords */}
         <meta charSet="UTF-8" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
@@ -34,15 +30,17 @@ export default function Document() {
           property="og:title"
           // example as PregnantMeal - Monitor your website, and server
           content={customConfig.seo.og.title}
+          key="og:title"
         />
         <meta
           property="og:description"
           // example as PregnantMeal - Monitor your website, and server
           content={customConfig.seo.description}
+          key="og:description"
         />
         {/* example as https://pregnantmeal.com/ */}
-        <meta property="og:url" content={customConfig.domainWithHttps} />
-        <meta property="og:type" content="website" />
+        <meta property="og:url" content={customConfig.domainWithHttps} key="og:url" />
+        <meta property="og:type" content="website" key="og:type" />
         {/* example as PregnantMeal */}
         <meta
           property="og:site_name"
@@ -53,6 +51,7 @@ export default function Document() {
           property="og:image"
           // add to public og image and it will be as https://pregnantmeal.com/og-image.png
           content={customConfig.seo.og.image}
+          key="og:image"
         />
         <meta property="og:image:alt" content={customConfig.seo.og.imageAlt} />
         <meta property="og:image:type" content="image/png" />
@@ -63,21 +62,23 @@ export default function Document() {
           // example as https://x.com/tech_nurgaliyev
           content={customConfig.seo.og.articleAuthor}
         />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={customConfig.seo.og.twitterSite} />
+        <meta name="twitter:card" content="summary_large_image" key="twitter:card" />
+        <meta name="twitter:site" content={customConfig.seo.og.twitterSite} key="twitter:site" />
         <meta name="twitter:creator" content="@tech_nurgaliyev" />
         <meta
           name="twitter:title"
           // PregnantMeal - Monitor your website, and server
           content={customConfig.seo.og.title}
+          key="twitter:title"
         />
         <meta
           name="twitter:description"
           // example as Start monitoring in 30 seconds. Get notified by email, and SMS. Monitor your website, and server.
           content={customConfig.seo.description}
+          key="twitter:description"
         />
         {/* example as https://pregnantmeal.com/twitter.png */}
-        <meta name="twitter:image" content={customConfig.seo.og.twitterImage} />
+        <meta name="twitter:image" content={customConfig.seo.og.twitterImage} key="twitter:image" />
         <link
           rel="icon"
           type="image/png"
