@@ -13,7 +13,7 @@ function Hero() {
       <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-8 lg:gap-16">
         <div className="flex flex-col gap-6 lg:gap-8 items-center lg:items-start text-center lg:text-left w-full lg:w-1/2">
           <h1 className="font-extrabold text-3xl sm:text-4xl lg:text-6xl tracking-tight text-primary">
-            Healthy Meals for You and Your Baby
+            Healthy Pregnant Meal Plans for You and Your Baby
           </h1>
           <p className="text-lg sm:text-xl opacity-90 leading-relaxed">
             Simple meal plans designed for each stage of your pregnancy journey.
