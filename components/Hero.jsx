@@ -46,7 +46,7 @@ function Hero() {
       <VideoModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
-        videoId="IKjZ3iLOztw" 
+        videoId="y4ahy6gupUs" 
       />
     </section>
   );
