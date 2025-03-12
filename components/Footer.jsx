@@ -6,9 +6,7 @@ import { isDevelopment } from "@/utils/isDevelopment";
 function Footer({ bgColor }) {
   const plausible = usePlausible();
   return (
-    <div
-      className="bg-white text-base-content overflow-hidden border-t border-base-content/5"
-    >
+    <div className="bg-white text-base-content overflow-hidden border-t border-base-content/5">
       <div className="max-w-7xl mx-auto px-8 py-24">
         <div className="flex lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
           <div className="w-80 max-w-full flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
@@ -146,14 +144,25 @@ function Footer({ bgColor }) {
                 </Link>
                 <Link
                   className="link link-hover"
-                  href="https://environmentaljobboards.com/"
+                  href="https://redditagency.com/"
                   target="_blank"
-                  title="Environmental Job Boards - home page"
+                  title="Reddit Agency - home page"
                   onClick={() => {
-                    plausible("EnvironmentalJobBoards");
+                    plausible("RedditAgency");
                   }}
                 >
-                  Environmental Job Boards
+                  RedditAgency
+                </Link>
+                <Link
+                  className="link link-hover"
+                  href="https://bestwebsitegames.com/"
+                  target="_blank"
+                  title="Best Websites Games - home page"
+                  onClick={() => {
+                    plausible("bestwebsitegames");
+                  }}
+                >
+                  Best Websites Games
                 </Link>
                 <Link
                   className="link link-hover"
@@ -199,6 +208,18 @@ function Footer({ bgColor }) {
                 >
                   Weeealth
                 </Link>
+                <Link
+                  className="link link-hover"
+                  href="https://environmentaljobboards.com/"
+                  target="_blank"
+                  title="Environmental Job Boards - home page"
+                  onClick={() => {
+                    plausible("EnvironmentalJobBoards");
+                  }}
+                >
+                  Environmental Job Boards
+                </Link>
+
                 <Link
                   className="link link-hover"
                   href="https://namewith.ai/"
