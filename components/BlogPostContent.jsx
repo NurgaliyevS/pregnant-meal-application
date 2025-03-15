@@ -1,11 +1,10 @@
-import RelatedArticles from "../pages/blog/RelatedArticles";
+import BlogHeader from "./BlogHeader";
+import RelatedArticles from "./RelatedArticles";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
 import { format } from "date-fns";
-import BlogHeader from "@/components/BlogHeader";
-import { renderAst } from "@/utils/renderAst";
 import { customConfig } from "@/project.custom.config";
 
 function BlogPostContent({ post, relatedPosts }) {
@@ -27,7 +26,7 @@ function BlogPostContent({ post, relatedPosts }) {
   };
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto bg-white">
       <Head>
         <title>{`${post.title} | PregnantMeal Blog`}</title>
         <meta name="description" content={post.excerpt} key="description" />
@@ -72,11 +71,11 @@ function BlogPostContent({ post, relatedPosts }) {
         />
       </Head>
       <BlogHeader />
-      <main className="min-h-screen max-w-6xl mx-auto p-8">
-        <div>
+      <main className="min-h-screen max-w-6xl mx-auto p-4 md:p-8">
+        <div className="mb-8">
           <Link
             href="/blog"
-            className="link !no-underline text-base-content/80 hover:text-base-content inline-flex items-center gap-1"
+            className="link !no-underline text-base-content/80 hover:text-base-content inline-flex items-center gap-1 transition-colors duration-200"
             title={"Back to Blog"}
           >
             <svg
@@ -94,68 +93,107 @@ function BlogPostContent({ post, relatedPosts }) {
             Back to Blog
           </Link>
         </div>
-        <article>
-          <section className="my-12 md:my-20 max-w-screen-md">
+        <article className="max-w-4xl mx-auto">
+          <section className="my-8 md:my-12 max-w-screen-md mx-auto">
             <div className="flex items-center gap-4 mb-6 flex-wrap">
-              {post.tags.map((tag) => (
+              {post.tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="badge badge-sm md:badge-md hover:badge-primary"
+                  className="badge badge-sm md:badge-md hover:badge-primary transition-colors duration-200"
                 >
                   {tag}
                 </span>
               ))}
-              <span itemProp="datePublished">
+              <span itemProp="datePublished" className="text-gray-600 text-sm md:text-base">
                 {format(new Date(post.date), "MMMM d, yyyy")}
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 md:mb-8">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-6 md:mb-8 text-gray-800 leading-tight">
               {post.title}
             </h1>
-            <p className="text-base-content/80 md:text-lg max-w-screen-md">
+            <p className="text-gray-600 md:text-lg max-w-screen-md leading-relaxed mb-8">
               {post.excerpt}
             </p>
           </section>
-          <div className="flex flex-col md:flex-row">
-            <section className="max-md:pb-4 md:pl-12 max-md:border-b md:border-l md:order-last md:w-72 shrink-0">
-              <p className="text-base-content/80 text-sm mb-2 md:mb-3">
-                Posted by
-              </p>
-              <Link
-                href={`/blog/author/sabyr`}
-                className="inline-flex items-center gap-2 group"
-                title={`Posts By ${post.author}`}
-                rel="author"
-              >
-                <span itemProp="author">
-                  <Image
-                    src={"/Sabyr_Nurgaliyev.webp"}
-                    alt={`Post By ${post.author}`}
-                    width={50}
-                    height={50}
-                    className="w-8 h-8 rounded-full object-cover object-center"
-                  />
-                </span>
-                <span className="group-hover:underline">{post.author}</span>
-              </Link>
-            </section>
-            <section className="w-full max-md:pt-4 md:pr-20 space-y-12 md:space-y-20">
-              <Image
-                alt={post.alt}
-                src={post.image}
-                className="rounded-xl"
-                width={700}
-                height={500}
-              />
-              {renderAst(post.contentHtml)}
-            </section>
+          
+          <div className="mb-10">
+            <Image
+              alt={post.alt || post.title}
+              src={post.image}
+              className="rounded-xl shadow-md w-full object-cover h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px]"
+              width={1200}
+              height={600}
+              priority
+            />
           </div>
-          <RelatedArticles currentPost={post} relatedPosts={relatedPosts} />
+          
+          <div className="flex flex-col-reverse md:flex-row gap-8 mt-8 md:mt-12">
+            <section className="w-full md:w-3/4">
+            <div className="blog-content prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+            </section>
+            
+            <aside className="md:w-1/4 shrink-0 mb-8 md:mb-0">
+              <div className="md:sticky md:top-24 space-y-6 md:space-y-8">
+                <div className="bg-gray-50 p-5 rounded-lg border border-gray-100">
+                  <p className="text-gray-600 text-sm mb-4">
+                    Posted by
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src={"/Sabyr_Nurgaliyev.webp"}
+                      alt={`Post By ${post.author}`}
+                      width={60}
+                      height={60}
+                      className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-sm"
+                    />
+                    <div className="flex-1">
+                      <div className="text-gray-900 font-semibold text-lg">
+                        {post.author}
+                      </div>
+                      <div className="text-gray-600 text-sm">
+                        Founder, PregnantMeal
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-gray-50 p-5 rounded-lg border border-gray-100">
+                  <h3 className="font-semibold text-gray-800 mb-4 text-lg">Tags</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <span 
+                        key={tag} 
+                        className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-200"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="bg-blue-50 p-5 rounded-lg border border-blue-100">
+                  <h3 className="font-semibold text-blue-800 mb-3 text-lg">Need Help?</h3>
+                  <p className="text-sm text-blue-700 mb-4">Get personalized pregnancy meal plans tailored to your needs.</p>
+                  <a
+                    href="https://cal.com/sabyr-nurgaliyev/15min"
+                    className="btn btn-primary btn-sm w-full"
+                    role="button"
+                  >
+                    Book a Consultation
+                  </a>
+                </div>
+              </div>
+            </aside>
+          </div>
+          
+          <div className="mt-16">
+            <RelatedArticles currentPost={post} relatedPosts={relatedPosts} />
+          </div>
         </article>
       </main>
-      <footer>
-        <Footer bgColor={"bg-slate-200"} />
+      <footer className="mt-16">
+        <Footer />
       </footer>
     </div>
   );
