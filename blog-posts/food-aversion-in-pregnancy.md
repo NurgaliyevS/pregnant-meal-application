@@ -12,6 +12,8 @@ tags: ["food aversion", "pregnancy", "morning sickness", "nutrition", "first tri
 
 Food aversions are a common experience during pregnancy, particularly in the first trimester. These sudden, intense dislikes for specific foods can be challenging to navigate, especially when they affect your ability to maintain proper nutrition. This comprehensive guide explores the causes of food aversions during pregnancy, effective coping strategies, and nutritional solutions to ensure both you and your baby receive essential nutrients despite these challenges.
 
+![Pregnant woman experiencing food aversion](/blog/food-aversion-pregnancy-woman.webp)
+
 ## What Causes Food Aversion in Pregnancy?
 
 Food aversions during pregnancy are believed to be primarily caused by hormonal changes, particularly the increase in human chorionic gonadotropin (hCG) and estrogen. These hormones can heighten your sense of smell and taste, making certain foods suddenly unappetizing or even nauseating.
@@ -28,6 +30,8 @@ Common factors contributing to food aversions include:
 ## Most Common Food Aversions During Pregnancy
 
 While food aversions vary widely among pregnant women, certain foods tend to trigger aversions more frequently than others:
+
+![Common food aversions during pregnancy](/blog/navigating-pregnancy-food-aversions.webp)
 
 1. **Meat and poultry**: Many women report strong aversions to chicken, beef, and other meats
 2. **Coffee and caffeinated beverages**: The smell and taste of coffee often become unpleasant
@@ -170,3 +174,5 @@ With thoughtful planning and the right strategies, you can successfully manage f
 
 
 [cta_button url="https://pregnantmeal.com/meal" text="Make My Meals"]
+
+![Pregnant woman preparing healthy meal alternatives](/blog/pregnant-woman-cooking.webp)
