@@ -176,11 +176,11 @@ function BlogPostContent({ post, relatedPosts }) {
                   <h3 className="font-semibold text-blue-800 mb-3 text-lg">Need Help?</h3>
                   <p className="text-sm text-blue-700 mb-4">Get personalized pregnancy meal plans tailored to your needs.</p>
                   <a
-                    href="https://cal.com/sabyr-nurgaliyev/15min"
+                    href="https://pregnantmeal.com/meal"
                     className="btn btn-primary btn-sm w-full"
                     role="button"
                   >
-                    Book a Consultation
+                    Make My Meals
                   </a>
                 </div>
               </div>
