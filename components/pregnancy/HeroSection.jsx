@@ -11,7 +11,7 @@ export default function HeroSection({ weekNumber, months, trimester, fruitSize }
             </h1>
             <div className="stats shadow mb-6">
               <div className="stat">
-                <div className="stat-title">Months</div>
+                <div className="stat-title">Period</div>
                 <div className="stat-value text-primary">{months}</div>
               </div>
               <div className="stat">

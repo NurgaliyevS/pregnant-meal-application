@@ -68,9 +68,20 @@ export default function WeeksToMonthsPage() {
 
   // Calculate months from weeks
   const calculateMonths = (weeks) => {
-    // Pregnancy months are typically calculated as 4.3 weeks per month
-    const months = (weeks / 4.3).toFixed(1);
-    return months;
+    const totalDays = weeks * 7;
+    const months = Math.floor(totalDays / 30.44); // average days in a month
+    const remainingDays = totalDays % 30.44;
+    const remainingWeeks = Math.floor(remainingDays / 7);
+    const days = Math.round(remainingDays % 7);
+
+    let result = `${months} months`;
+    if (remainingWeeks > 0) {
+      result += ` ${remainingWeeks} weeks`;
+    }
+    if (days > 0) {
+      result += ` ${days} days`;
+    }
+    return result;
   };
 
   // Get trimester based on week
@@ -231,8 +242,8 @@ export default function WeeksToMonthsPage() {
   const relatedWeeks = getRelatedWeeks(weekNumber);
   const fruitSize = getFruitSize(weekNumber);
 
-  const pageTitle = `${weekNumber} Weeks Pregnant in Months - ${months} Months | PregnantMeal`;
-  const pageDescription = `${weekNumber} weeks pregnant equals ${months} months. Learn about your baby's development, what to expect, and get meal plans for week ${weekNumber} of pregnancy.`;
+  const pageTitle = `${weekNumber} Weeks Pregnant (${calculateMonths(weekNumber)}) | PregnantMeal`;
+  const pageDescription = `At ${weekNumber} weeks pregnant (${calculateMonths(weekNumber)}), learn about your baby's development, what to expect, and get personalized meal plans for this stage of pregnancy.`;
 
   return (
     <div className={lato.className}>

@@ -8,10 +8,10 @@ export default function CommonQuestionsSection({ weekNumber, months }) {
           <div className="collapse collapse-plus bg-base-200">
             <input type="checkbox" /> 
             <div className="collapse-title font-medium">
-              Is {weekNumber} weeks exactly {months} months pregnant?
+              Understanding pregnancy weeks vs. months
             </div>
             <div className="collapse-content"> 
-              <p>Not exactly. Pregnancy months aren't the same as calendar months. A pregnancy month is calculated as 4.3 weeks, so {weekNumber} weeks equals approximately {months} months. Healthcare providers prefer to track pregnancy by weeks because it's more precise for monitoring development.</p>
+              <p>Pregnancy weeks and calendar months don't align perfectly. While you're {weekNumber} weeks pregnant (approximately {months}), healthcare providers track pregnancy by weeks rather than months because it provides more accurate timing for developmental milestones and medical care. A pregnancy "month" is roughly 4.3 weeks, making the week count the more precise measurement.</p>
             </div>
           </div>
           
