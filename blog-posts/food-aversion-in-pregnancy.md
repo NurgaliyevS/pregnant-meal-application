@@ -5,7 +5,7 @@ date: "2025-03-15"
 author: "Sabyr Nurgaliyev"
 image: "/blog/Food Aversion in Pregnancy.jpg"
 alt: "Pregnant woman looking uncomfortable at plate of food showing food aversion"
-tags: ["food aversion", "pregnancy", "morning sickness", "nutrition", "first trimester"]
+tags: ["food aversion in pregnancy", "food aversion", "pregnancy", "morning sickness", "nutrition", "first trimester"]
 ---
 
 # Food Aversion in Pregnancy
