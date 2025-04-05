@@ -3,16 +3,12 @@ import "@/styles/blog.css";
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PlausibleProvider from "next-plausible";
-import { customConfig } from "@/project.custom.config";
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
   return (
-    // example as PregnantMeal.com without https://
-    <PlausibleProvider domain={customConfig.domainName}>
     <SessionProvider session={session}>
       <Component {...pageProps} />
       <ToastContainer
@@ -26,7 +22,12 @@ export default function App({
         draggable
         pauseOnHover
       />
+      <script
+        defer
+        data-website-id="67f0b799a43d0b88a66f7942"
+        data-domain="pregnantmeal.com"
+        src="https://datafa.st/js/script.js"
+      ></script>
     </SessionProvider>
-    </PlausibleProvider>
   );
 }
